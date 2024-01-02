@@ -1,0 +1,18 @@
+@charset "UTF-8";
+header{
+	font-size: calc(40px * 1080 / 1920);
+	height:  calc(80px * 1080 / 1920);
+}
+
+.account{
+	color: white;
+}
+
+.account:hover{
+	color: blue;
+}
+
+footer{
+	font-size: calc(25px * 1080 / 1920);
+	height:  calc(80px * 1080 / 1920);
+}

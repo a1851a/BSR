@@ -1,10 +1,36 @@
 @charset "UTF-8";
+:root{
+	--f-family-title:'Caveat','Noto Serif TC', serif;
+	--f-family:'Noto Serif TC','Playfair Display', serif;
+}
+
+html{
+	overflow-x: hidden;
+}
+
 header{
-	font-size: calc(40px * 1080 / 1920);
+	font-size: calc(3rem * 1080 / 1920);
+	height:  calc(80px * 1080 / 1920);
+	font-family:var(--f-family-title) ;
+}
+
+body{
+	background-color: rgb(217, 217, 217);
+	font-family:var(--f-family) ;
+}
+
+main{
+	padding:  calc(80px * 1080 / 1920) 0 calc(80px * 1080 / 1920) 0;
+	font-size: calc(2rem * 1080 / 1920);
+}
+
+footer{
+	font-size: calc(25px * 1080 / 1920);
 	height:  calc(80px * 1080 / 1920);
 }
 
 .account{
+	display: block;
 	color: white;
 }
 
@@ -12,7 +38,19 @@ header{
 	color: blue;
 }
 
-footer{
-	font-size: calc(25px * 1080 / 1920);
-	height:  calc(80px * 1080 / 1920);
+.back{
+	color: white;
+	display: none;
+}
+
+.back:hover{
+	color: blue;
+}
+
+/* 分隔線 */
+.gradient{
+	height: .5px;
+	width: 100%;
+    border: 0; 
+    background: linear-gradient(to right, rgb(255, 172, 172), rgb(255, 0, 0), rgb(0, 253, 0), rgb(0, 0, 255),rgb(176, 176, 255));
 }

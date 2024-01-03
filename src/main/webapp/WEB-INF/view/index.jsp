@@ -3,7 +3,7 @@
 
     <%@include file="./include/header.jsp"%>
     
-    <main>
+    <main class="vw-100 vh-100">
     
     </main>
     

@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.servlet;
 
 import java.io.IOException;
 
@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/Index")
-public class IndexServlet extends HttpServlet{
+@WebServlet(value = "/Account")
+public class AccountServlet extends HttpServlet{
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//設定utf-8編碼
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=utf-8");
-				
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/index.jsp");
+		
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/account.jsp");
 		rd.forward(req, resp);
-
+		
 	}
-
+	
 }

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/Login")
-public class LoginServlet extends HttpServlet{
+@WebServlet(value = "/Register")
+public class RegisterServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=utf-8");
 		
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/login.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/register.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -33,15 +33,14 @@ public class LoginServlet extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 		
 		//表單後端驗證
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String userEmail = req.getParameter("user_email");
+        String userPassword = req.getParameter("user_password");
         		
-        if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-        	resp.getWriter().println("<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-         	resp.getWriter().print("<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整資訊</div>");
-        }
+        if (userEmail == null || userEmail.trim().isEmpty() || userPassword == null || userPassword.trim().isEmpty()) {
+        	resp.getWriter().println("<div style=\"color:red;min-height:100vh;display:flex;align-items:center;justify-content:center;font-size:min(calc(24px + 1vh),34px);\">請輸入完整資訊</div>");
+        } 
         else {
-	        RequestDispatcher rd=req.getRequestDispatcher("./Index");
+	        RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/frontend/account.jsp");
 	        rd.forward(req, resp);
         }
 	}

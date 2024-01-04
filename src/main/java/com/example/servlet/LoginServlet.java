@@ -41,8 +41,7 @@ public class LoginServlet extends HttpServlet{
          	resp.getWriter().print("<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整資訊</div>");
         }
         else {
-	        RequestDispatcher rd=req.getRequestDispatcher("./Index");
-	        rd.forward(req, resp);
+        	resp.sendRedirect("./Account");
         }
 	}
 }

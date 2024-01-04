@@ -33,15 +33,15 @@ public class RegisterServlet extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 		
 		//表單後端驗證
-        String userEmail = req.getParameter("user_email");
-        String userPassword = req.getParameter("user_password");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
         		
-        if (userEmail == null || userEmail.trim().isEmpty() || userPassword == null || userPassword.trim().isEmpty()) {
-        	resp.getWriter().println("<div style=\"color:red;min-height:100vh;display:flex;align-items:center;justify-content:center;font-size:min(calc(24px + 1vh),34px);\">請輸入完整資訊</div>");
-        } 
+        if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+        	resp.getWriter().println("<span><a href=\"./Register\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+         	resp.getWriter().print("<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整資訊</div>");
+        }
         else {
-	        RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/frontend/account.jsp");
-	        rd.forward(req, resp);
+        	resp.sendRedirect("./Account");
         }
 	}
 }

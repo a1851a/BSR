@@ -13,7 +13,7 @@
 	    </div>
 	    
     	<div class="container-fluid px-0">
-    		<form class="row m-0 needs-validation" name="login" method="post" action="./Login" novalidate>
+    		<form class="row m-0 needs-validation" method="post" action="./Login" novalidate>
 			  <div class="col-10 mx-auto px-0 m-2">
 			    <input type="email" class="form-control" id="email" name="email" placeholder="✉️電子信箱:example@gmail.com" required>
 			    <div class="invalid-feedback">

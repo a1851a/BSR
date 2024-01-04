@@ -5,7 +5,7 @@
     
     <main class="container-fluid vw-100">
     
-    	<div class="d-flex flex-wrap align-items-center">
+    	<div class="d-flex flex-wrap align-items-center aos-init" data-aos="fade-down">
 			<span class="title vw-100 text-center">
 				註冊BSR			
 			</span>
@@ -15,13 +15,13 @@
     	<div class="container-fluid px-0">
     		<form class="row m-0 needs-validation" method="post" action="./Register" novalidate>
 			  <div class="col-10 mx-auto px-0 m-2">
-			    <input type="email" class="form-control" id="user_email" name="user_email" placeholder="✉️電子信箱:example@gmail.com" required>
+			    <input type="email" class="form-control" id="email" name="email" placeholder="✉️電子信箱:example@gmail.com" required>
 			    <div class="invalid-feedback">
 			      請輸入帳號
 			    </div>
 			  </div>
 			  <div class="col-10 mx-auto px-0 m-2">
-			    <input type="password" class="form-control" id="user_password" name="user_password" placeholder="🗝️密碼" required>
+			    <input type="password" class="form-control" id="password" name="password" placeholder="🗝️密碼" required>
 			    <div class="invalid-feedback">
 			      請輸入密碼
 			    </div>
@@ -30,8 +30,7 @@
 			    <button class="login col-12 btn btn-primary" type="submit">註冊</button>
 			  </div>
 			</form>
-
-			<!-- https://www.youtube.com/watch?v=IudOiOwppFA -->
+			
 		</div>
     </main>
     
@@ -48,26 +47,6 @@
 			display: none;
 		}
 		
-		.forgetPassword{
-    		color: black;
-    		text-decoration:none;
-    	}
-    	
-    	.forgetPassword:hover{
-    		color: red;
-    		text-decoration:underline;
-    	}
-    	
-		.goRegister{
-    		color: black;
-    		text-decoration:none;
-    	}
-    	
-    	.goRegister:hover{
-    		color: blue;
-    		text-decoration:underline;
-    	}
-    	
     	div{
     		min-width: 200px;
     	}
@@ -77,8 +56,10 @@
 		}
     </style>
     	
-    <script>
-    
+    <script type="text/javascript">
+  	//標題特效
+	AOS.init();
+  	
    	//前端驗證表單
    	//Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

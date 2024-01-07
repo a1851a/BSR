@@ -1,6 +1,7 @@
-package com.example.servlet;
+package com.example.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,18 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.exception.LoginException;
+import com.example.exception.AccountException;
+import com.example.model.AccountDAO;
+import com.example.model.AccountDAOInMemory;
+import com.example.model.User;
 
 @WebServlet(value = "/Account")
 public class AccountServlet extends HttpServlet {
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 設定utf-8編碼
-		req.setCharacterEncoding("UTF-8");
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=utf-8");
-
+	
+		//取得帳號使用者
+		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/account.jsp");
 		req.setAttribute("email", "test@gmail.com");
 		req.setAttribute("key", "12345");
@@ -33,17 +35,14 @@ public class AccountServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 設定編碼
-		req.setCharacterEncoding("UTF-8");
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=utf-8");
 
-		// 表單後端驗證
+		String account=req.getParameter("account");
 		String key = req.getParameter("key");
 		String user_name = req.getParameter("user_name");
 		String gender = req.getParameter("gender");
 		String birthday = req.getParameter("birthday");
-
+		
+		// 表單後端驗證
 		if (key == null || key.trim().isEmpty() || user_name == null || user_name.trim().isEmpty() || gender == null
 				|| gender.trim().isEmpty()) {
 			resp.getWriter().println(

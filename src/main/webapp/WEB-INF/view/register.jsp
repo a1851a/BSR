@@ -18,7 +18,7 @@
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email"
 					placeholder="✉️電子信箱:example@gmail.com" required>
-				<div class="invalid-feedback">請輸入帳號</div>
+				<div class="invalid-feedback">請輸入正確帳號</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="password" class="form-control" id="password"
@@ -35,6 +35,14 @@
 <%@include file="./include/footer.jsp"%>
 
 <style>
+div {
+	min-width: 200px;
+}
+
+button {
+	padding: 12px;
+}
+
 .title {
 	padding: calc(20px * 1080/ 1920) 0 calc(5px * 1080/ 1920) 0;
 	font-size: calc(4rem * 1080/ 1920);
@@ -47,19 +55,15 @@
 .back {
 	display: block;
 }
-
-div {
-	min-width: 200px;
-}
-
-button {
-	padding: 12px;
-}
 </style>
 
 <script type="text/javascript">
 	//標題特效
 	AOS.init();
+
+	function goBack() {
+		window.location.href = "./Login";
+	}
 
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields

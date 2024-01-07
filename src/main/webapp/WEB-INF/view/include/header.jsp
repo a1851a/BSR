@@ -40,6 +40,10 @@
 <link rel="stylesheet" href="./css/index.css">
 <!-- 自訂Javascript -->
 <script type="text/javascript" src="./js/index.js"></script>
+<!-- 禁止快取網頁 -->
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
 <title>BSR</title>
 </head>
 <body>
@@ -48,7 +52,7 @@
 		class="container-fluid vw-100 fixed-top d-flex flex-nowrap align-items-center bg-dark m-0">
 		<span class="vw-100 text-center text-light"> BSR </span> <span
 			class="text-end"> <a class="account bi bi-person-circle me-3"
-			href="./Login"></a>
+			href="./Account"></a>
 		</span> <span class="text-end"> <a
 			class="back bi bi-arrow-left-circle me-3" href="#" onclick="goBack()"></a>
 		</span>

@@ -50,9 +50,9 @@ footer {
 
 /* 分隔線 */
 .gradient {
-	height: .5px;
+	height: 1px;
 	width: 100%;
 	border: 0;
-	background: linear-gradient(to right, rgb(255, 172, 172), rgb(255, 0, 0),
-		rgb(0, 253, 0), rgb(0, 0, 255), rgb(176, 176, 255));
+	background: linear-gradient(to right, rgb(255, 172, 172, 0.5), rgb(255, 89, 89),
+		rgb(0, 240, 0), rgb(0, 0, 240), rgb(176, 176, 255, 0.5));
 }

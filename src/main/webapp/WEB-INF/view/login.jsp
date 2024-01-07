@@ -40,10 +40,10 @@
 		</div>
 
 		<div
-			class="row col-12 d-flex flex-wrap justify-content-center mx-0 my-2">
-			<hr class="col-4 p-0 my-2">
+			class="row col-12 d-flex flex-wrap justify-content-center align-items-center mx-0 my-2">
+			<hr class="separation_line_left col-4 p-0 my-2">
 			<span class="col-2 p-0 text-center">OR</span>
-			<hr class="col-4 p-0 my-2">
+			<hr class="separation_line_right col-4 p-0 my-2">
 		</div>
 
 		<!-- 快速登入 -->
@@ -75,6 +75,18 @@
 <%@include file="./include/footer.jsp"%>
 
 <style>
+div {
+	min-width: 200px;
+}
+
+button {
+	padding: 12px;
+}
+
+hr:not([size]){
+	height: 1px;
+}
+
 .title {
 	padding: calc(20px * 1080/ 1920) 0 calc(5px * 1080/ 1920) 0;
 	font-size: calc(4rem * 1080/ 1920);
@@ -104,12 +116,16 @@
 	text-decoration: underline;
 }
 
-div {
-	min-width: 200px;
+.separation_line_left {
+	border: 0;
+	background: linear-gradient(to left, rgb(0, 0, 0), rgb(255, 0, 0),
+		rgb(0, 253, 0), rgb(0, 0, 255), rgb(0, 0, 0));
 }
 
-button {
-	padding: 12px;
+.separation_line_right {
+	border: 0;
+	background: linear-gradient(to right, rgb(255, 172, 172), rgb(255, 0, 0),
+		rgb(0, 253, 0), rgb(0, 0, 255), rgb(0, 0, 0));
 }
 </style>
 

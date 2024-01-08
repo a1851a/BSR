@@ -12,74 +12,116 @@
 	</div>
 </div>
 
-<div class="row recode col-12 mx-0 mt-3 vw-100">
+<recode class="row recode col-3 mx-0 vw-100">
 	<!-- 左邊menu -->
 	<menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a>基本資訊</a>
+			<a href="./HeightAndWeight" class="active">身高、體重</a>
 		</ul>
 		<ul>
-			<a>血糖</a>
+			<a href="./BP">血壓</a>
 		</ul>
 		<ul>
-			<a>血脂肪</a>
+			<a href="./BloodSugar">血糖</a>
 		</ul>
 		<ul>
-			<a>腎臟功能</a>
+			<a href="javascript:;">血脂肪</a>
 		</ul>
 		<ul>
-			<a>肝臟功能</a>
+			<a href="javascript:;">腎臟功能</a>
 		</ul>
 		<ul>
-			<a>電解質</a>
+			<a href="javascript:;">肝臟功能</a>
 		</ul>
 		<ul>
-			<a>血液</a>
+			<a href="javascript:;">電解質</a>
 		</ul>
 		<ul>
-			<a>尿液</a>
+			<a href="javascript:;">血液</a>
 		</ul>
 		<ul>
-			<a>尿液沉渣</a>
+			<a href="javascript:;">尿液</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">尿液沉渣</a>
 		</ul>
 	</menu>
 
-	<div class="d-flex justify-content-start col-2 col-md-10 p-0">
-		<arrow class="p-0 d-flex align-items-center col-1"> <a
-			class="rightArrow bg-dark text-light text-center w-auto" href="#">></a>
-		<a class="leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
+	<span class="d-flex justify-content-start col-2 col-md-10 p-0">
+		<arrow class="p-0 d-flex align-items-center col-1"> 
+			<a class="rightArrow bg-dark text-light text-center w-auto" href="#">></a>
+			<a class="leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
 		</arrow>
-		<context> Lorem ipsum dolor sit amet,
-		consectetur adipiscing elit. Sed ac tortor nec odio tristique euismod.
-		Ut in elit vel mauris ultrices ultricies. Vivamus eu ultrices lacus.
-		Nunc sagittis consectetur justo vel eleifend. Maecenas volutpat dolor
-		at ultricies tristique. Curabitur auctor odio vel sapien pulvinar, ut
-		dapibus quam euismod. Nullam euismod lectus vel metus volutpat, vel
-		consectetur mauris venenatis. Quisque non augue eu nisl feugiat
-		dictum. Integer ac imperdiet odio, eu semper dui. In hac habitasse
-		platea dictumst. Maecenas fermentum vel augue eget viverra. Etiam vel
-		metus non enim aliquet efficitur. Curabitur et purus a purus finibus
-		commodo. Nullam volutpat elit eu felis cursus vestibulum. Sed ac
-		tellus ac velit cursus elementum. Fusce bibendum bibendum ligula,
-		vitae ultricies nulla interdum ut. Pellentesque habitant morbi
-		tristique senectus et netus et malesuada fames ac turpis egestas.
-		Proin bibendum felis vel risus malesuada varius. Suspendisse potenti.
-		Aliquam erat volutpat. Nam aliquet imperdiet feugiat. Integer id
-		tortor nec purus sagittis eleifend. Quisque sed nulla vitae lectus
-		feugiat fermentum. Aenean sit amet cursus justo. Duis et rhoncus est,
-		vel bibendum elit. Nulla facilisi. Sed euismod sagittis dui, vel
-		cursus tellus varius ac. Etiam nec libero sit amet odio accumsan
-		gravida vel a odio. Nunc et ipsum nisl. Ut at risus vel purus
-		consectetur pharetra non at massa. Vivamus euismod cursus feugiat. Ut
-		euismod diam sit amet quam elementum, sit amet euismod elit cursus.
-		Curabitur blandit fringilla neque vel aliquet. Nam vel nulla id nunc
-		convallis facilisis. Sed suscipit, velit vel ultricies semper, lacus
-		ex facilisis arcu, in tristique eros mauris vitae ligula. 
-		</context>
+		<context class="d-flex align-items-center"></context>
+	</span>
+</recode>
+
+<!-- 紀錄資料 -->
+<div class="container-fluid">
+	<div class="d-flex flex-wrap align-items-start aos-init"
+		data-aos="fade-down">
+		<span class="title vw-100 text-center">紀錄資料</span>
+		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+			data-aos="fade-down">
 	</div>
 </div>
 
-<div class="theme_final">abbbb</div>
+<recode class="row recode col-3 mx-0 vw-100">
+	<!-- 左邊menu -->
+	<menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
+		<ul>
+			<a href="./HeightAndWeight" class="active">身高、體重</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">血壓</a>
+		</ul>
+		<ul>
+			<a href="./BloodSugar">血糖</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">血脂肪</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">腎臟功能</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">肝臟功能</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">電解質</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">血液</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">尿液</a>
+		</ul>
+		<ul>
+			<a href="javascript:;">尿液沉渣</a>
+		</ul>
+	</menu>
+
+	<span class="d-flex justify-content-start col-2 col-md-10 p-0">
+		<arrow class="p-0 d-flex align-items-center col-1"> 
+			<a class="rightArrow bg-dark text-light text-center w-auto" href="#">></a>
+			<a class="leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
+		</arrow>
+		<context class="d-flex align-items-center"></context>
+	</span>
+</recode>
+	
+<div class="theme_final container-fluid">
+	<div class="d-flex flex-wrap align-items-start aos-init"
+		data-aos="fade-down">
+		<span class="title vw-100 text-center">檢康資訊</span>
+		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+			data-aos="fade-down">
+	</div>
+</div>
+
+<span class="d-flex justify-content-start col-2 col-md-10 p-0">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.		
+</span>
 
 <%@include file="./include/footer.jsp"%>
 
@@ -92,6 +134,11 @@ button {
 	padding: 12px;
 }
 
+recode {
+	min-width: 280px;
+	overflow-x: hidden;
+}
+
 menu {
 	padding: 0;
 	left: -100%;
@@ -101,28 +148,37 @@ menu {
 	white-space: nowrap;
 	padding: calc(8px * 1080/ 1920) calc(12px * 1080/ 1920)
 		calc(8px * 1080/ 1920) calc(12px * 1080/ 1920);
-	min-width: 80px;
+	min-width: 100px;
 }
 
 menu ul {
-	padding: calc(8px * 1080/ 1920) 0 calc(8px * 1080/ 1920)
-		calc(8px * 1080/ 1920);
+	padding: calc(8px * 1080/ 1920) 0 calc(8px * 1080/ 1920) 0;
 	margin: 0;
 	width: 100%;
 }
 
 menu ul a {
+	display:flex;
 	padding: 0;
 	margin: 0;
+	width:100%;
+	text-decoration: none;
+	color: white;
+	padding-left: calc(8px * 1080/ 1920);
+}
+
+menu ul a:hover,a.active {
+	background-color:white;
+	color: black;
 }
 
 context {
 	position: relative;
-	left: calc(-125px * 1080/ 1920);
+	left: calc(-150px * 1080/ 1920);
 	top: 0;
 	z-index: 8;
 	min-width: 100vw;
-	padding-right: calc(100px * 1080/ 1920);
+	padding-right: calc(80px * 1080/ 1920);
 }
 
 arrow {
@@ -137,11 +193,6 @@ arrow {
 .title {
 	padding: calc(20px * 1080/ 1920) 0 0 0;
 	font-size: calc(4rem * 1080/ 1920);
-}
-
-.recode {
-	min-width: 280px;
-	overflow-x: hidden;
 }
 
 .rightArrow {
@@ -178,7 +229,7 @@ arrow {
 
 			$("menu").animate({
 				left : "-100%"
-			}, 550);
+			}, 500);
 
 			$(".leftArrow").hide();
 
@@ -204,6 +255,29 @@ arrow {
 			}, 550);
 			event.preventDefault();
 		});
+	});
+
+	//預設為基本資訊頁面
+	$('context').load('./HeightAndWeight');
+
+	//點擊側邊收合選單切換頁面
+	$('menu ul a').on('click', function (e) {
+		//避免直接跳轉頁面
+	    e.preventDefault();
+	    $('menu ul a').removeClass('active');
+	    $(this).addClass('active');
+	  	
+	    //收合側邊欄位menu(未用function:leftarray未於一開始設置，故須點擊兩次)
+		$("menu").animate({
+			left : "-100%"
+		}, 500);
+		$(".leftArrow").hide();
+		setTimeout(function() {
+			$(".rightArrow").show();
+		}, 550);
+	    
+	    let page = $(this).attr('href');
+	    $('context').load('./' + page);
 	});
 
 	//前端驗證表單

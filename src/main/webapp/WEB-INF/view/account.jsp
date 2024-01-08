@@ -1,4 +1,4 @@
-<%@page import="com.example.model.User"%>
+<%@page import="com.example.entity.User"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

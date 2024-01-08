@@ -3,9 +3,10 @@
 :root {
 	--f-family-title: 'Caveat', 'Noto Serif TC', serif;
 	--f-family: 'Noto Serif TC', 'Playfair Display', serif;
+	--font-size:calc(2rem * 1080/ 1920);;
 }
 
-html {
+html{
 	overflow-x: hidden;
 }
 
@@ -18,6 +19,7 @@ header {
 body {
 	background-color: rgb(217, 217, 217);
 	font-family: var(--f-family);
+	font-size: var(--font-size);	
 }
 
 main {

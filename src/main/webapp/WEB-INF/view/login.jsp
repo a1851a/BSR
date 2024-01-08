@@ -118,14 +118,12 @@ hr:not([size]){
 
 .separation_line_left {
 	border: 0;
-	background: linear-gradient(to left, rgb(0, 0, 0), rgb(255, 0, 0),
-		rgb(0, 253, 0), rgb(0, 0, 255), rgb(0, 0, 0));
+	background: linear-gradient(to right, #9D9D9D, #8E8E8E, #000000);
 }
 
 .separation_line_right {
 	border: 0;
-	background: linear-gradient(to right, rgb(255, 172, 172), rgb(255, 0, 0),
-		rgb(0, 253, 0), rgb(0, 0, 255), rgb(0, 0, 0));
+	background: linear-gradient(to right, #000000, #8E8E8E, #9D9D9D);
 }
 </style>
 

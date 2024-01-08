@@ -50,10 +50,12 @@
 	<!-- Logo -->
 	<header
 		class="container-fluid vw-100 fixed-top d-flex flex-nowrap align-items-center bg-dark m-0">
-		<span class="vw-100 text-center text-light"> BSR </span> <span
+		<span class="vw-100 text-center text-light"> BSR </span> 
+		<span
 			class="text-end"> <a class="account bi bi-person-circle me-3"
 			href="./Account"></a>
-		</span> <span class="text-end"> <a
+		</span> 
+		<span class="text-end"> <a
 			class="back bi bi-arrow-left-circle me-3" href="#" onclick="goBack()"></a>
 		</span>
 	</header>

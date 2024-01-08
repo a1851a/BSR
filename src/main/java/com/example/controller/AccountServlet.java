@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.entity.User;
 import com.example.exception.AccountException;
 import com.example.model.AccountDAO;
 import com.example.model.AccountDAOInMemory;
-import com.example.model.User;
 
 @WebServlet(value = "/Account")
 public class AccountServlet extends HttpServlet {

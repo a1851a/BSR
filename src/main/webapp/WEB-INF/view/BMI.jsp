@@ -3,7 +3,7 @@
     
 <!-- 血壓 -->
 <div class="container-fluid">
-	<form class="row m-0 needs-validation" method="post" action="./BP"
+	<form class="row m-0 needs-validation" method="post" action="./BMI"
 			novalidate>
 			<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">身高</label>

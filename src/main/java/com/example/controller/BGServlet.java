@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.exception.AccountException;
+
+//血糖
 @WebServlet(value = "/BG")
 public class BGServlet extends HttpServlet{
 
@@ -20,25 +23,72 @@ public class BGServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String SBP = req.getParameter("SBP");
-		String DBP = req.getParameter("DBP");
-
-		if (SBP.trim().isEmpty() || SBP==null ||
-				DBP.trim().isEmpty() || DBP==null) {
+		//空腹血糖
+		String AC = req.getParameter("AC");
+		//飯後血糖
+		String PC = req.getParameter("PC");
+		//糖化血色素
+		String HbA1c = req.getParameter("HbA1c");
+		//胰澱粉酶
+		String Amylase = req.getParameter("Amylase");
+		
+		Boolean isReasable = true;
+		
+		if (AC.trim().isEmpty() || AC==null ) {
 			resp.getWriter().println(
-					"<span><a href=\"./Index\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+					"<span><a href=\"#\" onclick=\"window.hiatory.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整的資訊</div>");
+			isReasable = false;
+		}else {
+			/*
+			 * 判斷是否位於合理範圍
+			 */
+			if ( Double.parseDouble(AC) <0 || Double.parseDouble(AC)>200) {
+				resp.getWriter().println(
+						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+				resp.getWriter().print(
+						"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入合理的資訊</div>");
+				isReasable = false;
+			}
 		}
-		else if ( Double.parseDouble(SBP) <0 || Double.parseDouble(SBP)>300 || 
-					Double.parseDouble(DBP) <0 || Double.parseDouble(DBP)>600) {
-			resp.getWriter().println(
-					"<span><a href=\"./Index\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-			resp.getWriter().print(
-					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入合理的資訊</div>");
+		
+		/*
+		 * 先判斷可不填寫的欄位，是否有值存在
+		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
+		 */
+		if (!PC.trim().isEmpty() && PC != null) {
+			Double pc=Double.parseDouble(PC);
+			if (pc < 0 || pc > 200) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
 		}
-		else {
+		
+		if(!HbA1c.trim().isEmpty() && HbA1c != null) {
+			Double hba1c = Double.parseDouble(HbA1c);
+			if (hba1c < 0 || hba1c > 200) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
+		}
+		
+		if (!Amylase.trim().isEmpty() && Amylase != null ) {
+			Long amylase = Long.parseLong(Amylase);
+			if (amylase<0 || amylase>20) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
+		}
+	
+		if (isReasable == true) {
 			resp.sendRedirect("./Index");
 		}
 	}
+	
+	public String PrintErrorMessage() {
+		return "<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\\\">⬅️</a></span>"+
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入合理的資訊</div>";
+	}
+	
 }

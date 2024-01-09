@@ -20,20 +20,22 @@ public class BMIServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//身高
 		String height = req.getParameter("height");
+		//體重
 		String weight = req.getParameter("weight");
 
 		if (height.trim().isEmpty() || height==null ||
 				weight.trim().isEmpty() || weight==null) {
 			resp.getWriter().println(
-					"<span><a href=\"./Index\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整的資訊</div>");
 		}
 		else if ( Double.parseDouble(height) <0 || Double.parseDouble(height)>300 || 
-					Double.parseDouble(weight) <0 || Double.parseDouble(weight)>600) {
+					Double.parseDouble(weight) <0 || Double.parseDouble(weight)>700) {
 			resp.getWriter().println(
-					"<span><a href=\"./Index\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入合理的資訊</div>");
 		}

@@ -16,13 +16,13 @@
 	<!-- 左邊menu -->
 	<menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a href="./HeightAndWeight" class="active">身高、體重</a>
+			<a href="./BMI" class="active">質量指數</a>
 		</ul>
 		<ul>
 			<a href="./BP">血壓</a>
 		</ul>
 		<ul>
-			<a href="./BloodSugar">血糖</a>
+			<a href="./BG">血糖</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">血脂肪</a>
@@ -258,7 +258,7 @@ arrow {
 	});
 
 	//預設為基本資訊頁面
-	$('context').load('./HeightAndWeight');
+	$('context').load('./BMI');
 
 	//點擊側邊收合選單切換頁面
 	$('menu ul a').on('click', function (e) {

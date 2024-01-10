@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!-- 血糖 -->
+<!--  -->
 <div class="container-fluid">
 	<form class="row m-0 needs-validation" method="post" action="./BP"
 			novalidate>

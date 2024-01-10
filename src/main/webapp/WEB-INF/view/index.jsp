@@ -25,7 +25,7 @@
 			<a href="./BG">血糖</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血脂肪</a>
+			<a href="./Hyperlipidemia">血脂肪</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">腎臟功能</a>

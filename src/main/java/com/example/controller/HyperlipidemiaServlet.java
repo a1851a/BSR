@@ -11,30 +11,39 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.exception.AccountException;
 
-//血糖
-@WebServlet(value = "/BG")
-public class BGServlet extends HttpServlet{
+//血脂肪
+@WebServlet(value = "/Hyperlipidemia")
+public class HyperlipidemiaServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/BG.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/hyperlipidemia.jsp");
 		rd.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//空腹血糖
-		String AC = req.getParameter("AC");
-		//飯後血糖
-		String PC = req.getParameter("PC");
-		//糖化血色素
-		String HbA1c = req.getParameter("HbA1c");
-		//胰澱粉酶
-		String Amylase = req.getParameter("Amylase");
+		//三酸甘油酯
+		String TG = req.getParameter("TG");
+		//膽固醇
+		String TC = req.getParameter("TC");
+		//高密度膽固醇
+		String HDL = req.getParameter("HDL");
+		//低密度膽固醇
+		String LDL = req.getParameter("LDL");
+		//極低密度膽固醇
+		String vldl = req.getParameter("vldl");
+		
+		//血管硬化機率(膽固醇/高密度膽固醇)
+		
+		//中風率(低密度膽固醇/高密度膽固醇)
 		
 		Boolean isReasable = true;
 		
-		if (AC.trim().isEmpty() || AC==null ) {
+		if (TG.trim().isEmpty() || TG == null ||
+				TC.trim().isEmpty() || TC == null ||
+				HDL.trim().isEmpty() || HDL == null ||
+				LDL.trim().isEmpty() || LDL == null) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -44,7 +53,10 @@ public class BGServlet extends HttpServlet{
 			/*
 			 * 判斷是否位於合理範圍
 			 */
-			if ( Double.parseDouble(AC) <0 || Double.parseDouble(AC)>200) {
+			if ( Double.parseDouble(TG) <0 || Double.parseDouble(TG)>1000 ||
+					Double.parseDouble(TC)<0 || Double.parseDouble(TC)>800 ||
+					Double.parseDouble(HDL)<0 || Double.parseDouble(HDL)>1000 ||
+					Double.parseDouble(LDL)<0 || Double.parseDouble(LDL)>1000) {
 				resp.getWriter().println(
 						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 				resp.getWriter().print(
@@ -57,25 +69,9 @@ public class BGServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!PC.trim().isEmpty() && PC != null) {
-			Double pc=Double.parseDouble(PC);
-			if (pc < 0 || pc > 200) {
-				resp.getWriter().print(PrintErrorMessage()) ;
-				isReasable = false;
-			}
-		}
-		
-		if(!HbA1c.trim().isEmpty() && HbA1c != null) {
-			Double hba1c = Double.parseDouble(HbA1c);
-			if (hba1c < 0 || hba1c > 200) {
-				resp.getWriter().print(PrintErrorMessage()) ;
-				isReasable = false;
-			}
-		}
-		
-		if (!Amylase.trim().isEmpty() && Amylase != null ) {
-			Long amylase = Long.parseLong(Amylase);
-			if (amylase<0 || amylase>20) {
+		if (!vldl.trim().isEmpty() && vldl != null) {
+			Double VLDL=Double.parseDouble(vldl);
+			if (VLDL < 0 || VLDL > 1000) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
 			}

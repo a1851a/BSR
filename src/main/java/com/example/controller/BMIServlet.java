@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//質量指數
 @WebServlet(value = "/BMI")
 public class BMIServlet extends HttpServlet{
 
@@ -25,6 +26,10 @@ public class BMIServlet extends HttpServlet{
 		//體重
 		String weight = req.getParameter("weight");
 
+		//BMI指數
+		
+		//BMR身體代謝率
+		
 		if (height.trim().isEmpty() || height==null ||
 				weight.trim().isEmpty() || weight==null) {
 			resp.getWriter().println(

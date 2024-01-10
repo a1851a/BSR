@@ -28,7 +28,7 @@
 			<a href="./Hyperlipidemia">血脂肪</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">腎臟功能</a>
+			<a href="./RenalFunction">腎臟功能</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">肝臟功能</a>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 // UTF-8 過濾器
 @WebFilter(value = {"/Register","/Login","/Account","/Index",
-					"/BMI","/BP","/BG","/Hyperlipidemia"})
+					"/BMI","/BP","/BG","/Hyperlipidemia","/RenalFunction"})
 public class UTF8EncodingFilter extends HttpFilter {
 
 	@Override

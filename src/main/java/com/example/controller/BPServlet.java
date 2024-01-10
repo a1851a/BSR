@@ -28,21 +28,23 @@ public class BPServlet extends HttpServlet{
 		//脈搏
 		String pulse=req.getParameter("pulse");
 
+		//判斷是否為空值
 		if (SBP.trim().isEmpty() || SBP==null ||
 				DBP.trim().isEmpty() || DBP==null ||
 				pulse.trim().isEmpty() || pulse==null) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
-					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整的資訊</div>");
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 		}
+		//判斷是否位於合理範圍
 		else if ( Double.parseDouble(SBP) <0 || Double.parseDouble(SBP)>300 || 
 					Double.parseDouble(DBP) <0 || Double.parseDouble(DBP)>600 ||
 					Double.parseDouble(pulse)<0 || Double.parseDouble(pulse)>200) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
-					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入合理資訊</div>");
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理資訊</div>");
 		}
 		else {
 			resp.sendRedirect("./Index");

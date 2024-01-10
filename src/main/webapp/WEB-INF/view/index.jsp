@@ -34,7 +34,7 @@
 			<a href="./LiverFunction">肝臟功能</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">電解質</a>
+			<a href="./Electrolyte">電解質</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">血液</a>

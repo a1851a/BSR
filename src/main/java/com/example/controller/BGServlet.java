@@ -57,7 +57,7 @@ public class BGServlet extends HttpServlet{
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
 		if (!PC.trim().isEmpty() && PC != null) {
-			Double pc=Double.parseDouble(PC);
+			Double pc = Double.parseDouble(PC);
 			if (pc < 0 || pc > 200) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
@@ -73,7 +73,7 @@ public class BGServlet extends HttpServlet{
 		}
 		
 		if (!Amylase.trim().isEmpty() && Amylase != null ) {
-			Long amylase = Long.parseLong(Amylase);
+			Double amylase = Double.parseDouble(Amylase);
 			if (amylase<0 || amylase>20) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;

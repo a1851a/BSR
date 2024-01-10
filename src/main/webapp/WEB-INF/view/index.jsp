@@ -31,7 +31,7 @@
 			<a href="./RenalFunction">腎臟功能</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">肝臟功能</a>
+			<a href="./LiverFunction">肝臟功能</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">電解質</a>

@@ -11,39 +11,45 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.exception.AccountException;
 
-//血脂肪
-@WebServlet(value = "/Hyperlipidemia")
-public class HyperlipidemiaServlet extends HttpServlet{
+//肝臟功能
+@WebServlet(value = "/LiverFunction")
+public class LiverFunctionServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/hyperlipidemia.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/liver_function.jsp");
 		rd.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//三酸甘油酯
-		String TG = req.getParameter("TG");
-		//膽固醇
-		String TC = req.getParameter("TC");
-		//高密度膽固醇
-		String HDL = req.getParameter("HDL");
-		//低密度膽固醇
-		String LDL = req.getParameter("LDL");
-		//極低密度膽固醇
-		String vldl = req.getParameter("vldl");
 		
-		//血管硬化機率(膽固醇/高密度膽固醇)
-		
-		//中風率(低密度膽固醇/高密度膽固醇)
-		
+		//總膽紅素
+		String dbit = req.getParameter("d-bit");
+		//直接膽紅素
+		String dbil = req.getParameter("d-bil");
+		//總蛋白
+		String TP = req.getParameter("TP");
+		//白蛋白
+		String Alb = req.getParameter("Alb");
+		//球蛋白
+		String Glo = req.getParameter("Glo");
+		//麩胺酸苯醋酸轉氨基酶
+		String sGOT = req.getParameter("sGOT");
+		//麩胺酸丙酮酸轉氨酶
+		String sGPT = req.getParameter("sGPT");
+		//鹼性磷酸酶
+		String alkp = req.getParameter("alkp");
+		//酒精性肝炎(脂肪肝)
+		String ald = req.getParameter("ald");
+
 		Boolean isReasable = true;
 		
-		if (TG.trim().isEmpty() || TG == null ||
-				TC.trim().isEmpty() || TC == null ||
-				HDL.trim().isEmpty() || HDL == null ||
-				LDL.trim().isEmpty() || LDL == null) {
+		if (TP.trim().isEmpty() || TP == null ||
+				Alb.trim().isEmpty() || Alb == null ||
+				Glo.trim().isEmpty() || Glo == null ||
+				sGOT.trim().isEmpty() || sGOT == null ||
+				sGPT.trim().isEmpty() || sGPT == null) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -53,10 +59,11 @@ public class HyperlipidemiaServlet extends HttpServlet{
 			/*
 			 * 判斷是否位於合理範圍
 			 */
-			if ( Double.parseDouble(TG) <0 || Double.parseDouble(TG)>1000 ||
-					Double.parseDouble(TC)<0 || Double.parseDouble(TC)>800 ||
-					Double.parseDouble(HDL)<0 || Double.parseDouble(HDL)>1000 ||
-					Double.parseDouble(LDL)<0 || Double.parseDouble(LDL)>1000) {
+			if ( Double.parseDouble(TP) <0 || Double.parseDouble(TP)>80 ||
+					Double.parseDouble(Alb)<0 || Double.parseDouble(Alb)>70 ||
+					Double.parseDouble(Glo)<0 || Double.parseDouble(Glo)>50 ||
+					Double.parseDouble(sGOT)<0 || Double.parseDouble(sGOT)>700 ||
+					Double.parseDouble(sGPT)<0 || Double.parseDouble(sGPT)>1000) {
 				resp.getWriter().println(
 						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 				resp.getWriter().print(
@@ -69,14 +76,38 @@ public class HyperlipidemiaServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!vldl.trim().isEmpty() && vldl != null) {
-			Double VLDL = Double.parseDouble(vldl);
-			if (VLDL < 0 || VLDL > 1000) {
+		if (!dbit.trim().isEmpty() && dbit != null) {
+			Double DBIT = Double.parseDouble(dbit);
+			if (DBIT < 0 || DBIT > 50) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
 			}
 		}
 	
+		if (!dbil.trim().isEmpty() && dbil != null) {
+			Double DBIL = Double.parseDouble(dbil);
+			if (DBIL < 0 || DBIL > 10) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
+		}
+		
+		if (!alkp.trim().isEmpty() && alkp != null) {
+			Double ALKP = Double.parseDouble(alkp);
+			if (ALKP < 0 || ALKP > 1000000) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
+		}
+		
+		if (!ald.trim().isEmpty() && ald != null) {
+			Double ALD = Double.parseDouble(ald);
+			if (ALD < 0 || ALD > 1000000) {
+				resp.getWriter().print(PrintErrorMessage()) ;
+				isReasable = false;
+			}
+		}
+		
 		if (isReasable == true) {
 			resp.sendRedirect("./Index");
 		}

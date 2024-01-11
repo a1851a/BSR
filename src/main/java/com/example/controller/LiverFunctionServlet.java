@@ -45,11 +45,11 @@ public class LiverFunctionServlet extends HttpServlet{
 
 		Boolean isReasable = true;
 		
-		if (TP.trim().isEmpty() || TP == null ||
-				Alb.trim().isEmpty() || Alb == null ||
-				Glo.trim().isEmpty() || Glo == null ||
-				sGOT.trim().isEmpty() || sGOT == null ||
-				sGPT.trim().isEmpty() || sGPT == null) {
+		if (TP == null || TP.trim().isEmpty() ||
+				Alb == null || Alb.trim().isEmpty() ||
+				Glo == null || Glo.trim().isEmpty() ||
+				sGOT == null || sGOT.trim().isEmpty() ||
+				sGPT == null || sGPT.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -76,7 +76,7 @@ public class LiverFunctionServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!dbit.trim().isEmpty() && dbit != null) {
+		if (dbit != null && !dbit.trim().isEmpty()) {
 			Double DBIT = Double.parseDouble(dbit);
 			if (DBIT < 0 || DBIT > 50) {
 				resp.getWriter().print(PrintErrorMessage()) ;
@@ -84,7 +84,7 @@ public class LiverFunctionServlet extends HttpServlet{
 			}
 		}
 	
-		if (!dbil.trim().isEmpty() && dbil != null) {
+		if (dbil != null && !dbil.trim().isEmpty()) {
 			Double DBIL = Double.parseDouble(dbil);
 			if (DBIL < 0 || DBIL > 10) {
 				resp.getWriter().print(PrintErrorMessage()) ;
@@ -92,7 +92,7 @@ public class LiverFunctionServlet extends HttpServlet{
 			}
 		}
 		
-		if (!alkp.trim().isEmpty() && alkp != null) {
+		if (alkp != null && !alkp.trim().isEmpty()) {
 			Double ALKP = Double.parseDouble(alkp);
 			if (ALKP < 0 || ALKP > 1000000) {
 				resp.getWriter().print(PrintErrorMessage()) ;
@@ -100,7 +100,7 @@ public class LiverFunctionServlet extends HttpServlet{
 			}
 		}
 		
-		if (!ald.trim().isEmpty() && ald != null) {
+		if (ald != null && !ald.trim().isEmpty()) {
 			Double ALD = Double.parseDouble(ald);
 			if (ALD < 0 || ALD > 1000000) {
 				resp.getWriter().print(PrintErrorMessage()) ;

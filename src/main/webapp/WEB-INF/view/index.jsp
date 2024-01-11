@@ -12,9 +12,9 @@
 	</div>
 </div>
 
-<recode class="row recode col-3 mx-0 vw-100">
-	<!-- 左邊menu -->
-	<menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
+<recode class="row col-3 mx-0 vw-100">
+	<!-- 左邊record_menu -->
+	<record_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
 			<a href="./BMI" class="active">質量指數</a>
 		</ul>
@@ -37,22 +37,22 @@
 			<a href="./Electrolyte">電解質</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血液</a>
+			<a href="./Blood">血液</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">尿液</a>
+			<a href="./Urine">尿液</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">尿液沉渣</a>
 		</ul>
-	</menu>
+	</record_menu>
 
 	<span class="d-flex justify-content-start col-2 col-md-10 p-0">
 		<arrow class="p-0 d-flex align-items-center col-1"> 
-			<a class="rightArrow bg-dark text-light text-center w-auto" href="#">></a>
-			<a class="leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
+			<a class="record_rightArrow bg-dark text-light text-center w-auto" href="#">></a>
+			<a class="record_leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
 		</arrow>
-		<context class="d-flex align-items-center"></context>
+		<record_context class="d-flex align-items-center"></record_context>
 	</span>
 </recode>
 
@@ -66,17 +66,17 @@
 	</div>
 </div>
 
-<recode class="row recode col-3 mx-0 vw-100">
+<history class="row col-3 mx-0 vw-100">
 	<!-- 左邊menu -->
-	<menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
+	<history_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a href="./HeightAndWeight" class="active">身高、體重</a>
+			<a href="./" class="active">質量指數</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">血壓</a>
 		</ul>
 		<ul>
-			<a href="./BloodSugar">血糖</a>
+			<a href="javascript:;">血糖</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">血脂肪</a>
@@ -99,16 +99,16 @@
 		<ul>
 			<a href="javascript:;">尿液沉渣</a>
 		</ul>
-	</menu>
+	</history_menu>
 
 	<span class="d-flex justify-content-start col-2 col-md-10 p-0">
 		<arrow class="p-0 d-flex align-items-center col-1"> 
-			<a class="rightArrow bg-dark text-light text-center w-auto" href="#">></a>
-			<a class="leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
+			<a class="history_rightArrow bg-dark text-light text-center w-auto" href="#">></a>
+			<a class="history_leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
 		</arrow>
-		<context class="d-flex align-items-center"></context>
+		<history_context class="d-flex align-items-center"></history_context>
 	</span>
-</recode>
+</history>
 	
 <div class="theme_final container-fluid">
 	<div class="d-flex flex-wrap align-items-start aos-init"
@@ -139,7 +139,7 @@ recode {
 	overflow-x: hidden;
 }
 
-menu {
+record_menu {
 	padding: 0;
 	left: -100%;
 	position: relative;
@@ -151,13 +151,13 @@ menu {
 	min-width: 100px;
 }
 
-menu ul {
+record_menu ul {
 	padding: calc(8px * 1080/ 1920) 0 calc(8px * 1080/ 1920) 0;
 	margin: 0;
 	width: 100%;
 }
 
-menu ul a {
+record_menu ul a {
 	display:flex;
 	padding: 0;
 	margin: 0;
@@ -167,12 +167,59 @@ menu ul a {
 	padding-left: calc(8px * 1080/ 1920);
 }
 
-menu ul a:hover,a.active {
+record_menu ul a:hover,a.active {
 	background-color:white;
 	color: black;
 }
 
-context {
+record_context {
+	position: relative;
+	left: calc(-150px * 1080/ 1920);
+	top: 0;
+	z-index: 8;
+	min-width: 100vw;
+	padding-right: calc(80px * 1080/ 1920);
+}
+
+history {
+	min-width: 280px;
+	overflow-x: hidden;
+}
+
+history_menu {
+	padding: 0;
+	left: -100%;
+	position: relative;
+	z-index: 9;
+	width: auto;
+	white-space: nowrap;
+	padding: calc(8px * 1080/ 1920) calc(12px * 1080/ 1920)
+		calc(8px * 1080/ 1920) calc(12px * 1080/ 1920);
+	min-width: 100px;
+}
+
+history_menu ul {
+	padding: calc(8px * 1080/ 1920) 0 calc(8px * 1080/ 1920) 0;
+	margin: 0;
+	width: 100%;
+}
+
+history_menu ul a {
+	display:flex;
+	padding: 0;
+	margin: 0;
+	width:100%;
+	text-decoration: none;
+	color: white;
+	padding-left: calc(8px * 1080/ 1920);
+}
+
+history_menu ul a:hover,a.active {
+	background-color:white;
+	color: black;
+}
+
+history_context {
 	position: relative;
 	left: calc(-150px * 1080/ 1920);
 	top: 0;
@@ -195,7 +242,7 @@ arrow {
 	font-size: calc(4rem * 1080/ 1920);
 }
 
-.rightArrow {
+.record_rightArrow {
 	position: absolute;
 	left: 0;
 	display: block;
@@ -205,7 +252,26 @@ arrow {
 	z-index: 99;
 }
 
-.leftArrow {
+.record_leftArrow {
+	position: absolute;
+	display: none;
+	font-size: calc(4rem * 1080/ 1920);
+	border-radius: 0 10px 10px 0;
+	text-decoration: none;
+	z-index: 99;
+}
+
+.history_rightArrow {
+	position: absolute;
+	left: 0;
+	display: block;
+	font-size: calc(4rem * 1080/ 1920);
+	border-radius: 0 10px 10px 0;
+	text-decoration: none;
+	z-index: 99;
+}
+
+.history_leftArrow {
 	position: absolute;
 	display: none;
 	font-size: calc(4rem * 1080/ 1920);
@@ -223,63 +289,122 @@ arrow {
 	//標題特效
 	AOS.init();
 
-	//收合側邊欄位menu
+	//紀錄部分
+	//收合側邊欄位record_menu
 	$(document).ready(function() {
-		$(".leftArrow").click(function() {
+		$(".record_leftArrow").click(function() {
 
-			$("menu").animate({
+			$("record_menu").animate({
 				left : "-100%"
 			}, 500);
 
-			$(".leftArrow").hide();
+			$(".record_leftArrow").hide();
 
 			setTimeout(function() {
-				$(".rightArrow").show();
+				$(".record_rightArrow").show();
 			}, 550);
 			event.preventDefault();
 		});
 	});
 
-	//展開側邊欄位menu
+	//展開側邊欄位record_menu
 	$(document).ready(function() {
-		$(".rightArrow").click(function(event) {
+		$(".record_rightArrow").click(function(event) {
 
-			$("menu").animate({
+			$("record_menu").animate({
 				left : "0"
 			}, 500);
 
-			$(".rightArrow").hide();
+			$(".record_rightArrow").hide();
 
 			setTimeout(function() {
-				$(".leftArrow").show();
+				$(".record_leftArrow").show();
 			}, 550);
 			event.preventDefault();
 		});
 	});
 
 	//預設為基本資訊頁面
-	$('context').load('./BMI');
+	$('record_context').load('./BMI');
 
 	//點擊側邊收合選單切換頁面
-	$('menu ul a').on('click', function (e) {
+	$('record_menu ul a').on('click', function (e) {
 		//避免直接跳轉頁面
 	    e.preventDefault();
-	    $('menu ul a').removeClass('active');
+	    $('record_menu ul a').removeClass('active');
 	    $(this).addClass('active');
 	  	
 	    //收合側邊欄位menu(未用function:leftarray未於一開始設置，故須點擊兩次)
-		$("menu").animate({
+		$("record_menu").animate({
 			left : "-100%"
 		}, 500);
-		$(".leftArrow").hide();
+		$(".record_leftArrow").hide();
 		setTimeout(function() {
-			$(".rightArrow").show();
+			$(".record_rightArrow").show();
 		}, 550);
 	    
 	    let page = $(this).attr('href');
-	    $('context').load('./' + page);
+	    $('record_context').load('./' + page);
 	});
 
+	//紀錄資料部分
+	//收合側邊欄位history_menu
+	$(document).ready(function() {
+		$(".history_leftArrow").click(function() {
+
+			$("history_menu").animate({
+				left : "-100%"
+			}, 500);
+
+			$(".history_leftArrow").hide();
+
+			setTimeout(function() {
+				$(".history_rightArrow").show();
+			}, 550);
+			event.preventDefault();
+		});
+	});
+
+	//展開側邊欄位record_menu
+	$(document).ready(function() {
+		$(".history_rightArrow").click(function(event) {
+
+			$("history_menu").animate({
+				left : "0"
+			}, 500);
+
+			$(".history_rightArrow").hide();
+
+			setTimeout(function() {
+				$(".history_leftArrow").show();
+			}, 550);
+			event.preventDefault();
+		});
+	});
+
+	//預設為基本資訊頁面
+	$('history_context').load('./BMI');
+
+	//點擊側邊收合選單切換頁面
+	$('history_menu ul a').on('click', function (e) {
+		//避免直接跳轉頁面
+	    e.preventDefault();
+	    $('history_menu ul a').removeClass('active');
+	    $(this).addClass('active');
+	  	
+	    //收合側邊欄位menu(未用function:leftarray未於一開始設置，故須點擊兩次)
+		$("history_menu").animate({
+			left : "-100%"
+		}, 500);
+		$(".history_leftArrow").hide();
+		setTimeout(function() {
+			$(".history_rightArrow").show();
+		}, 550);
+	    
+	    let page = $(this).attr('href');
+	    $('history_context').load('./' + page);
+	});
+	
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {

@@ -37,8 +37,8 @@ public class ElectrolyteServlet extends HttpServlet{
 		Boolean isReasable = true;
 		
 		//判斷是否為空值
-		if (Ca.trim().isEmpty() || Ca==null ||
-				P.trim().isEmpty() || P==null) {
+		if (Ca==null || Ca.trim().isEmpty() ||
+				P==null || P.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -60,7 +60,7 @@ public class ElectrolyteServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!na.trim().isEmpty() && na != null) {
+		if (na != null && !na.trim().isEmpty()) {
 			Double NA = Double.parseDouble(cl);
 			if (NA < 0 || NA > 160) {
 				resp.getWriter().print(PrintErrorMessage()) ;
@@ -68,7 +68,7 @@ public class ElectrolyteServlet extends HttpServlet{
 			}
 		}
 		
-		if(!k.trim().isEmpty() && k != null) {
+		if(k != null && !k.trim().isEmpty()) {
 			Double K = Double.parseDouble(k);
 			if (K < 0 || K > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;
@@ -76,7 +76,7 @@ public class ElectrolyteServlet extends HttpServlet{
 			}
 		}
 		
-		if (!cl.trim().isEmpty() && cl != null) {
+		if (cl != null && !cl.trim().isEmpty()) {
 			Double CL = Double.parseDouble(cl);
 			if (CL < 0 || CL > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;

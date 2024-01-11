@@ -33,10 +33,10 @@ public class RenalFunctionServlet extends HttpServlet{
 		String mAlb = req.getParameter("mAlb");
 				
 		//判斷是否為空值
-		if (BUN.trim().isEmpty() || BUN == null ||
-				Cr.trim().isEmpty() || Cr == null ||
-				UA.trim().isEmpty() || UA == null ||
-				mAlb.trim().isEmpty() || mAlb == null) {
+		if (BUN == null || BUN.trim().isEmpty() ||
+				Cr == null || Cr.trim().isEmpty() ||
+				UA == null || UA.trim().isEmpty() ||
+				mAlb == null || mAlb.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -51,7 +51,10 @@ public class RenalFunctionServlet extends HttpServlet{
 						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 				resp.getWriter().print(
 						"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
-			}
+		}else {
+			resp.sendRedirect("./Index");
+		}
+			
 		}
 	}
 }

@@ -29,9 +29,9 @@ public class BPServlet extends HttpServlet{
 		String pulse=req.getParameter("pulse");
 
 		//判斷是否為空值
-		if (SBP.trim().isEmpty() || SBP==null ||
-				DBP.trim().isEmpty() || DBP==null ||
-				pulse.trim().isEmpty() || pulse==null) {
+		if (SBP==null || SBP.trim().isEmpty() ||
+				DBP==null || DBP.trim().isEmpty() ||
+				pulse==null || pulse.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(

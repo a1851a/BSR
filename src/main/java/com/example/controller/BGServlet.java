@@ -35,7 +35,7 @@ public class BGServlet extends HttpServlet{
 		Boolean isReasable = true;
 		
 		//判斷是否為空值
-		if (AC.trim().isEmpty() || AC==null ) {
+		if (AC==null || AC.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -56,7 +56,7 @@ public class BGServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!PC.trim().isEmpty() && PC != null) {
+		if (PC != null && !PC.trim().isEmpty()) {
 			Double pc = Double.parseDouble(PC);
 			if (pc < 0 || pc > 200) {
 				resp.getWriter().print(PrintErrorMessage()) ;

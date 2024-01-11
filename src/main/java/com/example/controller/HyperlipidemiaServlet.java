@@ -40,10 +40,10 @@ public class HyperlipidemiaServlet extends HttpServlet{
 		
 		Boolean isReasable = true;
 		
-		if (TG.trim().isEmpty() || TG == null ||
-				TC.trim().isEmpty() || TC == null ||
-				HDL.trim().isEmpty() || HDL == null ||
-				LDL.trim().isEmpty() || LDL == null) {
+		if (TG == null || TG.trim().isEmpty() ||
+				TC == null || TC.trim().isEmpty() ||
+				HDL == null || HDL.trim().isEmpty() ||
+				LDL == null || LDL.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -69,7 +69,7 @@ public class HyperlipidemiaServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (!vldl.trim().isEmpty() && vldl != null) {
+		if (vldl != null && !vldl.trim().isEmpty()) {
 			Double VLDL = Double.parseDouble(vldl);
 			if (VLDL < 0 || VLDL > 1000) {
 				resp.getWriter().print(PrintErrorMessage()) ;

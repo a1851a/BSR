@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//質量指數
+//尿液
 @WebServlet(value = "/Urine")
 public class UrineServlet extends HttpServlet{
 

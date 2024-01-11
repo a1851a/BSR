@@ -43,7 +43,7 @@
 			<a href="./Urine">尿液</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">尿液沉渣</a>
+			<a href="./Sediment">尿液沉渣</a>
 		</ul>
 	</record_menu>
 

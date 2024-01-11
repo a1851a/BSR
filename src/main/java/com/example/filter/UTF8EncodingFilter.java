@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(value = {"/Register","/Login","/Account","/Index",
 					"/BMI","/BP","/BG","/Hyperlipidemia",
 					"/RenalFunction","/LiverFunction","/Electrolyte","/Blood",
-					"/Urine"})
+					"/Urine","/Sediment"})
 public class UTF8EncodingFilter extends HttpFilter {
 
 	@Override

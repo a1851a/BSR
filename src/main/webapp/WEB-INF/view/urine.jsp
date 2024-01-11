@@ -32,7 +32,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇尿血白球</div>
+				<div class="invalid-feedback">請選擇尿血白球</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">尿糖</label>
@@ -44,7 +44,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇尿糖</div>
+				<div class="invalid-feedback">請選擇尿糖</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">尿蛋白</label>
@@ -56,7 +56,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇尿蛋白</div>
+				<div class="invalid-feedback">請選擇尿蛋白</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">尿膽紅素</label>
@@ -68,7 +68,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇尿膽紅素</div>
+				<div class="invalid-feedback">請選擇尿膽紅素</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">尿膽素元</label>
@@ -82,7 +82,7 @@
 				        <label class="form-check-label" for="bilirubin_abnormal">異常(abnormal)</label>
 				    </div>
 				</div>
-				<div class="invalid-feedback">請輸入選擇尿膽素元</div>
+				<div class="invalid-feedback">請選擇尿膽素元</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">尿丙酮體</label>
@@ -94,7 +94,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇尿丙酮體</div>
+				<div class="invalid-feedback">請選擇尿丙酮體</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">潛血反應</label>
@@ -106,7 +106,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇潛血反應</div>
+				<div class="invalid-feedback">請選擇潛血反應</div>
 			</div>
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">比重</label>
@@ -124,7 +124,7 @@
 			      <option value="4">+++</option>
 			      <option value="5">++++</option>
 			  	</select>
-				<div class="invalid-feedback">請輸入選擇亞硝酸鹽</div>
+				<div class="invalid-feedback">請選擇亞硝酸鹽</div>
 			</div>
 			<div class="col-10 mx-auto px-0 my-2">
 				<button class="col-12 btn btn-secondary" id="submit" name="submit"

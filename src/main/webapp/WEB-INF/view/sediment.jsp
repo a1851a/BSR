@@ -5,18 +5,21 @@
 <div class="container-fluid">
 	<form class="row m-0 needs-validation" method="post"
 		action="./Sediment" novalidate>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">尿紅血球</label>
 			<input type="range" class="col-12" id="RBC" name="RBC"
 				 min="0" max="5" step="1" value="0" required>
 			<div>尿紅血球:<span class="RBC_value">0</span>HPF</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">尿白血球</label>
 			<input type="range" class="col-12" id="WBC"
 				name="WBC" min="0" max="5" step="1" value="0" required>
 			<div>尿白血球<span class="WBC_value">0</span>HPF</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">上皮細胞</label>
 			<input type="range" class="col-12" id="Epithelium"
@@ -38,6 +41,7 @@
 			</div>
 			<div class="invalid-feedback">請選擇結晶體</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">尿圓柱體</label>
 			<div class="row col-12 m-0" required>
@@ -52,6 +56,7 @@
 			</div>
 			<div class="invalid-feedback">請選擇尿圓柱體</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">細菌</label>
 			<div class="row col-12 m-0" required>
@@ -66,6 +71,7 @@
 			</div>
 			<div class="invalid-feedback">請選擇細菌</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">其他</label>
 			<div class="row col-12 m-0" required>
@@ -80,10 +86,12 @@
 			</div>
 			<div class="invalid-feedback">請選擇其他</div>
 		</div>
+		
 		<div class="col-10 mx-auto px-0 my-2">
 			<button class="col-12 btn btn-secondary" id="submit" name="submit"
 				type="submit">送出</button>
 		</div>
+		
 	</form>
 </div>
 <script type="text/javascript">

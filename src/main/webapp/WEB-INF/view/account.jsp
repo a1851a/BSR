@@ -72,7 +72,12 @@
 					id="update" name="update">修改資料</button>
 			</div>
 		</form>
-
+		
+		<div class="col-10 mx-auto px-0 my-2">
+			<button class="delete col-12 btn btn-primary" type="submit"
+				id="signout" name="signout">登出帳戶</button>
+		</div>
+		
 		<div class="col-10 mx-auto px-0 my-2">
 			<button class="delete col-12 btn btn-danger" type="submit"
 				id="delete" name="delete" onclick="deleteAccount()">刪除帳戶</button>
@@ -134,4 +139,31 @@ button {
 			}, false)
 		})
 	})()
+</script>
+
+<script type="module">
+	//串接Firebase
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+	import { getAuth,signOut} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+	//Firebase配置
+	const firebaseConfig = {
+		apiKey: "AIzaSyDuXzJ7xLZc1PYj4s7ecE44o3exuH3VHnI",
+		authDomain: "javaweb-bsr-4aa8c.firebaseapp.com",
+		projectId: "javaweb-bsr-4aa8c",
+		storageBucket: "javaweb-bsr-4aa8c.appspot.com",
+		messagingSenderId: "34778549875",
+		appId: "1:34778549875:web:e472a2f38e8cf1ec656406"
+	};
+
+	//初始化Firebase
+	const app = initializeApp(firebaseConfig);
+	const auth = getAuth(app);
+	signout.addEventListener('click',(e)=>{
+		signOut(auth).then(() => {
+			window.location.href="./Login";
+		}).catch((error) => {
+			
+		});
+	});
 </script>

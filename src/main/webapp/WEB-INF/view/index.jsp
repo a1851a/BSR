@@ -66,11 +66,11 @@
 	</div>
 </div>
 
-<history class="row col-3 mx-0 vw-100">
+<data class="row col-3 mx-0 vw-100">
 	<!-- 左邊menu -->
-	<history_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
+	<data_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a href="./" class="active">質量指數</a>
+			<a href="./BMIData" class="active">質量指數</a>
 		</ul>
 		<ul>
 			<a href="javascript:;">血壓</a>
@@ -99,30 +99,84 @@
 		<ul>
 			<a href="javascript:;">尿液沉渣</a>
 		</ul>
-	</history_menu>
+	</data_menu>
 
 	<span class="d-flex justify-content-start col-2 col-md-10 p-0">
 		<arrow class="p-0 d-flex align-items-center col-1"> 
-			<a class="history_rightArrow bg-dark text-light text-center w-auto" href="#">></a>
-			<a class="history_leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
+			<a class="data_rightArrow bg-dark text-light text-center w-auto" href="#">></a>
+			<a class="data_leftArrow bg-dark text-light text-center w-auto" href="#"><</a>
 		</arrow>
-		<history_context class="d-flex align-items-center"></history_context>
+		<data_context class="d-flex align-items-center"></data_context>
 	</span>
-</history>
-	
+</data>
+
+<!-- 健康資訊 -->	
 <div class="theme_final container-fluid">
 	<div class="d-flex flex-wrap align-items-start aos-init"
 		data-aos="fade-down">
-		<span class="title vw-100 text-center">檢康資訊</span>
+		<span class="title vw-100 text-center">健康資訊</span>
 		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 </div>
 
-<span class="d-flex justify-content-start col-2 col-md-10 p-0">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.		
-</span>
+<div class="information container-fluid">
 
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <div class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </div>
+	</div>
+	
+</div>
 <%@include file="./include/footer.jsp"%>
 
 <style>
@@ -137,6 +191,7 @@ button {
 recode {
 	min-width: 280px;
 	overflow-x: hidden;
+	padding-bottom: calc(30px * 1080/ 1920);
 }
 
 record_menu {
@@ -181,12 +236,13 @@ record_context {
 	padding-right: calc(80px * 1080/ 1920);
 }
 
-history {
+data {
 	min-width: 280px;
 	overflow-x: hidden;
+	padding-bottom: calc(30px * 1080/ 1920);
 }
 
-history_menu {
+data_menu {
 	padding: 0;
 	left: -100%;
 	position: relative;
@@ -198,13 +254,13 @@ history_menu {
 	min-width: 100px;
 }
 
-history_menu ul {
+data_menu ul {
 	padding: calc(8px * 1080/ 1920) 0 calc(8px * 1080/ 1920) 0;
 	margin: 0;
 	width: 100%;
 }
 
-history_menu ul a {
+data_menu ul a {
 	display:flex;
 	padding: 0;
 	margin: 0;
@@ -214,12 +270,12 @@ history_menu ul a {
 	padding-left: calc(8px * 1080/ 1920);
 }
 
-history_menu ul a:hover,a.active {
+data_menu ul a:hover,a.active {
 	background-color:white;
 	color: black;
 }
 
-history_context {
+data_context {
 	position: relative;
 	left: calc(-150px * 1080/ 1920);
 	top: 0;
@@ -261,7 +317,7 @@ arrow {
 	z-index: 99;
 }
 
-.history_rightArrow {
+.data_rightArrow {
 	position: absolute;
 	left: 0;
 	display: block;
@@ -271,7 +327,7 @@ arrow {
 	z-index: 99;
 }
 
-.history_leftArrow {
+.data_leftArrow {
 	position: absolute;
 	display: none;
 	font-size: calc(4rem * 1080/ 1920);
@@ -281,7 +337,12 @@ arrow {
 }
 
 .theme_final {
-	padding-bottom: calc(80px * 1080/ 1920);
+	padding-bottom: calc(30px * 1080/ 1920);
+}
+
+.information{
+	padding-bottom: calc(120px * 1080/ 1920);
+	font-size: calc(2rem * 1080/ 1920);
 }
 </style>
 
@@ -348,18 +409,18 @@ arrow {
 	});
 
 	//紀錄資料部分
-	//收合側邊欄位history_menu
+	//收合側邊欄位data_menu
 	$(document).ready(function() {
-		$(".history_leftArrow").click(function() {
+		$(".data_leftArrow").click(function() {
 
-			$("history_menu").animate({
+			$("data_menu").animate({
 				left : "-100%"
 			}, 500);
 
-			$(".history_leftArrow").hide();
+			$(".data_leftArrow").hide();
 
 			setTimeout(function() {
-				$(".history_rightArrow").show();
+				$(".data_rightArrow").show();
 			}, 550);
 			event.preventDefault();
 		});
@@ -367,42 +428,42 @@ arrow {
 
 	//展開側邊欄位record_menu
 	$(document).ready(function() {
-		$(".history_rightArrow").click(function(event) {
+		$(".data_rightArrow").click(function(event) {
 
-			$("history_menu").animate({
+			$("data_menu").animate({
 				left : "0"
 			}, 500);
 
-			$(".history_rightArrow").hide();
+			$(".data_rightArrow").hide();
 
 			setTimeout(function() {
-				$(".history_leftArrow").show();
+				$(".data_leftArrow").show();
 			}, 550);
 			event.preventDefault();
 		});
 	});
 
 	//預設為基本資訊頁面
-	$('history_context').load('./BMI');
+	$('data_context').load('./BMIData');
 
 	//點擊側邊收合選單切換頁面
-	$('history_menu ul a').on('click', function (e) {
+	$('data_menu ul a').on('click', function (e) {
 		//避免直接跳轉頁面
 	    e.preventDefault();
-	    $('history_menu ul a').removeClass('active');
+	    $('data_menu ul a').removeClass('active');
 	    $(this).addClass('active');
 	  	
 	    //收合側邊欄位menu(未用function:leftarray未於一開始設置，故須點擊兩次)
-		$("history_menu").animate({
+		$("data_menu").animate({
 			left : "-100%"
 		}, 500);
-		$(".history_leftArrow").hide();
+		$(".data_leftArrow").hide();
 		setTimeout(function() {
-			$(".history_rightArrow").show();
+			$(".data_rightArrow").show();
 		}, 550);
 	    
 	    let page = $(this).attr('href');
-	    $('history_context').load('./' + page);
+	    $('data_context').load('./' + page);
 	});
 	
 	//前端驗證表單

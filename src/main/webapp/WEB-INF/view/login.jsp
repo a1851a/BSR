@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%
+	String loginError=(String)request.getAttribute("loginError");
+%>
+
 <%@include file="./include/header.jsp"%>
 
 <main class="container-fluid">
@@ -8,14 +12,19 @@
 	<div class="d-flex flex-wrap align-items-center aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center"> 登入BSR </span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 
 	<div class="container-fluid">
 		<form class="row m-0 needs-validation" method="post" action="./Login"
 			novalidate>
-			
+			<%
+	    	  	if(loginError != null) {
+	    	  		out.print("<p class='text-center text-danger fw-bold'>"+loginError+"</p>");
+	    	  	}
+	    	 %>
+	    	 
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email"
 					placeholder="✉️電子信箱:example@gmail.com" required>
@@ -33,38 +42,47 @@
 					type="submit">登入</button>
 			</div>
 			
-		</form>
-
-		<div class="d-flex flex-wrap justify-content-center my-2">
+			<div class="d-flex flex-wrap justify-content-center my-2">
 			<a class="forgetPassword text-center" href="#">忘記密碼</a>
 		</div>
 
-		<div class="d-flex flex-wrap justify-content-center my-2">
-			<a class="goRegister text-center" href="./Register">註冊</a>
-		</div>
+			<div class="d-flex flex-wrap justify-content-center my-2">
+				<a class="goRegister text-center" href="./Register">註冊</a>
+			</div>
+	
+			<div
+				class="row col-12 d-flex flex-wrap justify-content-center align-items-center mx-0 my-2">
+				<hr class="separation_line_left col-4 p-0 my-2">
+				<span class="col-2 p-0 text-center">OR</span>
+				<hr class="separation_line_right col-4 p-0 my-2">
+			</div>
+	
+			<!-- 快速登入 -->
+	
+			<div class="col-10 mx-auto px-0 my-2">
+				<button type="button" class="googleLogin col-12 btn btn-light"
+					id="googleLogin" name="googleLogin">
+					<i class="bi bi-google flex-wrap p-0 m-0 align-top"></i> <span>用Google帳號登入</span>
+				</button>
+			</div>
+	
+			<div class="col-10 mx-auto px-0 my-2">
+				<button type="button" class="facebookLogin col-12 btn btn-primary"
+					id="facebookLogin" name="facebookLogin">
+					<i class="bi bi-facebook flex-wrap p-0 m-0 align-top"></i> <span>用Facebook帳號登入</span>
+				</button>
+			</div>
+				
+			<div class="col-10 mx-auto px-0 my-2">
+				<button type="button" class="lineLogin col-12 btn btn-success"
+					id="lineLogin" name="lineLogin">
+					<i class="bi bi-line flex-wrap p-0 m-0 align-top"></i> <span>用Line帳號登入</span>
+				</button>
+			</div>
+			
+		</form>
 
-		<div
-			class="row col-12 d-flex flex-wrap justify-content-center align-items-center mx-0 my-2">
-			<hr class="separation_line_left col-4 p-0 my-2">
-			<span class="col-2 p-0 text-center">OR</span>
-			<hr class="separation_line_right col-4 p-0 my-2">
-		</div>
-
-		<!-- 快速登入 -->
-
-		<div class="col-10 mx-auto px-0 my-3">
-			<button type="button" class="googleLogin col-12 btn btn-light"
-				id="googleLogin" name="googleLogin">
-				<i class="bi bi-google flex-wrap p-0 m-0 align-top"></i> <span>用Google帳號登入</span>
-			</button>
-		</div>
-
-		<div class="col-10 mx-auto px-0 my-3">
-			<button type="button" class="appleLogin col-12 btn btn-dark"
-				id="appleLogin" name="appleLogin">
-				<i class="bi bi-apple flex-wrap p-0 m-0 align-top"></i> <span>用Apple帳號登入</span>
-			</button>
-		</div>
+		
 
 		<!-- line login 
 				Channel Id:
@@ -73,12 +91,7 @@
 				https://github.com/line/line-api-use-case-line-login/blob/main/docs/en/liff-channel-create.md
 		-->
 		
-		<div class="col-10 mx-auto px-0 my-3">
-			<button type="button" class="lineLogin col-12 btn btn-success"
-				id="lineLogin" name="lineLogin">
-				<i class="bi bi-line flex-wrap p-0 m-0 align-top"></i> <span>用Line帳號登入</span>
-			</button>
-		</div>
+		
 		<!-- https://www.youtube.com/watch?v=IudOiOwppFA -->
 	</div>
 </main>
@@ -158,14 +171,18 @@ hr:not([size]) {
 			}, false)
 		})
 	})()
+	
+  
 </script>
 
 <script type="module">
 	//串接Firebase
 	//新增Firebase身分驗證JS SDK並初始化Firebase身份驗證	
 	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-	//建立 Google 提供者物件的實例
-	import { getAuth,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+	//建立 Google、Facebook 提供者物件的實例
+	import { getAuth,signInWithPopup,
+				GoogleAuthProvider,FacebookAuthProvider,
+				setPersistence,browserSessionPersistence} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 	//Firebase配置
 	const firebaseConfig = {
@@ -180,11 +197,16 @@ hr:not([size]) {
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
+	auth.languageCode = 'en';
+	
 	//建立 Google 提供者物件的實例
-	const provider = new GoogleAuthProvider(app);
+	const google_provider = new GoogleAuthProvider(app);
+	//建立 Facebook 提供者物件的實例	
+	const facebook_provider = new FacebookAuthProvider();
+	
 	//當google登入按鈕被點擊時
 	googleLogin.addEventListener('click',(e)=>{
-		signInWithPopup(auth, provider)
+		signInWithPopup(auth, google_provider)
   			.then((result) => {
     		// This gives you a Google Access Token. You can use it to access the Google API.
     		const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -193,6 +215,7 @@ hr:not([size]) {
     		const user = result.user;
 			//alert(user.displayName);
 			//alert(user.email);
+			console.log(user);
 			window.location.href="./Account";
     		// IdP data available using getAdditionalUserInfo(result)
   		}).catch((error) => {
@@ -206,4 +229,32 @@ hr:not([size]) {
 			//alert(errorMessage);
   		});
 	});
+
+	//當facebook登入按鈕被點擊時
+	facebookLogin.addEventListener('click',(e)=>{
+		signInWithPopup(auth, facebook_provider)
+  			.then((result) => {
+    		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    		const credential = FacebookAuthProvider.credentialFromResult(result);
+    		const token = credential.accessToken;
+    		// The signed-in user info.
+    		const user = result.user;
+			//alert(user.displayName);
+			//alert(user.email);
+			console.log(user);
+			//window.location.href="./Account";
+    		// IdP data available using getAdditionalUserInfo(result)
+  		}).catch((error) => {
+    		// Handle Errors here.
+    		const errorCode = error.code;
+    		const errorMessage = error.message;
+    		// The email of the user's account used.
+    		const email = error.customData.email;
+    		// The AuthCredential type that was used.
+    		const credential = FacebookAuthProvider.credentialFromError(error);
+			//alert(errorMessage); 
+  		});
+	});
+
+	
 </script>

@@ -7,21 +7,22 @@ import java.time.Period;
 public class User {
 	private String account;              // 帳號
 	private String password;             // 密碼
-	private static Integer count = 0;   	 // 使用者ID的初始值
-	private Integer userId;					 // 使用者ID
+	private static Integer count = 0;    // 使用者ID的初始值
+	private Integer userId;			     // 使用者ID
 	private String name;                 // 姓名
 	private Gender gender;               // 性別
 	private String birthday;             // 出生年月日
 	private Integer age;                 // 年齡
 
 	public User() {
-		this.userId = ++count;
+		
 	}
 
 	public User(String account, String password, String name, Gender gender, String birthday) {
-		this();
+		
 		this.account = account;
 		this.password = password;
+		this.userId = ++count;
 		this.name = name;
 		this.gender = gender;
 		this.birthday = birthday;

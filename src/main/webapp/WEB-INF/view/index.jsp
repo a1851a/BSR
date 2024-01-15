@@ -7,7 +7,7 @@
 	<div class="d-flex flex-wrap align-items-center aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center">紀錄</span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 </div>
@@ -61,7 +61,7 @@
 	<div class="d-flex flex-wrap align-items-start aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center">紀錄資料</span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 </div>
@@ -115,67 +115,84 @@
 	<div class="d-flex flex-wrap align-items-start aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center">健康資訊</span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 </div>
 
-<div class="information container-fluid">
+<div class="information container-fluid d-flex  flex-wrap">
 
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </card>
 	</div>
 	
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </card>
 	</div>
 	
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </v>
 	</div>
 	
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </card>
 	</div>
 	
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </card>
 	</div>
 	
-	<div class="card" style="width: 18rem;">
+	<div class="card" >
 	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <div class="card-body">
+	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
 	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </div>
+	  </card>
 	</div>
 	
+	<div class="card" >
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <card class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </card>
+	</div>
+	
+	<div class="card" >
+	  <img src="..." class="card-img-top" alt="無法顯示">
+	  <card class="card-body">
+	    <h5 class="card-title">Card title</h5>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	  </card>
+	</div>
 </div>
 <%@include file="./include/footer.jsp"%>
 
@@ -344,6 +361,33 @@ arrow {
 	padding-bottom: calc(120px * 1080/ 1920);
 	font-size: calc(2rem * 1080/ 1920);
 }
+
+.card{
+	display:flex;
+	width:96%;
+	margin: 2%;
+}
+
+@media(min-width:650px){
+	.card{
+		display:flex;
+		width:23%;
+		margin: 1%; 
+	}
+	
+}
+
+.micrify{
+    transform: scale(0.9);
+    opacity: 0.2;
+    animation-duration: 2s;
+}
+
+.enlarge {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px 1.5px yellow;
+    animation-duration: 2s;
+}
 </style>
 
 <script type="text/javascript">
@@ -466,6 +510,17 @@ arrow {
 	    $('data_context').load('./' + page);
 	});
 	
+	 //健康資訊
+    $('.card').hover(
+        function () {
+            $('.card').not(this).addClass('micrify');
+            $(this).addClass('enlarge');
+        },
+        function () {
+            $('.card').removeClass('micrify').removeClass('enlarge');
+        }
+    );
+	 
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {

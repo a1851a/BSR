@@ -10,7 +10,7 @@
 	<div class="d-flex flex-wrap align-items-center aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center"> 帳號管理 </span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 
@@ -75,7 +75,7 @@
 		
 		<div class="col-10 mx-auto px-0 my-2">
 			<button class="delete col-12 btn btn-primary" type="submit"
-				id="signout" name="signout">登出帳戶</button>
+				id="loginout" name="loginout">登出帳戶</button>
 		</div>
 		
 		<div class="col-10 mx-auto px-0 my-2">
@@ -159,7 +159,8 @@ button {
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
-	signout.addEventListener('click',(e)=>{
+
+	loginout.addEventListener('click',(e)=>{
 		signOut(auth).then(() => {
 			window.location.href="./Login";
 		}).catch((error) => {

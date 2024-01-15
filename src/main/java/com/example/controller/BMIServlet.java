@@ -15,10 +15,12 @@ public class BMIServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/BMI.jsp");
-		rd.forward(req, resp);
-	}
 
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/BMI.jsp");
+		rd.forward(req, resp);
+
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//身高

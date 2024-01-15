@@ -49,6 +49,8 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
+<!-- icon -->
+<link rel="shortcut icon" type="image/x-icon" href="./images/icon.jpg">
 <title>BSR</title>
 </head>
 <body>

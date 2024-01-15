@@ -36,8 +36,9 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">極低密度膽固醇</label>
+				<!-- 0~1000 -->
 				<input type="text" class="form-control" id="vldl"
-					name="vldl" placeholder="mg/dL" pattern="[0,1000]*" step="1">
+					name="vldl" placeholder="mg/dL" pattern="^[0-9]{1,4}$" step="1">
 				<div class="invalid-feedback">請輸入正確極低密度膽固醇</div>
 			</div>
 			

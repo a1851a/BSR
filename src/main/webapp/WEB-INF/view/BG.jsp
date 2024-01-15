@@ -15,22 +15,25 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">飯後血糖(2hr)</label>
+				<!-- 0~200 -->
 				<input type="text" class="form-control" id="PC" name="PC"
-					placeholder="mg/dL"  pattern="[0,200]*" step="1">
+					placeholder="mg/dL" pattern="^[0-9]{1,3}$" step="1">
 				<div class="invalid-feedback">請輸入正確飯後血糖</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">糖化血色素</label>
+				<!-- 0~20 -->
 				<input type="text" class="form-control" id="HbA1c"
-					name="HbA1c" placeholder="%"  pattern="[0,20]*" step="1">
+					name="HbA1c" placeholder="%" pattern="^(0|[1-9]|1[0-9]|20)$" step="1">
 				<div class="invalid-feedback">請輸入正確糖化血色素</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">胰澱粉酶</label>
+				<!-- 0~2000 -->
 				<input type="text" class="form-control" id="Amylase"
-					name="Amylase" placeholder="U/L" pattern="[0,2000]*" step="1">
+					name="Amylase" placeholder="U/L" pattern="^(?:[1-9]\d{0,2}|1000)$" step="1">
 				<div class="invalid-feedback">請輸入正確胰澱粉酶</div>
 			</div>
 			

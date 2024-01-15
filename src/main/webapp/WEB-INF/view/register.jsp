@@ -8,7 +8,7 @@
 	<div class="d-flex flex-wrap align-items-center aos-init"
 		data-aos="fade-down">
 		<span class="title vw-100 text-center"> 註冊BSR </span>
-		<hr class="gradient mx-0 my-2 p-0 aos-init vw-100"
+		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
 

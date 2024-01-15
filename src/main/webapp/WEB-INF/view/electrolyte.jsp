@@ -8,22 +8,25 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">鈉離子</label>
+				<!-- 0~160 -->
 				<input type="text" class="form-control" id="na" name="na"
-					placeholder="meq/L"  pattern="[0,160]*" step="1">
+					placeholder="meq/L"  pattern="^(160|[0-9]|[1-9][0-9])(\.\d+)?$" step="1">
 				<div class="invalid-feedback">請輸入正確鈉離子</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">鉀離子</label>
+				<!-- 0~150 -->
 				<input type="text" class="form-control" id="k" name="k"
-					placeholder="meq/L"  pattern="[0,150]*" step="1">
+					placeholder="meq/L"  pattern="^(150|[0-9]|[1-9][0-9])(\.\d+)?$" step="1">
 				<div class="invalid-feedback">請輸入正確鉀離子</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">氯離子</label>
+				<!-- 0~150 -->
 				<input type="text" class="form-control" id="cl" name="cl"
-					placeholder="meq/L"  pattern="[0,150]*" step="1">
+					placeholder="meq/L"  pattern="^(150|[0-9]|[1-9][0-9])(\.\d+)?$" step="1">
 				<div class="invalid-feedback">請輸入正確氯離子</div>
 			</div>
 			

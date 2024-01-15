@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.exception.AccountException;
 
 //電解質
 @WebServlet(value = "/Electrolyte")
@@ -17,10 +16,12 @@ public class ElectrolyteServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/electrolyte.jsp");
-		rd.forward(req, resp);
-	}
 
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/electrolyte.jsp");
+		rd.forward(req, resp);
+
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//鈉離子

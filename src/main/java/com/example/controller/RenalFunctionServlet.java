@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.exception.AccountException;
 
 //腎臟功能
 @WebServlet(value = "/RenalFunction")
@@ -17,10 +16,12 @@ public class RenalFunctionServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/renal_function.jsp");
-		rd.forward(req, resp);
-	}
 
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/renal_function.jsp");
+		rd.forward(req, resp);
+
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//尿素氮

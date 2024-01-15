@@ -8,15 +8,17 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">總膽紅素</label>
+				<!-- 0~50 -->
 				<input type="text" class="form-control" id="d-bit"
-					name="d-bit" placeholder="mg/dL" pattern="[0,50]*" step="0.1">
+					name="d-bit" placeholder="mg/dL" pattern="[0-9]+(\.[0-9]+)?" step="0.1">
 				<div class="invalid-feedback">請輸入正確總膽紅素</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">直接膽紅素</label>
+				<!-- 0~10 -->
 				<input type="text" class="form-control" id="d-bil"
-					name="d-bil" placeholder="mg/dL" pattern="[0,10]*" step="0.1">
+					name="d-bil" placeholder="mg/dL" pattern="^(10|[0-9])$" step="0.1">
 				<div class="invalid-feedback">請輸入正確直接膽紅素</div>
 			</div>
 			
@@ -56,15 +58,17 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">鹼性磷酸酶</label>
+				<!-- 0~1000000 -->
 				<input type="text" class="form-control" id="alkp"
-					name="alkp" placeholder="U/L" pattern="[0,1000000]*" step="1">
+					name="alkp" placeholder="U/L" pattern="^([1-9]\d{0,5}|1000000)(\.\d+)?$" step="1">
 				<div class="invalid-feedback">請輸入正確鹼性磷酸酶</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">酒精性肝炎(脂肪肝)</label>
+				<!-- 0~1000000 -->
 				<input type="text" class="form-control" id="ald"
-					name="ald" placeholder="U/L" pattern="[0,1000000]*" step="1">
+					name="ald" placeholder="U/L" pattern="^[0-9]{1,7}(\.\d+)?$" step="1">
 				<div class="invalid-feedback">請輸入正確酒精性肝炎</div>
 			</div>
 			

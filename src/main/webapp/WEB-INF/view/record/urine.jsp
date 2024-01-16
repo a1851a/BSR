@@ -120,8 +120,8 @@
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">比重</label>
-				<input type="number" class="form-control" id="spccific_gravity"
-					name="spccific_gravity" min="0" max="2" step="0.1" required>
+				<input type="number" class="form-control" id="specific_gravity"
+					name="specific_gravity" min="0" max="2" step="0.1" required>
 				<div class="invalid-feedback">請輸入正確比重</div>
 			</div>
 			

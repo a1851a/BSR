@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.record;
 
 import java.io.IOException;
 
@@ -10,33 +10,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-//血糖
-@WebServlet(value = "/BG")
-public class BGServlet extends HttpServlet{
-	
+//電解質
+@WebServlet(value = "/Electrolyte")
+public class ElectrolyteServlet extends HttpServlet{
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/BG.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/electrolyte.jsp");
 		rd.forward(req, resp);
 
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//空腹血糖
-		String AC = req.getParameter("AC");
-		//飯後血糖
-		String PC = req.getParameter("PC");
-		//糖化血色素
-		String HbA1c = req.getParameter("HbA1c");
-		//胰澱粉酶
-		String Amylase = req.getParameter("Amylase");
+		//鈉離子
+		String na = req.getParameter("na");
+		//鉀離子
+		String k = req.getParameter("k");
+		//氯離子
+		String cl = req.getParameter("cl");
+		//血中鈣
+		String Ca = req.getParameter("Ca");
+		//血中磷
+		String P = req.getParameter("P");
 		
 		Boolean isReasable = true;
 		
 		//判斷是否為空值
-		if (AC==null || AC.trim().isEmpty()) {
+		if (Ca==null || Ca.trim().isEmpty() ||
+				P==null || P.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
@@ -44,7 +47,8 @@ public class BGServlet extends HttpServlet{
 			isReasable = false;
 		}else {
 			//判斷是否位於合理範圍
-			if ( Double.parseDouble(AC) <0 || Double.parseDouble(AC)>200) {
+			if ( Double.parseDouble(Ca) <0 || Double.parseDouble(Ca)>50 ||
+					Double.parseDouble(P) <0 || Double.parseDouble(P)>46300) {
 				resp.getWriter().println(
 						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 				resp.getWriter().print(
@@ -57,25 +61,25 @@ public class BGServlet extends HttpServlet{
 		 * 先判斷可不填寫的欄位，是否有值存在
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
-		if (PC != null && !PC.trim().isEmpty()) {
-			Double pc = Double.parseDouble(PC);
-			if (pc < 0 || pc > 200) {
+		if (na != null && !na.trim().isEmpty()) {
+			Double NA = Double.parseDouble(cl);
+			if (NA < 0 || NA > 160) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
 			}
 		}
 		
-		if(!HbA1c.trim().isEmpty() && HbA1c != null) {
-			Double hba1c = Double.parseDouble(HbA1c);
-			if (hba1c < 0 || hba1c > 200) {
+		if(k != null && !k.trim().isEmpty()) {
+			Double K = Double.parseDouble(k);
+			if (K < 0 || K > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
 			}
 		}
 		
-		if (!Amylase.trim().isEmpty() && Amylase != null ) {
-			Double amylase = Double.parseDouble(Amylase);
-			if (amylase<0 || amylase>20) {
+		if (cl != null && !cl.trim().isEmpty()) {
+			Double CL = Double.parseDouble(cl);
+			if (CL < 0 || CL > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
 			}

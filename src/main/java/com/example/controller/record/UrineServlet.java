@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.record;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class UrineServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/urine.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/urine.jsp");
 		rd.forward(req, resp);
 
 	}
@@ -42,7 +42,7 @@ public class UrineServlet extends HttpServlet{
 		//潛血反應
 		String occult_blood = req.getParameter("occult_blood");
 		//比重
-		String spccific_gravity = req.getParameter("spccific_gravity");
+		String specific_gravity = req.getParameter("specific_gravity");
 		//亞硝酸鹽
 		String nitrite = req.getParameter("nitrite");
 		
@@ -56,7 +56,7 @@ public class UrineServlet extends HttpServlet{
 				urobilirubin==null || urobilirubin.trim().isEmpty() ||
 				ketones==null || ketones.trim().isEmpty() ||
 				occult_blood==null || occult_blood.trim().isEmpty() ||
-				spccific_gravity==null || spccific_gravity.trim().isEmpty() ||
+				specific_gravity==null || specific_gravity.trim().isEmpty() ||
 				nitrite==null || nitrite.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");

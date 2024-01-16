@@ -22,7 +22,7 @@
 		
 		<div class="col-10 mx-auto px-0 m-2">
 			<label for="exampleFormControlInput1" class="form-label">上皮細胞</label>
-			<input type="range" class="col-12" id="Epithelium"
+			<input type="range" class="col-12" id="epithelium"
 				name="Epithelium" min="0" max="5" step="1" value="0" required>
 			<div>上皮細胞<span class="Epithelium_value">0</span>HPF</div>
 		</div>
@@ -31,11 +31,11 @@
 			<label for="exampleFormControlInput1" class="form-label">結晶體</label>
 			<div class="row col-12 m-0" required>
 				<div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="1" id="Crystal" name="Crystal" >
+			        <input class="form-check-input" type="radio" value="1" id="crystal" name="crystal" >
 			        <label class="form-check-label" for="bilirubin_normal">有</label>
 			    </div>
 			    <div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="2" id="Crystal" name="Crystal">
+			        <input class="form-check-input" type="radio" value="2" id="crystal" name="crystal">
 			        <label class="form-check-label" for="bilirubin_abnormal">無</label>
 			    </div>
 			</div>
@@ -46,11 +46,11 @@
 			<label for="exampleFormControlInput1" class="form-label">尿圓柱體</label>
 			<div class="row col-12 m-0" required>
 				<div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="1" id="Cast" name="Cast" >
+			        <input class="form-check-input" type="radio" value="1" id="cast" name="cast" >
 			        <label class="form-check-label" for="bilirubin_normal">有</label>
 			    </div>
 			    <div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="2" id="Cast" name="Cast">
+			        <input class="form-check-input" type="radio" value="2" id="cast" name="cast">
 			        <label class="form-check-label" for="bilirubin_abnormal">無</label>
 			    </div>
 			</div>
@@ -61,11 +61,11 @@
 			<label for="exampleFormControlInput1" class="form-label">細菌</label>
 			<div class="row col-12 m-0" required>
 				<div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="1" id="Bacteria" name="Bacteria" >
+			        <input class="form-check-input" type="radio" value="1" id="bacteria" name="bacteria" >
 			        <label class="form-check-label" for="bilirubin_normal">有</label>
 			    </div>
 			    <div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="2" id="Bacteria" name="Bacteria">
+			        <input class="form-check-input" type="radio" value="2" id="bacteria" name="bacteria">
 			        <label class="form-check-label" for="bilirubin_abnormal">無</label>
 			    </div>
 			</div>
@@ -76,11 +76,11 @@
 			<label for="exampleFormControlInput1" class="form-label">其他</label>
 			<div class="row col-12 m-0" required>
 				<div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="1" id="Other" name="Other" >
+			        <input class="form-check-input" type="radio" value="1" id="other" name="other" >
 			        <label class="form-check-label" for="bilirubin_normal">有</label>
 			    </div>
 			    <div class="form-check flex-fill col-6">
-			        <input class="form-check-input" type="radio" value="2" id="Other" name="Other">
+			        <input class="form-check-input" type="radio" value="2" id="other" name="other">
 			        <label class="form-check-label" for="bilirubin_abnormal">無</label>
 			    </div>
 			</div>

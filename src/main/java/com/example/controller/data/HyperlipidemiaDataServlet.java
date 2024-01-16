@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.data;
 
 import java.io.IOException;
 
@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//質量指數
-@WebServlet(value = "/BMIData")
-public class BMIDataServlet extends HttpServlet{
+//血脂肪紀錄資料
+@WebServlet(value = "/HyperlipidemiaData")
+public class HyperlipidemiaDataServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/BMI_data.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/data/hyperlipidemiaData.jsp");
 		rd.forward(req, resp);
 	}
 

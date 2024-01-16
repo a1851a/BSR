@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.record;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class SedimentServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/sediment.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/sediment.jsp");
 		rd.forward(req, resp);
 
 	}
@@ -28,21 +28,21 @@ public class SedimentServlet extends HttpServlet{
 		//尿白血球
 		String WBC = req.getParameter("WBC");
 		//上皮細胞
-		String Epithelium = req.getParameter("Epithelium");
+		String epithelium = req.getParameter("epithelium");
 		//結晶體
-		String Crystal = req.getParameter("Crystal");
+		String crystal = req.getParameter("crystal");
 		//尿圓柱體
-		String Cast = req.getParameter("Cast");
+		String cast = req.getParameter("cast");
 		//細菌
-		String Bacteria = req.getParameter("Bacteria");
+		String bacteria = req.getParameter("bacteria");
 		//其他
-		String Other = req.getParameter("Other");
+		String other = req.getParameter("other");
 		
 		//判斷是否為空值
-		if (Crystal==null || Crystal.trim().isEmpty() ||
-				Cast==null || Cast.trim().isEmpty() ||
-				Bacteria==null || Bacteria.trim().isEmpty() ||
-				Other==null || Other.trim().isEmpty()) {
+		if (crystal==null || crystal.trim().isEmpty() ||
+				cast==null || cast.trim().isEmpty() ||
+				bacteria==null || bacteria.trim().isEmpty() ||
+				other==null || other.trim().isEmpty()) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(

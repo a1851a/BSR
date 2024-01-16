@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.record;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class RenalFunctionServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/renal_function.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/renalFunction.jsp");
 		rd.forward(req, resp);
 
 	}

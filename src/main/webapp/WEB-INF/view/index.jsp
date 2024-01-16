@@ -73,31 +73,31 @@
 			<a href="./BMIData" class="active">質量指數</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血壓</a>
+			<a href="./BPData">血壓</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血糖</a>
+			<a href="./BGData">血糖</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血脂肪</a>
+			<a href="./HyperlipidemiaData">血脂肪</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">腎臟功能</a>
+			<a href="./RenalFunctionData">腎臟功能</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">肝臟功能</a>
+			<a href="./LiverFunctionData">肝臟功能</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">電解質</a>
+			<a href="./ElectrolyteData">電解質</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">血液</a>
+			<a href="./BloodData">血液</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">尿液</a>
+			<a href="./UrineData">尿液</a>
 		</ul>
 		<ul>
-			<a href="javascript:;">尿液沉渣</a>
+			<a href="./SedimentData">尿液沉渣</a>
 		</ul>
 	</data_menu>
 

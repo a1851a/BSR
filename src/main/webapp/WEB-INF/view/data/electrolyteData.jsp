@@ -1,34 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- 質量指數紀錄資料 -->
+<!-- 電解質紀錄資料 -->
 <div class="container-fluid py-2 px-0">
 	<div class="row m-0">
-	
+		
 		<!-- 表格 -->
-		<div class="chart_title fw-bolder text-center my-2">表格_質量指數</div>
+		<div class="chart_title fw-bolder text-center my-2">表格_電解質</div>
 		<div class="col-10 my-2 mx-auto" id="table"></div>
 		
-		<!-- 折線圖-身高 -->
-	  	<div class="chart_title fw-bolder text-center my-2">折線圖_身高</div>
-	  	<div class="col-10 my-2 mx-auto" id="height_lineChart"></div>
-	  	
-	  	<!-- 折線圖-體重 -->
-	  	<div class="chart_title fw-bolder text-center my-2">折線圖_體重</div>
-	  	<div class="col-10 my-2 mx-auto" id="weight_lineChart"></div>
-	  	
-	  	<!-- 折線圖-BMI -->
-	  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMI</div>
-	  	<div class="col-10 my-2 mx-auto" id="BMI_lineChart"></div>
-	  	
-	  	<!-- 折線圖-BMR -->
-	  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMR</div>
-	  	<div class="col-10 my-2 mx-auto" id="BMR_lineChart"></div>
-	  	
-	  	<!-- 折線圖-代謝水平 -->
-	  	<div class="chart_title fw-bolder text-center my-2">折線圖_代謝水平</div>
-	  	<div class="col-10 my-2 mx-auto" id="level_lineChart"></div>
-	  	
+		<div class="chart">
+		
+			<!-- 折線圖-鈉離子 -->
+		  	<div class="chart_title fw-bolder text-center my-2">折線圖_鈉離子</div>
+		  	<div class="col-10 my-2 mx-auto" id="na_lineChart"></div>
+		  	
+		  	<!-- 折線圖-鉀離子 -->
+		  	<div class="chart_title fw-bolder text-center my-2">折線圖_鉀離子</div>
+		  	<div class="col-10 my-2 mx-auto" id="k_lineChart"></div>
+		  	
+		  	<!-- 折線圖-氯離子 -->
+		  	<div class="chart_title fw-bolder text-center my-2">折線圖_氯離子</div>
+		  	<div class="col-10 my-2 mx-auto" id="cl_lineChart"></div>
+	
+			<!-- 折線圖-血中鈣 -->
+		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血中鈣</div>
+		  	<div class="col-10 my-2 mx-auto" id="Ca_lineChart"></div>
+		  	
+		  	<!-- 折線圖-血中磷 -->
+		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血中磷</div>
+		  	<div class="col-10 my-2 mx-auto" id="P_lineChart"></div>
+		  	
+	  	</div>
 	</div>
 </div>
 
@@ -42,8 +45,8 @@
 		white-space: nowrap;
 	}
 	
-	#height_lineChart{
-		width: 80%;
+	.chart{
+		width: 100%;
 		height: 100%;
 	}
 	
@@ -63,27 +66,26 @@
 
 	function drawCharts() {
 		drawTable();
-		draw_HeightLineChart();
-		draw_WeightLineChart();
-		draw_BMILineChart();
-		draw_BMRLineChart();
-		draw_levelLineChart();
+		draw_naLineChart();
+		draw_kLineChart();
+		draw_clLineChart();
+		draw_CaLineChart();
+		draw_PLineChart();
 	}
 
 	//身體質量表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
 		data.addColumn('date', '時間');
-		data.addColumn('number', '身高(公分)');
-        data.addColumn('number', '體重(公斤)');
-        data.addColumn('number', 'BMI');
-        data.addColumn('number', 'BMR');
-        data.addColumn('number', '代謝水平');
-
+		data.addColumn('number', '鈉離子');
+        data.addColumn('number', '鉀離子');
+        data.addColumn('number', '氯離子');
+        data.addColumn('number', '血中鈣');
+        data.addColumn('number', '血中磷');
         
         data.addRows([
-          [new Date('2011-12-11'), 178, 55, 55, 55, 1],
-          [new Date('2011-10-11'), 176, 67,  55, 55, 3]
+          [new Date('2011-12-11'), 178, 55, 85, 23, 43],
+          [new Date('2011-10-11'), 176, 67, 75, 94, 53]
         ]);
 
 		var table = new google.visualization.Table(document
@@ -96,12 +98,12 @@
 		});
 	}
 	
-	//身高圖表
-	function draw_HeightLineChart() {
+	//鈉離子圖表
+	function draw_naLineChart() {
 
 	      var data = new google.visualization.DataTable();
 	      data.addColumn('date', '時間');
-	      data.addColumn('number', '身高');
+	      data.addColumn('number', '鈉離子');
 
 	      data.addRows([
 		    [new Date('2009-12-11'), 80], [new Date('2010-11-11'), 96],
@@ -115,21 +117,21 @@
 	          title: '時間'
 	        },
 	        vAxis: {
-	          title: '身高'
+	          title: '鈉離子'
 	        }
 	      };
 
-	      var chart = new google.visualization.LineChart(document.getElementById('height_lineChart'));
+	      var chart = new google.visualization.LineChart(document.getElementById('na_lineChart'));
 
 	      chart.draw(data, options);
 	    }
 
-	//體重圖表
-	function draw_WeightLineChart() {
+	//鉀離子圖表
+	function draw_kLineChart() {
 
 	      var data = new google.visualization.DataTable();
 	      data.addColumn('date', '時間');
-	      data.addColumn('number', '體重');
+	      data.addColumn('number', '鉀離子');
 
 	      data.addRows([
 		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
@@ -142,21 +144,21 @@
 	          title: '時間'
 	        },
 	        vAxis: {
-	          title: '體重'
+	          title: '鉀離子'
 	        }
 	      };
 
-	      var chart = new google.visualization.LineChart(document.getElementById('weight_lineChart'));
+	      var chart = new google.visualization.LineChart(document.getElementById('k_lineChart'));
 
 	      chart.draw(data, options);
 	    }
 
-	//BMI圖表
-	function draw_BMILineChart() {
+	//氯離子圖表
+	function draw_clLineChart() {
 
 	      var data = new google.visualization.DataTable();
 	      data.addColumn('date', '時間');
-	      data.addColumn('number', 'BMI');
+	      data.addColumn('number', '氯離子');
 
 	      data.addRows([
 		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
@@ -169,48 +171,21 @@
 	          title: '時間'
 	        },
 	        vAxis: {
-	          title: 'BMI'
+	          title: '氯離子'
 	        }
 	      };
 
-	      var chart = new google.visualization.LineChart(document.getElementById('BMI_lineChart'));
-
-	      chart.draw(data, options);
-	    }
-	
-	//BMR圖表
-	function draw_BMRLineChart() {
-
-	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', 'BMR');
-
-	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
-	      ]);
-
-	      var options = {
-	        hAxis: {
-	          title: '時間'
-	        },
-	        vAxis: {
-	          title: 'BMR'
-	        }
-	      };
-
-	      var chart = new google.visualization.LineChart(document.getElementById('BMR_lineChart'));
+	      var chart = new google.visualization.LineChart(document.getElementById('cl_lineChart'));
 
 	      chart.draw(data, options);
 	    }
 	
-	//BMR圖表
-	function draw_levelLineChart() {
+	//血中鈣圖表
+	function draw_CaLineChart() {
 
 	      var data = new google.visualization.DataTable();
 	      data.addColumn('date', '時間');
-	      data.addColumn('number', '代謝水平');
+	      data.addColumn('number', '血中鈣');
 
 	      data.addRows([
 		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
@@ -223,11 +198,38 @@
 	          title: '時間'
 	        },
 	        vAxis: {
-	          title: '代謝水平'
+	          title: '血中鈣'
 	        }
 	      };
 
-	      var chart = new google.visualization.LineChart(document.getElementById('level_lineChart'));
+	      var chart = new google.visualization.LineChart(document.getElementById('Ca_lineChart'));
+
+	      chart.draw(data, options);
+	    }
+	
+	//血中磷圖表
+	function draw_PLineChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', '血中磷');
+
+	      data.addRows([
+		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
+	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
+	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      ]);
+
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: '血中磷'
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('P_lineChart'));
 
 	      chart.draw(data, options);
 	    }

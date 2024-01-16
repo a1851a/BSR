@@ -3,7 +3,7 @@
 :root {
 	--f-family-title: 'Caveat', 'Noto Serif TC', serif;
 	--f-family: 'Noto Serif TC', 'Playfair Display', serif;
-	--font-size:calc(2rem * 1080/ 1920);;
+	--font-size:calc(2rem * 1080/ 1920);
 }
 
 html{
@@ -61,4 +61,8 @@ footer {
 
 .chart_title{
 	font-size: calc(40px * 1080/ 1920);
+}
+
+.center-align {
+	text-align: center;
 }

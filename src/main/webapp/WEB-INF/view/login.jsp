@@ -182,7 +182,8 @@ hr:not([size]) {
 	//建立 Google、Facebook 提供者物件的實例
 	import { getAuth,signInWithPopup,
 				GoogleAuthProvider,FacebookAuthProvider,
-				setPersistence,browserSessionPersistence} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+				setPersistence,browserSessionPersistence,
+				inMemoryPersistence} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 	//Firebase配置
 	const firebaseConfig = {
@@ -208,49 +209,48 @@ hr:not([size]) {
 	googleLogin.addEventListener('click',(e)=>{
 		signInWithPopup(auth, google_provider)
   			.then((result) => {
-    		// This gives you a Google Access Token. You can use it to access the Google API.
     		const credential = GoogleAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
-    		// The signed-in user info.
-    		const user = result.user;
-			//alert(user.displayName);
-			//alert(user.email);
-			console.log(user);
-			window.location.href="./Account";
-    		// IdP data available using getAdditionalUserInfo(result)
-  		}).catch((error) => {
-    		// Handle Errors here.
-    		const errorCode = error.code;
-    		const errorMessage = error.message;
-    		// The email of the user's account used.
-    		const email = error.customData.email;
-    		// The AuthCredential type that was used.
-    		const credential = GoogleAuthProvider.credentialFromError(error);
-			//alert(errorMessage);
-  		});
-	});
-
-	//當facebook登入按鈕被點擊時
-	facebookLogin.addEventListener('click',(e)=>{
-		signInWithPopup(auth, facebook_provider)
-  			.then((result) => {
-    		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    		const credential = FacebookAuthProvider.credentialFromResult(result);
-    		const token = credential.accessToken;
-    		// The signed-in user info.
     		const user = result.user;
 			//alert(user.displayName);
 			//alert(user.email);
 			console.log(user);
 			//window.location.href="./Account";
-    		// IdP data available using getAdditionalUserInfo(result)
   		}).catch((error) => {
-    		// Handle Errors here.
     		const errorCode = error.code;
     		const errorMessage = error.message;
-    		// The email of the user's account used.
     		const email = error.customData.email;
-    		// The AuthCredential type that was used.
+    		const credential = GoogleAuthProvider.credentialFromError(error);
+			//alert(errorMessage);
+  		});
+	});
+
+setPersistence(auth, inMemoryPersistence)
+  .then(() => {
+    const provider = new GoogleAuthProvider();
+   return signInWithRedirect(auth, provider);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+
+	//當facebook登入按鈕被點擊時
+	facebookLogin.addEventListener('click',(e)=>{
+		signInWithPopup(auth, facebook_provider)
+  			.then((result) => {
+    		const credential = FacebookAuthProvider.credentialFromResult(result);
+    		const token = credential.accessToken;
+    		const user = result.user;
+			//alert(user.displayName);
+			//alert(user.email);
+			console.log(user);
+			//window.location.href="./Account";
+  		}).catch((error) => {
+    		const errorCode = error.code;
+    		const errorMessage = error.message;
+    		const email = error.customData.email;
     		const credential = FacebookAuthProvider.credentialFromError(error);
 			//alert(errorMessage); 
   		});

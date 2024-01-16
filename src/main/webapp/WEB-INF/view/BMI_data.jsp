@@ -2,42 +2,89 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 質量指數紀錄資料 -->
-<div class="container-fluid">
-	<!-- 表格 -->
-	<div class="chart_title fw-bolder text-center">表格_質量指數</div>
-	<div class="m-2" id="table"></div>
-	<!-- 折線圖 -->
-
-  	<div class="chart_title fw-bolder text-center">折線圖_質量指數</div>
-  	<div class="m-2" id="chart_div"></div>
-
-
+<div class="container-fluid py-2 px-0">
+	<div class="row m-0">
+	
+		<!-- 表格 -->
+		<div class="chart_title fw-bolder text-center my-2">表格_質量指數</div>
+		<div class="col-10 my-2 mx-auto" id="table"></div>
+		
+		<!-- 折線圖-身高 -->
+	  	<div class="chart_title fw-bolder text-center my-2">折線圖_身高</div>
+	  	<div class="col-10 my-2 mx-auto" id="height_lineChart"></div>
+	  	
+	  	<!-- 折線圖-體重 -->
+	  	<div class="chart_title fw-bolder text-center my-2">折線圖_體重</div>
+	  	<div class="col-10 my-2 mx-auto" id="weight_lineChart"></div>
+	  	
+	  	<!-- 折線圖-BMI -->
+	  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMI</div>
+	  	<div class="col-10 my-2 mx-auto" id="BMI_lineChart"></div>
+	  	
+	  	<!-- 折線圖-BMR -->
+	  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMR</div>
+	  	<div class="col-10 my-2 mx-auto" id="BMR_lineChart"></div>
+	  	
+	  	<!-- 折線圖-代謝水平 -->
+	  	<div class="chart_title fw-bolder text-center my-2">折線圖_代謝水平</div>
+	  	<div class="col-10 my-2 mx-auto" id="level_lineChart"></div>
+	  	
+	</div>
 </div>
 
-<script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'table' ]
-	});
-	google.charts.setOnLoadCallback(drawTables);
+<style>
+	
+	table td,.google-visualization-table-td.google-visualization-table-type-number{
+		text-align: center;
+	}
+	
+	.google-visualization-table-type-date{
+		white-space: nowrap;
+	}
+	
+	#height_lineChart{
+		width: 80%;
+		height: 100%;
+	}
+	
+</style>
 
-	function drawTables() {
+<script type="text/javascript">
+	
+	//依螢幕大小調整圖表大小
+	window.addEventListener('resize', function() {
+	    drawCharts();
+	});
+	
+	google.charts.load('current', {
+		'packages' : [ 'table','line','corechart']
+	});
+	google.charts.setOnLoadCallback(drawCharts);
+
+	function drawCharts() {
 		drawTable();
-		drawChart();
+		draw_HeightLineChart();
+		draw_WeightLineChart();
+		draw_BMILineChart();
+		draw_BMRLineChart();
+		draw_levelLineChart();
 	}
 
+	//身體質量表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('string', 'Name');
-		data.addColumn('number', 'Salary');
-		data.addColumn('boolean', 'Full Time Employee');
-		data.addColumn('boolean', 'Full Time Employee');
-		data.addRows([ [ 'Mike', {
-			v : 10000,
-			f : '$10,000'
-		}, true, true ], [ 'Bob', {
-			v : 7000,
-			f : '$7,000'
-		}, true, true ] ]);
+		data.addColumn('date', '時間');
+		data.addColumn('number', '身高(公分)');
+        data.addColumn('number', '體重(公斤)');
+        data.addColumn('number', 'BMI');
+        data.addColumn('number', 'BMR');
+        data.addColumn('number', '代謝水平');
+
+        
+        data.addRows([
+          [new Date('2011-12-11'), 178, 55, 55, 55, 1],
+          [new Date('2011-10-11'), 176, 67,  55, 55, 3]
+        ]);
 
 		var table = new google.visualization.Table(document
 				.getElementById('table'));
@@ -48,84 +95,140 @@
 			height : '100%'
 		});
 	}
+	
+	//身高圖表
+	function draw_HeightLineChart() {
 
-    google.charts.load('current', {'packages':['line', 'corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', '身高');
 
-  function drawChart() {
+	      data.addRows([
+		    [new Date('2009-12-11'), 80], [new Date('2010-11-11'), 96],
+	        [new Date('2011-12-11'), 100], [new Date('2021-11-11'), 120],
+	        [new Date('2021-11-12'), 123], [new Date('2021-12-11'), 170],
+	        [new Date('2022-11-12'), 173], [new Date('2023-12-11'), 177]
+	      ]);
 
-    var button = document.getElementById('change-chart');
-    var chartDiv = document.getElementById('chart_div');
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: '身高'
+	        }
+	      };
 
-    var data = new google.visualization.DataTable();
-    data.addColumn('date', 'Month');
-    data.addColumn('number', "Average Temperature");
-    data.addColumn('number', "Average Hours of Daylight");
+	      var chart = new google.visualization.LineChart(document.getElementById('height_lineChart'));
 
-    data.addRows([
-      [new Date(2014, 0),  -.5,  5.7],
-      [new Date(2014, 1),   .4,  8.7],
-      [new Date(2014, 2),   .5,   12],
-      [new Date(2014, 3),  2.9, 15.3],
-      [new Date(2014, 4),  6.3, 18.6],
-      [new Date(2014, 5),    9, 20.9],
-      [new Date(2014, 6), 10.6, 19.8],
-      [new Date(2014, 7), 10.3, 16.6],
-      [new Date(2014, 8),  7.4, 13.3],
-      [new Date(2014, 9),  4.4,  9.9],
-      [new Date(2014, 10), 1.1,  6.6],
-      [new Date(2014, 11), -.2,  4.5]
-    ]);
+	      chart.draw(data, options);
+	    }
 
-    var materialOptions = {
-      width: 900,
-      height: 500,
-      series: {
-        // Gives each series an axis name that matches the Y-axis below.
-        0: {axis: 'Temps'},
-        1: {axis: 'Daylight'}
-      },
-      axes: {
-        // Adds labels to each axis; they don't have to match the axis names.
-        y: {
-          Temps: {label: 'Temps (Celsius)'},
-          Daylight: {label: 'Daylight'}
-        }
-      }
-    };
+	//體重圖表
+	function draw_WeightLineChart() {
 
-    var classicOptions = {
-      title: 'Average Temperatures and Daylight in Iceland Throughout the Year',
-      width: 900,
-      height: 500,
-      // Gives each series an axis that matches the vAxes number below.
-      series: {
-        0: {targetAxisIndex: 0},
-        1: {targetAxisIndex: 1}
-      },
-      vAxes: {
-        // Adds titles to each axis.
-        0: {title: 'Temps (Celsius)'},
-        1: {title: 'Daylight'}
-      },
-      hAxis: {
-        ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
-                new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
-                new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
-               ]
-      },
-      vAxis: {
-        viewWindow: {
-          max: 30
-        }
-      }
-    };
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', '體重');
 
-    function drawMaterialChart() {
-      var materialChart = new google.charts.Line(chartDiv);
-      materialChart.draw(data, materialOptions);
-    }
-    drawMaterialChart();
+	      data.addRows([
+		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
+	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
+	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      ]);
 
-  }
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: '體重'
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('weight_lineChart'));
+
+	      chart.draw(data, options);
+	    }
+
+	//BMI圖表
+	function draw_BMILineChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', 'BMI');
+
+	      data.addRows([
+		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
+	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
+	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      ]);
+
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: 'BMI'
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('BMI_lineChart'));
+
+	      chart.draw(data, options);
+	    }
+	
+	//BMR圖表
+	function draw_BMRLineChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', 'BMR');
+
+	      data.addRows([
+		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
+	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
+	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      ]);
+
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: 'BMR'
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('BMR_lineChart'));
+
+	      chart.draw(data, options);
+	    }
+	
+	//BMR圖表
+	function draw_levelLineChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('date', '時間');
+	      data.addColumn('number', '代謝水平');
+
+	      data.addRows([
+		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
+	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
+	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      ]);
+
+	      var options = {
+	        hAxis: {
+	          title: '時間'
+	        },
+	        vAxis: {
+	          title: '代謝水平'
+	        }
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('level_lineChart'));
+
+	      chart.draw(data, options);
+	    }
 </script>

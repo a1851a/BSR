@@ -165,8 +165,8 @@ button {
 	onAuthStateChanged(auth, (user) => {
 		if(user) {
     		const uid = user.uid;
-        var displayName = user.displayName;
-        var email = user.email;
+        	var displayName = user.displayName;
+        	var email = user.email;
 			console.log(user);
 
 			var xhr = new XMLHttpRequest();

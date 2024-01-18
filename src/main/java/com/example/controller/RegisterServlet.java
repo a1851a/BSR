@@ -21,8 +21,6 @@ public class RegisterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// https://www.youtube.com/watch?v=rU7GhAFf52Y
-
 		// 表單後端驗證
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -32,9 +30,16 @@ public class RegisterServlet extends HttpServlet {
 					"<span><a href=\"./Register\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整資訊</div>");
-		} 
-//		else {
-//			resp.sendRedirect("./Login");
-//		}
+		}else if (email.contains("@")) {
+			resp.getWriter().println(
+					"<span><a href=\"./Register\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入正確格式</div>");
+		}else if (email.length()<6) {
+			resp.getWriter().println(
+					"<span><a href=\"./Register\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入6位數字以上</div>");
+		}
 	}
 }

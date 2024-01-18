@@ -17,23 +17,20 @@
 		<!-- 錯誤訊息 -->
 		<div class="error text-center text-danger"></div>
 		
-		<form class="row m-0 needs-validation" method="post"
-			action="./Register" novalidate>
+		<form class="row m-0 needs-validation" method="post" action="./Register" novalidate>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email" type="email"
 					placeholder="✉️電子信箱:example@gmail.com" required>
-				<div class="invalid-feedback">請輸入正確帳號</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="password" class="form-control" id="password" type="password"
 					name="password" placeholder="🗝️密碼" required>
-				<div class="invalid-feedback">請輸入密碼</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="col-12 btn btn-secondary" id="register" name="register">註冊</button>
+				<button type="button" class="col-12 btn btn-secondary" id="register" name="register" >註冊</button>
 			</div>
 			
 		</form>
@@ -121,17 +118,24 @@ button {
 		createUserWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
     			const user = userCredential.user;
-				console.log(user);
 				window.location.href="./Account";
   			})
   			.catch((error) => {
     			const errorCode = error.code;
     			const errorMessage = error.message;
-				if (error.code === 'auth/invalid-email'){
+				if(error.code === 'auth/missing-email'){
 					$(document).ready(function () {
-                		$('.error').text('信箱格式錯誤');
+                		$('.error').text('請輸入信箱');
+            		});
+				}else if (error.code === 'auth/invalid-email'){
+					$(document).ready(function () {
+                		$('.error').text('請輸入正確信箱格式');
             		});           			
-        		} else if (error.code === 'auth/user-disabled') {
+        		} else if(error.code === 'auth/email-already-in-use'){
+					$(document).ready(function () {
+                		$('.error').text('此信箱已註冊過');
+            		});
+				} else if (error.code === 'auth/user-disabled') {
 					$(document).ready(function () {
                 		$('.error').text('使用者不能啟使用');
             		});
@@ -139,7 +143,11 @@ button {
 					$(document).ready(function () {
                 		$('.error').text('密碼至少需要6位數');
             		});			
-				} 
+				}else if(error.code==='auth/missing-password'){
+					$(document).ready(function () {
+                		$('.error').text('請輸入密碼(大於6位數)');
+            		});				
+				}
   			});
 		});
 </script>

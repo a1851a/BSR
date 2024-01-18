@@ -17,14 +17,11 @@
 	</div>
 
 	<div class="container-fluid">
-		<form class="row m-0 needs-validation" method="post" action="./Login"
-			novalidate>
-			<%
-	    	  	if(loginError != null) {
-	    	  		out.print("<p class='text-center text-danger fw-bold'>"+loginError+"</p>");
-	    	  	}
-	    	 %>
-	    	 
+		<form class="row m-0 needs-validation" method="post" action="./Login" novalidate>
+			
+			<!-- 錯誤訊息 -->
+			<div class="error text-center text-danger"></div>
+
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email"
 					placeholder="✉️電子信箱:example@gmail.com" required>
@@ -38,12 +35,12 @@
 			</div>
 			
 			<div class="col-10 mx-auto px-0 my-2">
-				<button class="col-12 btn btn-secondary" id="login" name="login">登入</button>
+				<button type="button" class="col-12 btn btn-secondary" id="login" name="login">登入</button>
 			</div>
 			
 			<div class="d-flex flex-wrap justify-content-center my-2">
-			<a class="forgetPassword text-center" href="#">忘記密碼</a>
-		</div>
+				<a class="forgetPassword text-center" href="#">忘記密碼</a>
+			</div>
 
 			<div class="d-flex flex-wrap justify-content-center my-2">
 				<a class="goRegister text-center" href="./Register">註冊</a>
@@ -71,27 +68,8 @@
 					<i class="bi bi-facebook flex-wrap p-0 m-0 align-top"></i> <span>用Facebook帳號登入</span>
 				</button>
 			</div>
-				
-			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="lineLogin col-12 btn btn-success"
-					id="lineLogin" name="lineLogin">
-					<i class="bi bi-line flex-wrap p-0 m-0 align-top"></i> <span>用Line帳號登入</span>
-				</button>
-			</div>
 			
 		</form>
-
-		
-
-		<!-- line login 
-				Channel Id:
-				Channel secret:
-				https://castion2293.medium.com/line-login-%E4%BD%BF%E7%94%A8php%E5%AF%A6%E4%BD%9C-32d539e6ecc6
-				https://github.com/line/line-api-use-case-line-login/blob/main/docs/en/liff-channel-create.md
-		-->
-		
-		
-		<!-- https://www.youtube.com/watch?v=IudOiOwppFA -->
 	</div>
 </main>
 
@@ -170,8 +148,6 @@ hr:not([size]) {
 			}, false)
 		})
 	})()
-	
-  
 </script>
 
 <script type="module">
@@ -181,8 +157,7 @@ hr:not([size]) {
 	//建立 Google、Facebook 提供者物件的實例
 	import { getAuth,signInWithPopup,
 				signInWithEmailAndPassword,
-				GoogleAuthProvider,FacebookAuthProvider,
-				onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+				GoogleAuthProvider,FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 	//Firebase配置
 	const firebaseConfig = {
@@ -196,35 +171,58 @@ hr:not([size]) {
 
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
-	const auth = getAuth(app);
+	const auth = getAuth();
 	auth.languageCode = 'en';
 	
 	//建立 Google 提供者物件的實例
-	const google_provider = new GoogleAuthProvider(auth);
+	const google_provider = new GoogleAuthProvider();
 	//建立 Facebook 提供者物件的實例	
-	const facebook_provider = new FacebookAuthProvider(auth);
+	const facebook_provider = new FacebookAuthProvider();
 
 	//使用信箱和密碼
 	login.addEventListener('click',(e)=>{
+		let email=$('#email').val();
+		let password=$('#password').val();
+		
 		signInWithEmailAndPassword(auth, email, password)
   			.then((userCredential) => {
-    		// Signed in 
     		const user = userCredential.user;
-    		console.log(user);
+    		//console.log(user);
+			//登入後導至帳號管理頁面
+			window.location.href="./Account";
   		})
   		.catch((error) => {
     		const errorCode = error.code;
     		const errorMessage = error.message;
-			alert(error);
-			if (error.code === 'auth/invalid-email'){
-           		alert("信箱錯誤");
+			if(error.code === 'auth/missing-email'){
+				$(document).ready(function () {
+                	$('.error').text('請輸入信箱');
+            	});
+			}else if (error.code === 'auth/invalid-email'){
+				$(document).ready(function () {
+               		$('.error').text('請輸入正確信箱格式');
+            	});           			
         	} else if (error.code === 'auth/user-disabled') {
-           		alert("使用者未被啟用");
-        	} else if (error.code === 'auth/user-not-found') {
-           		alert("找不到使用者");
-        	}else if (error.code === 'auth/wrong-password') {
-           		alert("密碼錯誤");
-        	} 
+				$(document).ready(function () {
+               		$('.error').text('使用者不能啟使用');
+           		});
+       		} else if(error.code === 'auth/weak-password'){
+				$(document).ready(function () {
+               		$('.error').text('密碼至少需要6位數');
+           		});			
+			}else if(error.code==='auth/missing-password'){
+				$(document).ready(function () {
+               		$('.error').text('請輸入密碼(大於6位數)');
+           		});				
+			}else if(error.code === 'auth/email-already-in-use'){
+				$(document).ready(function () {
+               		$('.error').text('此信箱已註冊過');
+           		});
+			}else if(error.code === 'auth/invalid-credential'){
+				$(document).ready(function () {
+               		$('.error').text('驗證錯誤');
+           		});
+			}
   		});
 	});
 
@@ -235,7 +233,7 @@ hr:not([size]) {
     		const credential = GoogleAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
     		const user = result.user;
-			console.log(user);
+			//console.log(user);
 			//登入後導至帳號管理頁面
 			window.location.href="./Account";
   		}).catch((error) => {
@@ -243,15 +241,6 @@ hr:not([size]) {
     		const errorMessage = error.message;
     		const email = error.customData.email;
     		const credential = GoogleAuthProvider.credentialFromError(error);
-			if (error.code === 'auth/invalid-email'){
-           		alert("信箱錯誤");
-        	} else if (error.code === 'auth/user-disabled') {
-           		alert("使用者未被啟用");
-        	} else if (error.code === 'auth/user-not-found') {
-           		alert("找不到使用者");
-        	}else if (error.code === 'auth/wrong-password') {
-           		alert("密碼錯誤");
-        	} 
   		});
 	});
 
@@ -262,7 +251,7 @@ hr:not([size]) {
     		const credential = FacebookAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
     		const user = result.user;
-			console.log(user);
+			//console.log(user);
 			//登入後導至帳號管理頁面			
 			window.location.href="./Account";
   		}).catch((error) => {
@@ -270,15 +259,6 @@ hr:not([size]) {
     		const errorMessage = error.message;
     		const email = error.customData.email;
     		const credential = FacebookAuthProvider.credentialFromError(error);
-			if (error.code === 'auth/invalid-email'){
-           		alert("信箱錯誤");
-        	} else if (error.code === 'auth/user-disabled') {
-           		alert("使用者未被啟用");
-        	} else if (error.code === 'auth/user-not-found') {
-           		alert("找不到使用者");
-        	}else if (error.code === 'auth/wrong-password') {
-           		alert("密碼錯誤");
-        	} 
   		});
 	});
 

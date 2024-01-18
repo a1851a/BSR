@@ -2,39 +2,46 @@ package com.example.entity;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
 
 //定義使用者資料(POJO)
 public class User {
-	private String account;              // 帳號
-	private String password;             // 密碼
-	private static Integer count = 0;    // 使用者ID的初始值
-	private Integer userId;			     // 使用者ID
-	private String name;                 // 姓名
-	private Gender gender;               // 性別
-	private String birthday;             // 出生年月日
-	private Integer age;                 // 年齡
-
+	private Integer userId;  //使用者Id
+	private String email;    //信箱
+	private String password; //密碼
+	private String name;     //使用者名稱
+	private String birth;    //使用者出生日期
+	private Gender gender;	 //使用者性別
+	private Integer age;	 //使用者年齡
+		
 	public User() {
 		
 	}
 
-	public User(String account, String password, String name, Gender gender, String birthday) {
-		
-		this.account = account;
+	public User(String email, String password, String name, String birth, Gender gender) {
+		this.userId = userId;
+		this.email = email;
 		this.password = password;
-		this.userId = ++count;
 		this.name = name;
+		this.birth = birth;
 		this.gender = gender;
-		this.birthday = birthday;
-		this.age = getAge(birthday);
+		this.age = age;
 	}
 
-	public String getAccount() {
-		return account;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -45,14 +52,6 @@ public class User {
 		this.password = password;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -61,42 +60,48 @@ public class User {
 		this.name = name;
 	}
 
-	public Gender getGender() {
-		return gender;
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getGender() {
+		return gender.getGender();
 	}
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
-	private Integer getAge(String birthday) {
-		//取得出生日期 
-	    LocalDate birthDate = LocalDate.parse(birthday);
-	    //取得目前日期 
-	    LocalDate currentDate = LocalDate.now();
-	    //計算時間
-	    Period totalAliveTime = Period.between(birthDate, currentDate);
-	    return totalAliveTime.getYears();
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+	//計算至今年齡(當日-生日)
+		public Integer getAge() {		    
+		    return age;
+		}
+		
+//	//計算至今年齡(當日-生日)
+//	public Integer getAge() {
+//		//取得出生日期 
+//	    LocalDate birthDate = LocalDate.parse(birth);
+//	    //取得目前日期 
+//	    LocalDate currentDate = LocalDate.now();
+//	    //計算時間
+//	    Period totalAliveTime = Period.between(birthDate, currentDate);
+//	    
+//	    return totalAliveTime.getYears();
+//	}
 
 	@Override
 	public String toString() {
-		return "account:" + account + "\n" + "password:" + password + "\n" +
-				"userId:"+userId+"\n"+"name:" + name + "\n" + "gender:"+
-				gender.getGender() + "\n" + "birthday:" + birthday + "\n" +
-				"age:" + age + "\n";
+		return "userId:"+userId+
+				"\nemail:"+email+
+				"\npassword:"+password+
+				"\nname:"+name+
+				"\ngender:"+gender+
+				"\nage:"+age+
+				"\n";
 	}
 
 }

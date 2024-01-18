@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,8 +19,7 @@ public class AccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		//取得帳號使用者
-		
+		//取得帳號使用者	
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/account.jsp");
 		req.setAttribute("email", "test@gmail.com");
 		req.setAttribute("key", "12345");
@@ -32,7 +32,7 @@ public class AccountServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        
 		String account=req.getParameter("account");
 		String key = req.getParameter("key");
 		String user_name = req.getParameter("user_name");
@@ -49,6 +49,9 @@ public class AccountServlet extends HttpServlet {
 		} else {
 			resp.sendRedirect("./Account");
 		}
+		
+			
+		
 	}
 
 }

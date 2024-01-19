@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/login.jsp");
 		rd.forward(req, resp);
 	}
-
+    /*
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -32,19 +32,17 @@ public class LoginServlet extends HttpServlet {
 					"<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入完整資訊</div>");
-		} 
-//		else if (email.contains("@")) {
-//			resp.getWriter().println(
-//					"<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-//			resp.getWriter().print(
-//					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入正確格式</div>");
-//		}else if (email.length()<6) {
-//			resp.getWriter().println(
-//					"<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-//			resp.getWriter().print(
-//					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入6位數字以上</div>");
-//		}
-		
-	}
-		
+		}else if (email.contains("@")) {
+			resp.getWriter().println(
+					"<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入正確格式</div>");
+		}else if (email.length()<6) {
+			resp.getWriter().println(
+					"<span><a href=\"./Login\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入6位數字以上</div>");
+		}
+
+	}*/
 }

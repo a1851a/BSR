@@ -40,8 +40,7 @@
 				<div class="input-group">
 					<span class="input-group-text" id="inputGroupPrepend3">🧑🏼‍💻</span>
 					<input type="text" class="form-control bg-light" id="user_name"
-						name="user_name"
-						value="<%out.print(request.getAttribute("user_name"));%>" required>
+						name="user_name" required>
 					<div class="invalid-feedback">不可為空值</div>
 				</div>
 			</div>
@@ -79,7 +78,7 @@
 		
 		<div class="col-10 mx-auto px-0 my-2">
 			<button class="delete col-12 btn btn-danger" type="submit"
-				id="delete" name="delete" onclick="deleteAccount()">刪除帳戶</button>
+				id="delete" name="delete">刪除帳戶</button>
 		</div>
 
 	</div>
@@ -138,6 +137,7 @@ button {
 			}, false)
 		})
 	})()
+	
 </script>
 
 <script type="module">
@@ -158,8 +158,8 @@ button {
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
+	auth.languageCode = 'en';
 
-	const email=document.getElementById("account");
 	let user;
 
 	onAuthStateChanged(auth, (user) => {
@@ -167,23 +167,22 @@ button {
     		const uid = user.uid;
         	var displayName = user.displayName;
         	var email = user.email;
+			document.getElementById("user_name").textContent =displayName;
 			console.log(user);
-
-			var xhr = new XMLHttpRequest();
-        	xhr.open('POST', './Account', true);
-        	xhr.setRequestHeader('Content-Type', 'application/json');
-
-        	// 傳送資訊
-        	var data = {
-            	uid: uid,
-            	displayName: displayName,
-            	email: email
-        	};
-        	xhr.send(JSON.stringify(data));
-		} else {
+			console.log(user.displayName);
+			//不是每一個使用者都會提供信箱
+			if (user.providerData && user.providerData.length > 0) {
+                const userEmail = user.providerData[0].email;
+                console.log(userEmail);
+				if(userEmail==null){
+					document.getElementById("account").textContent ="未抓取成功";
+				}
+				document.getElementById("account").textContent =userEmail;
+            }
   		}
 	});
 
+	//登出
 	loginout.addEventListener('click',(e)=>{
 		signOut(auth).then(() => {
 			window.location.href="./Login";
@@ -191,4 +190,18 @@ button {
 			alert(error);
 		});
 	});
+
+	//刪除
+	reAuth('delete')
+          .then(user => {
+            user.delete().then(() => {
+              window.alert('您的帳號已成功刪除');
+              window.location.reload();
+            }).catch(error => {
+              changeErrMessage(error.message)
+            });
+          })
+          .catch(error => {
+            changeErrMessage(error.message)
+          })
 </script>

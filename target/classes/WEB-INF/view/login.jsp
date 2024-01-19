@@ -39,7 +39,7 @@
 			</div>
 			
 			<div class="d-flex flex-wrap justify-content-center my-2">
-				<a class="forgetPassword text-center" href="#">忘記密碼</a>
+				<a class="forgetPassword text-center" id="forgetPassword" href="./ForgetPassword">忘記密碼</a>
 			</div>
 
 			<div class="d-flex flex-wrap justify-content-center my-2">
@@ -132,6 +132,7 @@ hr:not([size]) {
 	//標題特效
 	AOS.init();
 
+	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {
@@ -147,15 +148,16 @@ hr:not([size]) {
 				form.classList.add('was-validated')
 			}, false)
 		})
-	})()
+	})()*/
 </script>
 
 <script type="module">
+
 	//串接Firebase
 	//新增Firebase身分驗證JS SDK並初始化Firebase身份驗證	
 	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-	//建立 Google、Facebook 提供者物件的實例
-	import { getAuth,signInWithPopup,
+	//建立 帳號和密碼、Google、Facebook 提供者物件的實例
+	import { getAuth,signInWithPopup,sendPasswordResetEmail,
 				signInWithEmailAndPassword,
 				GoogleAuthProvider,FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
@@ -178,8 +180,17 @@ hr:not([size]) {
 	const google_provider = new GoogleAuthProvider();
 	//建立 Facebook 提供者物件的實例	
 	const facebook_provider = new FacebookAuthProvider();
+	
+	//避免使用預設帳號
+	google_provider.setCustomParameters({
+		prompt: "select_account"
+	})
 
-	//使用信箱和密碼
+	facebook_provider.setCustomParameters({
+		prompt: "select_account"
+	})
+
+	//使用信箱和密碼登入
 	login.addEventListener('click',(e)=>{
 		let email=$('#email').val();
 		let password=$('#password').val();
@@ -187,9 +198,9 @@ hr:not([size]) {
 		signInWithEmailAndPassword(auth, email, password)
   			.then((userCredential) => {
     		const user = userCredential.user;
-    		//console.log(user);
+    		console.log(user);
 			//登入後導至帳號管理頁面
-			window.location.href="./Account";
+			window.location.href="./Index";
   		})
   		.catch((error) => {
     		const errorCode = error.code;
@@ -202,7 +213,11 @@ hr:not([size]) {
 				$(document).ready(function () {
                		$('.error').text('請輸入正確信箱格式');
             	});           			
-        	} else if (error.code === 'auth/user-disabled') {
+        	} else if(error.code === 'auth/email-already-in-use'){
+				$(document).ready(function () {
+               		$('.error').text('此信箱已註冊過');
+           		});
+			}else if (error.code === 'auth/user-disabled') {
 				$(document).ready(function () {
                		$('.error').text('使用者不能啟使用');
            		});
@@ -214,10 +229,6 @@ hr:not([size]) {
 				$(document).ready(function () {
                		$('.error').text('請輸入密碼(大於6位數)');
            		});				
-			}else if(error.code === 'auth/email-already-in-use'){
-				$(document).ready(function () {
-               		$('.error').text('此信箱已註冊過');
-           		});
 			}else if(error.code === 'auth/invalid-credential'){
 				$(document).ready(function () {
                		$('.error').text('驗證錯誤');
@@ -226,6 +237,8 @@ hr:not([size]) {
   		});
 	});
 
+ 	//https://www.letswrite.tw/firebase-auth-email/
+
 	//當google登入按鈕被點擊時
 	googleLogin.addEventListener('click',(e)=>{
 		signInWithPopup(auth, google_provider)
@@ -233,13 +246,14 @@ hr:not([size]) {
     		const credential = GoogleAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
     		const user = result.user;
-			//console.log(user);
+			console.log(user);
+
 			//登入後導至帳號管理頁面
-			window.location.href="./Account";
+			window.location.href="./Index";
   		}).catch((error) => {
     		const errorCode = error.code;
     		const errorMessage = error.message;
-    		const email = error.customData.email;
+    		const email = error.email;
     		const credential = GoogleAuthProvider.credentialFromError(error);
   		});
 	});
@@ -253,11 +267,11 @@ hr:not([size]) {
     		const user = result.user;
 			//console.log(user);
 			//登入後導至帳號管理頁面			
-			window.location.href="./Account";
+			window.location.href="./Index";
   		}).catch((error) => {
     		const errorCode = error.code;
     		const errorMessage = error.message;
-    		const email = error.customData.email;
+    		const email = error.email;
     		const credential = FacebookAuthProvider.credentialFromError(error);
   		});
 	});

@@ -19,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
 		rd.forward(req, resp);
 	}
 
+	/*
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 表單後端驗證
@@ -41,5 +42,5 @@ public class RegisterServlet extends HttpServlet {
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:350px;height:80vh;\">請輸入6位數字以上</div>");
 		}
-	}
+	}*/
 }

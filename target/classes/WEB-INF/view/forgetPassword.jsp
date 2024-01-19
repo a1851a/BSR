@@ -7,7 +7,7 @@
 
 	<div class="d-flex flex-wrap align-items-center aos-init"
 		data-aos="fade-down">
-		<span class="title vw-100 text-center"> 註冊BSR </span>
+		<span class="title vw-100 text-center"> 重設密碼 </span>
 		<hr class="gradient_line mx-0 my-2 p-0 aos-init vw-100"
 			data-aos="fade-down">
 	</div>
@@ -17,6 +17,9 @@
 		<!-- 錯誤訊息 -->
 		<div class="error text-center text-danger"></div>
 		
+		<!-- 成功訊息 -->
+		<div class="success text-center text-success"></div>
+		
 		<form class="row m-0 needs-validation" method="post" action="./Register" novalidate>
 			
 			<div class="col-10 mx-auto px-0 m-2">
@@ -24,13 +27,8 @@
 					placeholder="✉️電子信箱:example@gmail.com" required>
 			</div>
 			
-			<div class="col-10 mx-auto px-0 m-2">
-				<input type="password" class="form-control" id="password" type="password"
-					name="password" placeholder="🗝️密碼" required>
-			</div>
-			
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="col-12 btn btn-secondary" id="register" name="register" >註冊</button>
+				<button type="button" class="col-12 btn btn-secondary" id="resetPassword" name="resetPassword" >寄信修改</button>
 			</div>
 			
 		</form>
@@ -93,8 +91,7 @@ button {
 	//串接Firebase
 	//新增Firebase身分驗證JS SDK並初始化Firebase身份驗證	
 	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-	//建立 Google、Facebook 提供者物件的實例
-	import { getAuth,createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+	import { getAuth,sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 	//Firebase配置
 	const firebaseConfig = {
@@ -111,44 +108,52 @@ button {
 	const auth = getAuth();
 	auth.languageCode = 'en';
 
-	register.addEventListener('click',(e)=>{
-	
-		let email = document.getElementById('email').value;
-    	let password = document.getElementById('password').value;
-	
-		createUserWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-    			const user = userCredential.user;
-				window.location.href="./Account";
-  			})
-  			.catch((error) => {
-    			const errorCode = error.code;
-    			const errorMessage = error.message;
-				if(error.code === 'auth/missing-email'){
-					$(document).ready(function () {
-                		$('.error').text('請輸入信箱');
-            		});
-				}else if (error.code === 'auth/invalid-email'){
-					$(document).ready(function () {
-                		$('.error').text('請輸入正確信箱格式');
-            		});           			
-        		} else if(error.code === 'auth/email-already-in-use'){
-					$(document).ready(function () {
-                		$('.error').text('此信箱已註冊過');
-            		});
-				} else if (error.code === 'auth/user-disabled') {
-					$(document).ready(function () {
-                		$('.error').text('使用者不能啟使用');
-            		});
-        		} else if(error.code === 'auth/weak-password'){
-					$(document).ready(function () {
-                		$('.error').text('密碼至少需要6位數');
-            		});			
-				}else if(error.code==='auth/missing-password'){
-					$(document).ready(function () {
-                		$('.error').text('請輸入密碼(大於6位數)');
-            		});				
-				}
-  			});
-		});
+	//重新寄信至信箱重設密碼
+	resetPassword.addEventListener('click',(e)=>{
+		let email=$('#email').val();
+		sendPasswordResetEmail(auth, email)
+  			.then(() => {
+				//顯示文字登入信箱
+				$('.success').show();
+				$('.success').html('<p>請至<a class="text-success text-decoration-none m-2" href="mailto:' + $('#email').val() + '">' + $('#email').val() + '</a>重設密碼</p>');
+				$('.success').append('<p class="text-success text-decoration-none m-2">若未收到信件，請確認是否註冊過</p>');
+
+				$('.error').hide();
+		})
+  		.catch((error) => {
+    		const errorCode = error.code;
+    		const errorMessage = error.message;
+			$('.error').show();
+			$('.success').hide();
+    		if(error.code === 'auth/missing-email'){
+				$(document).ready(function () {
+                	$('.error').text('請輸入信箱');
+            	});
+			}else if (error.code === 'auth/invalid-email'){
+				$(document).ready(function () {
+               		$('.error').text('請輸入正確信箱格式');
+            	});           			
+        	} else if(error.code === 'auth/email-already-in-use'){
+				$(document).ready(function () {
+               		$('.error').text('此信箱已註冊過');
+           		});
+			}else if (error.code === 'auth/user-disabled') {
+				$(document).ready(function () {
+               		$('.error').text('使用者不能啟使用');
+           		});
+       		} else if(error.code === 'auth/weak-password'){
+				$(document).ready(function () {
+               		$('.error').text('密碼至少需要6位數');
+           		});			
+			}else if(error.code==='auth/missing-password'){
+				$(document).ready(function () {
+               		$('.error').text('請輸入密碼(大於6位數)');
+           		});				
+			}else if(error.code === 'auth/invalid-credential'){
+				$(document).ready(function () {
+               		$('.error').text('驗證錯誤');
+           		});
+			}
+  		});
+	});
 </script>

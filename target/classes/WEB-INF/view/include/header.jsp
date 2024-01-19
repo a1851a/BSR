@@ -27,8 +27,6 @@
 <!-- Google chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-<!-- DataTables --> 
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 <!-- Google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

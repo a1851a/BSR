@@ -70,6 +70,7 @@ button {
 		window.location.href = "./Login";
 	}
 
+	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {
@@ -85,7 +86,7 @@ button {
 				form.classList.add('was-validated')
 			}, false)
 		})
-	})()
+	})()*/
 </script>
 
 <script type="module">

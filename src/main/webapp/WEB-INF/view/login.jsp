@@ -152,6 +152,7 @@ hr:not([size]) {
 </script>
 
 <script type="module">
+	//無法顯示信箱
 
 	//串接Firebase
 	//新增Firebase身分驗證JS SDK並初始化Firebase身份驗證	
@@ -213,11 +214,7 @@ hr:not([size]) {
 				$(document).ready(function () {
                		$('.error').text('請輸入正確信箱格式');
             	});           			
-        	} else if(error.code === 'auth/email-already-in-use'){
-				$(document).ready(function () {
-               		$('.error').text('此信箱已註冊過');
-           		});
-			}else if (error.code === 'auth/user-disabled') {
+        	} else if (error.code === 'auth/user-disabled') {
 				$(document).ready(function () {
                		$('.error').text('使用者不能啟使用');
            		});
@@ -237,8 +234,6 @@ hr:not([size]) {
   		});
 	});
 
- 	//https://www.letswrite.tw/firebase-auth-email/
-
 	//當google登入按鈕被點擊時
 	googleLogin.addEventListener('click',(e)=>{
 		signInWithPopup(auth, google_provider)
@@ -247,7 +242,6 @@ hr:not([size]) {
     		const token = credential.accessToken;
     		const user = result.user;
 			console.log(user);
-
 			//登入後導至帳號管理頁面
 			window.location.href="./Index";
   		}).catch((error) => {

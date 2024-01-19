@@ -117,9 +117,9 @@ button {
     	let password = document.getElementById('password').value;
 	
 		createUserWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
+			.then((userCredential) => {
     			const user = userCredential.user;
-				window.location.href="./Account";
+				window.location.href="./Login";
   			})
   			.catch((error) => {
     			const errorCode = error.code;

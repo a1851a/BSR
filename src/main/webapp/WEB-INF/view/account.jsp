@@ -15,8 +15,10 @@
 	</div>
 
 	<div class="container-fluid">
+	
 		<form class="row m-0 needs-validation" method="post"
 			action="./Account" novalidate>
+			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="validationServerUsername" class="form-label">帳號</label>
 				<div class="input-group">
@@ -25,16 +27,7 @@
 						name="account" disabled>
 				</div>
 			</div>
-			<div class="col-10 mx-auto px-0 m-2">
-				<label for="validationServerUsername" class="form-label">密碼</label>
-				<div class="input-group">
-					<span class="input-group-text" id="inputGroupPrepend3">‍🗝️</span>
-					<input type="password" class="form-control bg-light" id="key"
-						name="key" value="<%out.print(request.getAttribute("key"));%>"
-						required>
-					<div class="invalid-feedback">不可為空值</div>
-				</div>
-			</div>
+			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="validationServerUsername" class="form-label">使用者名稱</label>
 				<div class="input-group">
@@ -44,23 +37,23 @@
 					<div class="invalid-feedback">不可為空值</div>
 				</div>
 			</div>
+			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="validationServerUsername" class="form-label">使用者性別</label>
 				<div class="input-group">
 					<span class="input-group-text" id="inputGroupPrepend3">⚧️</span> <input
 						type="text" class="form-control bg-light" id="gender"
-						name="gender"
-						value="<%out.print(request.getAttribute("gender"));%>" required>
+						name="gender" required>
 					<div class="invalid-feedback">不可為空值</div>
 				</div>
 			</div>
+			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="validationServerUsername" class="form-label">出生日期</label>
 				<div class="input-group">
 					<span class="input-group-text" id="inputGroupPrepend3">🗓️</span> <input
 						type="date" class="form-control bg-light" id="birthday"
-						name="birthday"
-						value="<%out.print(request.getAttribute("birthday"));%>">
+						name="birthday">
 					<div class="invalid-feedback">不可為空值</div>
 				</div>
 			</div>
@@ -71,14 +64,14 @@
 			</div>
 		</form>
 		
-		<div class="col-10 mx-auto px-0 my-2">
+		<div class="col-10 mx-auto px-0 my-">
 			<button class="delete col-12 btn btn-primary" type="submit"
 				id="loginout" name="loginout">登出帳戶</button>
 		</div>
 		
 		<div class="col-10 mx-auto px-0 my-2">
 			<button class="delete col-12 btn btn-danger" type="submit"
-				id="delete" name="delete">刪除帳戶</button>
+				id="deleteAccount" name="deleteAccount">刪除帳戶</button>
 		</div>
 
 	</div>
@@ -121,6 +114,7 @@ button {
 		window.location.href = "./Login";
 	}
 
+	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {
@@ -136,14 +130,15 @@ button {
 				form.classList.add('was-validated')
 			}, false)
 		})
-	})()
+	})()*/
 	
 </script>
 
 <script type="module">
 	//串接Firebase
 	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-	import { getAuth, onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+	import { getAuth, onAuthStateChanged,
+				signOut,sendSignInLinkToEmail,deleteUser} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 	//Firebase配置
 	const firebaseConfig = {
@@ -155,13 +150,30 @@ button {
 		appId: "1:34778549875:web:e472a2f38e8cf1ec656406"
 	};
 
+const actionCodeSettings = {
+  // URL you want to redirect back to. The domain (www.example.com) for this
+  // URL must be in the authorized domains list in the Firebase Console.
+  url: 'https://www.example.com/finishSignUp?cartId=1234',
+  // This must be true.
+  handleCodeInApp: true,
+  iOS: {
+    bundleId: 'com.example.ios'
+  },
+  android: {
+    packageName: 'com.example.android',
+    installApp: true,
+    minimumVersion: '12'
+  },
+  dynamicLinkDomain: 'example.page.link'
+};
+
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
-	const auth = getAuth(app);
+	const auth = getAuth();
 	auth.languageCode = 'en';
 
 	let user;
-
+	
 	onAuthStateChanged(auth, (user) => {
 		if(user) {
     		const uid = user.uid;
@@ -170,20 +182,16 @@ button {
 			document.getElementById("user_name").textContent =displayName;
 			console.log(user);
 			console.log(user.displayName);
-			//不是每一個使用者都會提供信箱
+			//不是每一個使用者都會提供信箱(看設定)
 			if (user.providerData && user.providerData.length > 0) {
-                const userEmail = user.providerData[0].email;
-                console.log(userEmail);
-				if(userEmail==null){
-					document.getElementById("account").textContent ="未抓取成功";
-				}
-				document.getElementById("account").textContent =userEmail;
+                const userEmail = user.providerData[0].email;    
             }
+			console.log(userEmail);
   		}
 	});
 
 	//登出
-	loginout.addEventListener('click',(e)=>{
+	document.getElementById('loginout').addEventListener('click',(e)=>{
 		signOut(auth).then(() => {
 			window.location.href="./Login";
 		}).catch((error) => {
@@ -191,17 +199,32 @@ button {
 		});
 	});
 
-	//刪除
-	reAuth('delete')
-          .then(user => {
-            user.delete().then(() => {
-              window.alert('您的帳號已成功刪除');
-              window.location.reload();
-            }).catch(error => {
-              changeErrMessage(error.message)
-            });
-          })
-          .catch(error => {
-            changeErrMessage(error.message)
-          })
+	//刪除帳號
+	document.getElementById('deleteAccount').addEventListener('click', (e) => {
+
+		//信箱驗證
+		//sendSignInLinkToEmail(auth, user.providerData[0].email, actionCodeSettings)
+  			//.then(() => {
+    		// The link was successfully sent. Inform the user.
+    		// Save the email locally so you don't need to ask the user for it again
+    		// if they open the link on the same device.
+    		//window.localStorage.setItem('emailForSignIn', email);
+  		//})
+  		//.catch((error) => {
+    		//const errorCode = error.code;
+    		//const errorMessage = error.message;
+			//alert(error);
+  		//});    	
+
+		deleteUser(auth.currentUser).then(() => {
+        	alert("帳號刪除成功");
+			window.location.href="./Login";
+       		// 帳號被刪除
+    	}).catch(function(error) {
+        	// 有錯誤
+       	 	alert(error.message);
+    	});
+
+	});
+
 </script>

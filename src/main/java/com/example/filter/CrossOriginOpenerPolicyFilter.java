@@ -10,24 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //安全性過濾器
-@WebFilter(value = {"/*"})
+@WebFilter(value = {"/Lpgin"})
 public class CrossOriginOpenerPolicyFilter extends HttpFilter {
 
 	@Override
 	protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		
-		String url = req.getRequestURL().toString();
-
-		// 放行條件
-		if ( url.indexOf("/images") >= 0 || url.endsWith(".css") || 
-				url.endsWith(".js")) {
-			chain.doFilter(req, res);
-			return;
-		}		
+		String url = req.getRequestURL().toString();	
+		
 		// 設定 Cross-Origin-Opener-Policy 標頭
         res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-        
+
         // 繼續處理請求
         chain.doFilter(req, res);
 	}

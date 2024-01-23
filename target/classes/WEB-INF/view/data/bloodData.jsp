@@ -2,46 +2,46 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 血液(全血)紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 		
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_血液(全血)</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-白血球 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_白血球</div>
-		  	<div class="col-10 my-2 mx-auto" id="WBC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="WBC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-紅血球 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_紅血球</div>
-		  	<div class="col-10 my-2 mx-auto" id="RBC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="RBC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-血色素 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血色素</div>
-		  	<div class="col-10 my-2 mx-auto" id="Hgb_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Hgb_lineChart"></div>
 	
 			<!-- 折線圖-血球容積比 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血球容積比</div>
-		  	<div class="col-10 my-2 mx-auto" id="Hct_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Hct_lineChart"></div>
 		  	
 		  	<!-- 折線圖-平均紅血球容積 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_平均紅血球容積</div>
-		  	<div class="col-10 my-2 mx-auto" id="MCV_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="MCV_lineChart"></div>
 		  	
 		  	<!-- 折線圖-平均紅血球血紅素量 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_平均紅血球血紅素量</div>
-		  	<div class="col-10 my-2 mx-auto" id="MCH_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="MCH_lineChart"></div>
 		  	
 		  	<!-- 折線圖-平均紅血球血紅素濃度 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_平均紅血球血紅素濃度</div>
-		  	<div class="col-10 my-2 mx-auto" id="MCHC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="MCHC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-血小板 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血小板</div>
-		  	<div class="col-10 my-2 mx-auto" id="PLT_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="PLT_lineChart"></div>
 		
 		</div>  	
 	</div>
@@ -135,7 +135,9 @@
 	        },
 	        vAxis: {
 	          title: '白血球'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('WBC_lineChart'));
@@ -162,7 +164,9 @@
 	        },
 	        vAxis: {
 	          title: '紅血球'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('RBC_lineChart'));
@@ -189,7 +193,9 @@
 	        },
 	        vAxis: {
 	          title: '血色素'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Hgb_lineChart'));
@@ -216,7 +222,9 @@
 	        },
 	        vAxis: {
 	          title: '血球容積比'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Hct_lineChart'));
@@ -243,7 +251,9 @@
 	        },
 	        vAxis: {
 	          title: '平均紅血球容積'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('MCV_lineChart'));
@@ -270,7 +280,9 @@
 	        },
 	        vAxis: {
 	          title: '平均紅血球血紅素量'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('MCH_lineChart'));
@@ -297,7 +309,9 @@
 	        },
 	        vAxis: {
 	          title: '平均紅血球血紅素濃度'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('MCHC_lineChart'));
@@ -324,7 +338,9 @@
 	        },
 	        vAxis: {
 	          title: '血小板'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('PLT_lineChart'));

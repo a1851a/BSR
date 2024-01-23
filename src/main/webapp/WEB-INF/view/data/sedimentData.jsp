@@ -2,42 +2,42 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 尿液沉渣紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_尿液沉渣</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-尿紅血球 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿紅血球</div>
-		  	<div class="col-10 my-2 mx-auto" id="RBC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="RBC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-尿白血球 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿白血球</div>
-		  	<div class="col-10 my-2 mx-auto" id="WBC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="WBC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-上皮細胞 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_上皮細胞</div>
-		  	<div class="col-10 my-2 mx-auto" id="epithelium_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="epithelium_lineChart"></div>
 		  		
 		  	<!-- 柱狀圖-結晶體 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_結晶體</div>
-		  	<div class="col-10 my-2 mx-auto" id="crystal_barChart"></div>
+		  	<div class="my-2 mx-auto" id="crystal_barChart"></div>
 		  	
 		  	<!-- 柱狀圖-尿圓柱體 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿圓柱體</div>
-		  	<div class="col-10 my-2 mx-auto" id="cast_barChart"></div>
+		  	<div class="my-2 mx-auto" id="cast_barChart"></div>
 		  	 	
 		  	<!-- 柱狀圖-細菌 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_細菌</div>
-		  	<div class="col-10 my-2 mx-auto" id="bacteria_barChart"></div>
+		  	<div class="my-2 mx-auto" id="bacteria_barChart"></div>
 		  	 	 	
 		  	<!-- 柱狀圖-其他 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_其他</div>
-		  	<div class="col-10 my-2 mx-auto" id="other_barChart"></div>
+		  	<div class="my-2 mx-auto" id="other_barChart"></div>
 		  	 	 	
 	  	</div>
 	</div>
@@ -129,7 +129,9 @@
 	        },
 	        vAxis: {
 	          title: '尿紅血球'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('RBC_lineChart'));
@@ -156,7 +158,9 @@
 	        },
 	        vAxis: {
 	          title: '尿白血球'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('WBC_lineChart'));
@@ -183,7 +187,9 @@
 	        },
 	        vAxis: {
 	          title: '上皮細胞'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('epithelium_lineChart'));

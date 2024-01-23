@@ -2,34 +2,34 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 電解質紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 		
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_電解質</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-鈉離子 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_鈉離子</div>
-		  	<div class="col-10 my-2 mx-auto" id="na_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="na_lineChart"></div>
 		  	
 		  	<!-- 折線圖-鉀離子 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_鉀離子</div>
-		  	<div class="col-10 my-2 mx-auto" id="k_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="k_lineChart"></div>
 		  	
 		  	<!-- 折線圖-氯離子 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_氯離子</div>
-		  	<div class="col-10 my-2 mx-auto" id="cl_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="cl_lineChart"></div>
 	
 			<!-- 折線圖-血中鈣 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血中鈣</div>
-		  	<div class="col-10 my-2 mx-auto" id="Ca_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Ca_lineChart"></div>
 		  	
 		  	<!-- 折線圖-血中磷 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_血中磷</div>
-		  	<div class="col-10 my-2 mx-auto" id="P_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="P_lineChart"></div>
 		  	
 	  	</div>
 	</div>
@@ -55,9 +55,9 @@
 <script type="text/javascript">
 	
 	//依螢幕大小調整圖表大小
-	window.addEventListener('resize', function() {
-	    drawCharts();
-	});
+	//window.addEventListener('resize', function() {
+	    //drawCharts();
+	//});
 	
 	google.charts.load('current', {
 		'packages' : [ 'table','line','corechart']
@@ -118,7 +118,9 @@
 	        },
 	        vAxis: {
 	          title: '鈉離子'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('na_lineChart'));
@@ -145,7 +147,9 @@
 	        },
 	        vAxis: {
 	          title: '鉀離子'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('k_lineChart'));
@@ -172,7 +176,9 @@
 	        },
 	        vAxis: {
 	          title: '氯離子'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('cl_lineChart'));
@@ -199,7 +205,9 @@
 	        },
 	        vAxis: {
 	          title: '血中鈣'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Ca_lineChart'));
@@ -226,7 +234,9 @@
 	        },
 	        vAxis: {
 	          title: '血中磷'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('P_lineChart'));

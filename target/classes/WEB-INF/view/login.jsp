@@ -17,10 +17,16 @@
 	</div>
 
 	<div class="container-fluid">
-		<form class="row m-0 needs-validation" method="post" action="./Login" novalidate>
+		<form class="row m-0 needs-validation" id="loginForm" method="post" action="./Login" novalidate>
 			
-			<!-- 錯誤訊息 -->
 			<div class="error text-center text-danger"></div>
+			<!-- 錯誤訊息 -->
+			<!--  <div class="error text-center text-danger"> </div> -->
+			<% if (request.getAttribute("errorMessage") != null) { %>
+    			<div class="error text-center text-danger">
+        			<%= request.getAttribute("errorMessage") %>
+    			</div>
+			<% } %>	
 
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email"
@@ -35,13 +41,32 @@
 			</div>
 			
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="col-12 btn btn-secondary" id="login" name="login">登入</button>
-			</div>
-			
-			<div class="d-flex flex-wrap justify-content-center my-2">
-				<a class="forgetPassword text-center" id="forgetPassword" href="./ForgetPassword">忘記密碼</a>
+				<button type="button" class="loginButton col-12 btn btn-secondary" id="login" name="login">登入</button>
 			</div>
 
+			<div class="d-flex flex-wrap justify-content-center my-2">
+				<a class="forgetPassword text-center" id="forgetPassword" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#">忘記密碼</a>
+			</div>
+
+			<!-- 提示 -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="staticBackdropLabel">提示框</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			      	此處只適合自行註冊者
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" onclick="window.location.href='./ForgetPassword'">我知道了</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
 			<div class="d-flex flex-wrap justify-content-center my-2">
 				<a class="goRegister text-center" href="./Register">註冊</a>
 			</div>
@@ -56,14 +81,14 @@
 			<!-- 快速登入 -->
 	
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="googleLogin col-12 btn btn-light"
+				<button type="button" class="loginButton googleLogin col-12 btn btn-light"
 					id="googleLogin" name="googleLogin">
 					<i class="bi bi-google flex-wrap p-0 m-0 align-top"></i> <span>用Google帳號登入</span>
 				</button>
 			</div>
 	
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="facebookLogin col-12 btn btn-primary"
+				<button type="button" class="loginButton facebookLogin col-12 btn btn-primary"
 					id="facebookLogin" name="facebookLogin">
 					<i class="bi bi-facebook flex-wrap p-0 m-0 align-top"></i> <span>用Facebook帳號登入</span>
 				</button>
@@ -131,7 +156,7 @@ hr:not([size]) {
 <script type="text/javascript">
 	//標題特效
 	AOS.init();
-
+	
 	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -192,14 +217,16 @@ hr:not([size]) {
 	})
 
 	//使用信箱和密碼登入
-	login.addEventListener('click',(e)=>{
+	document.getElementById('login').addEventListener('click',(e)=>{
 		let email=$('#email').val();
 		let password=$('#password').val();
-		
+
 		signInWithEmailAndPassword(auth, email, password)
   			.then((userCredential) => {
     		const user = userCredential.user;
-    		console.log(user);
+			const userId = user.uid;
+    		//console.log(user); 
+			sendUserIdToServlet(userId);   	
 			//登入後導至帳號管理頁面
 			window.location.href="./Index";
   		})
@@ -228,20 +255,22 @@ hr:not([size]) {
            		});				
 			}else if(error.code === 'auth/invalid-credential'){
 				$(document).ready(function () {
-               		$('.error').text('驗證錯誤');
+               		$('.error').text('無此帳號或帳密錯誤');
            		});
 			}
   		});
 	});
 
 	//當google登入按鈕被點擊時
-	googleLogin.addEventListener('click',(e)=>{
+	document.getElementById('googleLogin').addEventListener('click',(e)=>{
 		signInWithPopup(auth, google_provider)
   			.then((result) => {
     		const credential = GoogleAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
     		const user = result.user;
-			console.log(user);
+			const userId = user.uid;
+			//console.log(user);
+			sendUserIdToServlet(userId);   	
 			//登入後導至帳號管理頁面
 			window.location.href="./Index";
   		}).catch((error) => {
@@ -253,12 +282,14 @@ hr:not([size]) {
 	});
 
 	//當facebook登入按鈕被點擊時
-	facebookLogin.addEventListener('click',(e)=>{
+	document.getElementById('facebookLogin').addEventListener('click',(e)=>{
 		signInWithPopup(auth, facebook_provider)
   			.then((result) => {
     		const credential = FacebookAuthProvider.credentialFromResult(result);
     		const token = credential.accessToken;
     		const user = result.user;
+			const userId = user.uid;
+			sendUserIdToServlet(userId);   	
 			//console.log(user);
 			//登入後導至帳號管理頁面			
 			window.location.href="./Index";
@@ -270,4 +301,18 @@ hr:not([size]) {
   		});
 	});
 
+	function sendUserIdToServlet(userId,email) {
+        //使用AJAX傳送UserId至Servlet
+        $.ajax({
+            type: "POST",
+            url: "./Login", 
+            data: { userId: userId},
+            success: function(response) {
+                console.log("UID sent to servlet successfully");
+            },
+            error: function(error) {
+                console.error("Error sending UID to servlet", error);
+            }
+        });
+    }
 </script>

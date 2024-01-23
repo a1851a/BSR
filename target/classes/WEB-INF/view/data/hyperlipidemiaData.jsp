@@ -2,34 +2,34 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 血脂肪紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_血脂肪</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-三酸甘油脂 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_三酸甘油脂</div>
-		  	<div class="col-10 my-2 mx-auto" id="TG_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="TG_lineChart"></div>
 		  	
 		  	<!-- 折線圖-膽固醇 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_膽固醇</div>
-		  	<div class="col-10 my-2 mx-auto" id="TC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="TC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-高密度膽固醇 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_高密度膽固醇</div>
-		  	<div class="col-10 my-2 mx-auto" id="HDL_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="HDL_lineChart"></div>
 	
 			<!-- 折線圖-低密度膽固醇 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_低密度膽固醇</div>
-		  	<div class="col-10 my-2 mx-auto" id="LDL_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="LDL_lineChart"></div>
 	
 			<!-- 折線圖-極低密度膽固醇 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_極低密度膽固醇</div>
-		  	<div class="col-10 my-2 mx-auto" id="vldl_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="vldl_lineChart"></div>
 
 		</div>
 	</div>
@@ -55,9 +55,9 @@
 <script type="text/javascript">
 	
 	//依螢幕大小調整圖表大小
-	window.addEventListener('resize', function() {
-	    drawCharts();
-	});
+	//window.addEventListener('resize', function() {
+	    //drawCharts();
+	//});
 	
 	google.charts.load('current', {
 		'packages' : [ 'table','line','corechart']
@@ -118,7 +118,9 @@
 	        },
 	        vAxis: {
 	          title: '三酸甘油脂'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('TG_lineChart'));
@@ -145,7 +147,9 @@
 	        },
 	        vAxis: {
 	          title: '膽固醇'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('TC_lineChart'));
@@ -172,7 +176,9 @@
 	        },
 	        vAxis: {
 	          title: '高密度膽固醇'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('HDL_lineChart'));
@@ -199,7 +205,9 @@
 	        },
 	        vAxis: {
 	          title: '低密度膽固醇'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('LDL_lineChart'));
@@ -226,7 +234,9 @@
 	        },
 	        vAxis: {
 	          title: '極低密度膽固醇'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('vldl_lineChart'));

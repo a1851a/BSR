@@ -40,9 +40,9 @@ public class BPServlet extends HttpServlet{
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 		}
 		//判斷是否位於合理範圍
-		else if ( Double.parseDouble(SBP) <0 || Double.parseDouble(SBP)>300 || 
-					Double.parseDouble(DBP) <0 || Double.parseDouble(DBP)>600 ||
-					Double.parseDouble(pulse)<0 || Double.parseDouble(pulse)>200) {
+		else if ( Integer.parseInt(SBP) <0 || Integer.parseInt(SBP)>300 || 
+				Integer.parseInt(DBP) <0 || Integer.parseInt(DBP)>600 ||
+				Integer.parseInt(pulse)<0 || Integer.parseInt(pulse)>200) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(

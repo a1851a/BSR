@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!-- 質量指數 -->
+<!-- 基本資訊 -->
 <div class="container-fluid">
 	<form class="row m-0 needs-validation" method="post" action="./BMI"
 			novalidate>

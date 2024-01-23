@@ -35,9 +35,9 @@ public class HyperlipidemiaServlet extends HttpServlet{
 		//極低密度膽固醇
 		String vldl = req.getParameter("vldl");
 		
-		//血管硬化機率(膽固醇/高密度膽固醇)
+		//血管硬化機率(膽固醇/高密度膽固醇)angiosclerosis
 		
-		//中風率(低密度膽固醇/高密度膽固醇)
+		//中風率(低密度膽固醇/高密度膽固醇)stroke
 		
 		Boolean isReasable = true;
 		

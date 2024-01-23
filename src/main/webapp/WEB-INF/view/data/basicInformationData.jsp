@@ -1,35 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- 質量指數紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<!-- 基本資訊紀錄資料 -->
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
-		<div class="chart_title fw-bolder text-center my-2">表格_質量指數</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="chart_title fw-bolder text-center my-2">表格_基本資訊</div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-身高 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_身高</div>
-		  	<div class="col-10 my-2 mx-auto" id="height_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="height_lineChart"></div>
 		  	
 		  	<!-- 折線圖-體重 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_體重</div>
-		  	<div class="col-10 my-2 mx-auto" id="weight_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="weight_lineChart"></div>
 		  	
 		  	<!-- 折線圖-BMI -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMI</div>
-		  	<div class="col-10 my-2 mx-auto" id="BMI_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="BMI_lineChart"></div>
 		  	
 		  	<!-- 折線圖-BMR -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMR</div>
-		  	<div class="col-10 my-2 mx-auto" id="BMR_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="BMR_lineChart"></div>
 		  	
 		  	<!-- 折線圖-代謝水平 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_代謝水平</div>
-		  	<div class="col-10 my-2 mx-auto" id="level_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="level_lineChart"></div>
 	  	
 	  	</div>
 	  	
@@ -44,11 +44,6 @@
 	
 	.google-visualization-table-type-date{
 		white-space: nowrap;
-	}
-	
-	.chart{
-		width: 100%;
-		height: 100%;
 	}
 	
 </style>
@@ -120,7 +115,9 @@
 	        },
 	        vAxis: {
 	          title: '身高'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('height_lineChart'));
@@ -147,7 +144,9 @@
 	        },
 	        vAxis: {
 	          title: '體重'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('weight_lineChart'));
@@ -174,7 +173,9 @@
 	        },
 	        vAxis: {
 	          title: 'BMI'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('BMI_lineChart'));
@@ -201,7 +202,9 @@
 	        },
 	        vAxis: {
 	          title: 'BMR'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('BMR_lineChart'));
@@ -209,7 +212,7 @@
 	      chart.draw(data, options);
 	    }
 	
-	//代ˇ謝水平圖表
+	//代謝水平圖表
 	function draw_levelLineChart() {
 
 	      var data = new google.visualization.DataTable();
@@ -228,7 +231,9 @@
 	        },
 	        vAxis: {
 	          title: '代謝水平'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('level_lineChart'));

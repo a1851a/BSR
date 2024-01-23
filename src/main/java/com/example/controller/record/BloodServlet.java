@@ -55,14 +55,14 @@ public class BloodServlet extends HttpServlet{
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 		}
 		//判斷是否位於合理範圍
-		else if ( Double.parseDouble(WBC) <0 || Double.parseDouble(WBC)>100000000 || 
+		else if ( Integer.parseInt(WBC) <0 || Integer.parseInt(WBC)>100000000 || 
 					Double.parseDouble(RBC) <0 || Double.parseDouble(RBC)>10 ||
 					Double.parseDouble(Hgb) <0 || Double.parseDouble(Hgb)>60 ||
 					Double.parseDouble(Hct) <0 || Double.parseDouble(Hct)>80 ||
-					Double.parseDouble(MCV) <0 || Double.parseDouble(MCV)>600 ||
-					Double.parseDouble(MCH) <0 || Double.parseDouble(MCH)>600 ||
-					Double.parseDouble(MCHC) <0 || Double.parseDouble(MCHC)>350 ||
-					Double.parseDouble(PLT) <0 || Double.parseDouble(PLT)>1000) {
+					Integer.parseInt(MCV) <0 || Integer.parseInt(MCV)>600 ||
+					Integer.parseInt(MCH) <0 || Integer.parseInt(MCH)>600 ||
+					Integer.parseInt(MCHC) <0 || Integer.parseInt(MCHC)>350 ||
+					Integer.parseInt(PLT) <0 || Integer.parseInt(PLT)>1000) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(

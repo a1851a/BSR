@@ -63,8 +63,8 @@ public class LiverFunctionServlet extends HttpServlet{
 			if ( Double.parseDouble(TP) <0 || Double.parseDouble(TP)>80 ||
 					Double.parseDouble(Alb)<0 || Double.parseDouble(Alb)>70 ||
 					Double.parseDouble(Glo)<0 || Double.parseDouble(Glo)>50 ||
-					Double.parseDouble(sGOT)<0 || Double.parseDouble(sGOT)>700 ||
-					Double.parseDouble(sGPT)<0 || Double.parseDouble(sGPT)>1000) {
+					Integer.parseInt(sGOT)<0 || Integer.parseInt(sGOT)>700 ||
+					Integer.parseInt(sGPT)<0 || Integer.parseInt(sGPT)>1000) {
 				resp.getWriter().println(
 						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 				resp.getWriter().print(
@@ -94,7 +94,7 @@ public class LiverFunctionServlet extends HttpServlet{
 		}
 		
 		if (alkp != null && !alkp.trim().isEmpty()) {
-			Double ALKP = Double.parseDouble(alkp);
+			Integer ALKP = Integer.parseInt(alkp);
 			if (ALKP < 0 || ALKP > 1000000) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
@@ -102,7 +102,7 @@ public class LiverFunctionServlet extends HttpServlet{
 		}
 		
 		if (ald != null && !ald.trim().isEmpty()) {
-			Double ALD = Double.parseDouble(ald);
+			Integer ALD = Integer.parseInt(ald);
 			if (ALD < 0 || ALD > 1000000) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;

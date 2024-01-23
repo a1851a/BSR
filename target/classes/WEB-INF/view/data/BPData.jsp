@@ -2,26 +2,26 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 血壓紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 		
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_血壓</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 			
 			<!-- 折線圖-收縮壓 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_收縮壓</div>
-		  	<div class="col-10 my-2 mx-auto" id="SBP_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="SBP_lineChart"></div>
 		  	
 		  	<!-- 折線圖-舒張壓 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_舒張壓</div>
-		  	<div class="col-10 my-2 mx-auto" id="DBP_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="DBP_lineChart"></div>
 		  	
 		  	<!-- 折線圖-脈搏 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_脈搏</div>
-		  	<div class="col-10 my-2 mx-auto" id="pulse_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="pulse_lineChart"></div>
 
 		</div>
 	</div>
@@ -106,7 +106,9 @@
 	        },
 	        vAxis: {
 	          title: '收縮壓'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('SBP_lineChart'));
@@ -133,7 +135,9 @@
 	        },
 	        vAxis: {
 	          title: '舒張壓'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('DBP_lineChart'));
@@ -160,7 +164,9 @@
 	        },
 	        vAxis: {
 	          title: '脈搏'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('pulse_lineChart'));

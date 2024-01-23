@@ -2,30 +2,30 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 血糖紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_血糖</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 			
 			<!-- 折線圖-空腹血糖 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_空腹血糖</div>
-		  	<div class="col-10 my-2 mx-auto" id="AC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="AC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-飯後血糖 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_飯後血糖</div>
-		  	<div class="col-10 my-2 mx-auto" id="PC_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="PC_lineChart"></div>
 		  	
 		  	<!-- 折線圖-糖化血色素 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_糖化血色素</div>
-		  	<div class="col-10 my-2 mx-auto" id="HbA1c_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="HbA1c_lineChart"></div>
 	
 			<!-- 折線圖-胰澱粉酶 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_胰澱粉酶</div>
-		  	<div class="col-10 my-2 mx-auto" id="Amylase_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Amylase_lineChart"></div>
 	
 		</div>
 	</div>
@@ -111,7 +111,9 @@
 	        },
 	        vAxis: {
 	          title: '空腹血糖'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('AC_lineChart'));
@@ -138,7 +140,9 @@
 	        },
 	        vAxis: {
 	          title: '飯後血糖'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('PC_lineChart'));
@@ -165,7 +169,9 @@
 	        },
 	        vAxis: {
 	          title: '糖化血色素'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('HbA1c_lineChart'));
@@ -192,7 +198,9 @@
 	        },
 	        vAxis: {
 	          title: '胰澱粉酶'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Amylase_lineChart'));

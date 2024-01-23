@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //質量指數紀錄資料
-@WebServlet(value = "/BMIData")
-public class BMIDataServlet extends HttpServlet{
+@WebServlet(value = "/BasicInformationData")
+public class BasicInformationDataServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/data/BMIData.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/view/data/basicInformationData.jsp");
 		rd.forward(req, resp);
 	}
 

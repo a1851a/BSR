@@ -2,42 +2,42 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 肝臟功能錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_肝臟功能</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-總膽紅素 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_總膽紅素</div>
-		  	<div class="col-10 my-2 mx-auto" id="dbit_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="dbit_lineChart"></div>
 		  	
 		  	<!-- 折線圖-直接膽紅素 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_直接膽紅素</div>
-		  	<div class="col-10 my-2 mx-auto" id="dbil_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="dbil_lineChart"></div>
 		  	
 		  	<!-- 折線圖-總蛋白 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_總蛋白</div>
-		  	<div class="col-10 my-2 mx-auto" id="TP_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="TP_lineChart"></div>
 	
 			<!-- 折線圖-白蛋白 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_白蛋白</div>
-		  	<div class="col-10 my-2 mx-auto" id="Alb_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Alb_lineChart"></div>
 	
 			<!-- 折線圖-球蛋白 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_球蛋白</div>
-		  	<div class="col-10 my-2 mx-auto" id="Glo_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Glo_lineChart"></div>
 	
 			<!-- 折線圖-麩胺酸苯醋酸轉氨基酶 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_麩胺酸苯醋酸轉氨基酶</div>
-		  	<div class="col-10 my-2 mx-auto" id="sGOT_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="sGOT_lineChart"></div>
 	
 			<!-- 折線圖-麩胺酸丙酮酸轉氨酶 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_麩胺酸丙酮酸轉氨酶</div>
-		  	<div class="col-10 my-2 mx-auto" id="sGPT_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="sGPT_lineChart"></div>
 		
 		</div>
 	</div>
@@ -130,7 +130,9 @@
 	        },
 	        vAxis: {
 	          title: '總膽紅素'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('dbit_lineChart'));
@@ -157,7 +159,9 @@
 	        },
 	        vAxis: {
 	          title: '直接膽紅素'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('dbil_lineChart'));
@@ -184,7 +188,9 @@
 	        },
 	        vAxis: {
 	          title: '總蛋白'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('TP_lineChart'));
@@ -211,7 +217,9 @@
 	        },
 	        vAxis: {
 	          title: '白蛋白'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Alb_lineChart'));
@@ -238,7 +246,9 @@
 	        },
 	        vAxis: {
 	          title: '球蛋白'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Glo_lineChart'));
@@ -265,7 +275,9 @@
 	        },
 	        vAxis: {
 	          title: '麩胺酸苯醋酸轉氨基酶'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('sGOT_lineChart'));
@@ -292,7 +304,9 @@
 	        },
 	        vAxis: {
 	          title: '麩胺酸丙酮酸轉氨酶'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('sGPT_lineChart'));

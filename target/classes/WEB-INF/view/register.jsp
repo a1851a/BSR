@@ -16,6 +16,11 @@
 		
 		<!-- 錯誤訊息 -->
 		<div class="error text-center text-danger"></div>
+		<% if (request.getAttribute("errorMessage") != null) { %>
+    		<div class="error text-center text-danger">
+        		<%= request.getAttribute("errorMessage") %>
+    		</div>
+		<% } %>	
 		
 		<form class="row m-0 needs-validation" method="post" action="./Register" novalidate>
 			
@@ -70,7 +75,6 @@ button {
 		window.location.href = "./Login";
 	}
 
-	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {
@@ -86,7 +90,7 @@ button {
 				form.classList.add('was-validated')
 			}, false)
 		})
-	})()*/
+	})()
 </script>
 
 <script type="module">
@@ -119,6 +123,8 @@ button {
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
     			const user = userCredential.user;
+				const userId = user.uid;
+				sendUserIdToServlet(userId,email);   	
 				window.location.href="./Login";
   			})
   			.catch((error) => {
@@ -128,27 +134,47 @@ button {
 					$(document).ready(function () {
                 		$('.error').text('請輸入信箱');
             		});
-				}else if (error.code === 'auth/invalid-email'){
+				} else if (error.code === 'auth/invalid-email'){
 					$(document).ready(function () {
                 		$('.error').text('請輸入正確信箱格式');
             		});           			
         		} else if(error.code === 'auth/email-already-in-use'){
 					$(document).ready(function () {
-                		$('.error').text('此信箱已註冊過');
-            		});
+               			$('.error').text('此信箱已註冊過');
+           			});
 				} else if (error.code === 'auth/user-disabled') {
 					$(document).ready(function () {
-                		$('.error').text('使用者不能啟使用');
-            		});
-        		} else if(error.code === 'auth/weak-password'){
+               			$('.error').text('使用者不能啟使用');
+           			});
+       			} else if(error.code === 'auth/weak-password'){
 					$(document).ready(function () {
-                		$('.error').text('密碼至少需要6位數');
-            		});			
-				}else if(error.code==='auth/missing-password'){
+               			$('.error').text('密碼至少需要6位數');
+           			});			
+				} else if(error.code==='auth/missing-password'){
 					$(document).ready(function () {
-                		$('.error').text('請輸入密碼(大於6位數)');
-            		});				
+               			$('.error').text('請輸入密碼(大於6位數)');
+           			});				
+				}else if(error.code === 'auth/invalid-credential'){
+					$(document).ready(function () {
+               			$('.error').text('驗證錯誤');
+					});           		
 				}
   			});
 		});
+
+	function sendUserIdToServlet(userId,email) {
+        //使用AJAX傳送UserId至Servlet
+        $.ajax({
+            type: "POST",
+            url: "./Register", 
+            data: { userId: userId,
+					email: email },
+            success: function(response) {
+                console.log("UID sent to servlet successfully");
+            },
+            error: function(error) {
+                console.error("Error sending UID to servlet", error);
+            }
+        });
+    }
 </script>

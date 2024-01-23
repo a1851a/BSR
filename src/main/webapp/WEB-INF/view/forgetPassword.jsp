@@ -16,11 +16,18 @@
 		
 		<!-- 錯誤訊息 -->
 		<div class="error text-center text-danger"></div>
-		
+		<% if (request.getAttribute("errorMessage") != null) { %>
+    		<div class="error text-center text-danger">
+        		<%= request.getAttribute("errorMessage") %>
+    		</div>
+		<% } %>	
 		<!-- 成功訊息 -->
-		<div class="success text-center text-success"></div>
-		
-		<form class="row m-0 needs-validation" method="post" action="./Register" novalidate>
+		<% if (request.getAttribute("successMessage") != null) { %>
+    		<div class="success text-center text-success">
+        		<%= request.getAttribute("successMessage") %>
+    		</div>
+		<% } %>		
+		<form class="row m-0 needs-validation" method="post" action="./ForgetPassword" novalidate>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<input type="email" class="form-control" id="email" name="email" type="email"
@@ -28,7 +35,7 @@
 			</div>
 			
 			<div class="col-10 mx-auto px-0 my-2">
-				<button type="button" class="col-12 btn btn-secondary" id="resetPassword" name="resetPassword" >寄信修改</button>
+				<button type="submit" class="col-12 btn btn-secondary" id="resetPassword" name="resetPassword" >寄信修改</button>
 			</div>
 			
 		</form>
@@ -68,7 +75,6 @@ button {
 		window.location.href = "./Login";
 	}
 
-	/*
 	//前端驗證表單
 	//Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function() {
@@ -84,7 +90,7 @@ button {
 				form.classList.add('was-validated')
 			}, false)
 		})
-	})()*/
+	})()
 </script>
 
 <script type="module">
@@ -106,21 +112,20 @@ button {
 	//初始化Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth();
-	auth.languageCode = 'en';
 
 	//重新寄信至信箱重設密碼
 	resetPassword.addEventListener('click',(e)=>{
 		let email=$('#email').val();
+        auth.languageCode = 'zh-TW'; // 發信模版改中文
+
 		sendPasswordResetEmail(auth, email)
   			.then(() => {
 				//顯示文字登入信箱
 				$('.success').show();
 				$('.success').html('<p>請至<a class="text-success text-decoration-none m-2" href="mailto:' + $('#email').val() + '">' + $('#email').val() + '</a>重設密碼</p>');
 				$('.success').append('<p class="text-success text-decoration-none m-2">若未收到信件，請確認是否註冊過</p>');
-
 				$('.error').hide();
-		})
-  		.catch((error) => {
+		}).catch((error) => {
     		const errorCode = error.code;
     		const errorMessage = error.message;
 			$('.error').show();
@@ -133,27 +138,7 @@ button {
 				$(document).ready(function () {
                		$('.error').text('請輸入正確信箱格式');
             	});           			
-        	} else if(error.code === 'auth/email-already-in-use'){
-				$(document).ready(function () {
-               		$('.error').text('此信箱已註冊過');
-           		});
-			}else if (error.code === 'auth/user-disabled') {
-				$(document).ready(function () {
-               		$('.error').text('使用者不能啟使用');
-           		});
-       		} else if(error.code === 'auth/weak-password'){
-				$(document).ready(function () {
-               		$('.error').text('密碼至少需要6位數');
-           		});			
-			}else if(error.code==='auth/missing-password'){
-				$(document).ready(function () {
-               		$('.error').text('請輸入密碼(大於6位數)');
-           		});				
-			}else if(error.code === 'auth/invalid-credential'){
-				$(document).ready(function () {
-               		$('.error').text('驗證錯誤');
-           		});
-			}
+        	} 
   		});
 	});
 </script>

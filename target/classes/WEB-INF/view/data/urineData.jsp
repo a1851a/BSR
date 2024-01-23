@@ -2,58 +2,58 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 尿液紀錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_尿液</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 圓餅圖-外觀 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_外觀</div>
-		  	<div class="col-10 my-2 mx-auto" id="appearance_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="appearance_pieChart"></div>
 		  	
 		  	<!-- 折線圖-酸鹼反應 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_酸鹼反應</div>
-		  	<div class="col-10 my-2 mx-auto" id="PH_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="PH_lineChart"></div>
 		  	
 		  	<!-- 圓餅圖-尿血白球 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿血白球</div>
-		  	<div class="col-10 my-2 mx-auto" id="leukocytes_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="leukocytes_pieChart"></div>
 		  	
 		  	<!-- 圓餅圖-尿糖 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿糖</div>
-		  	<div class="col-10 my-2 mx-auto" id="glucose_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="glucose_pieChart"></div>
 		  	
 		  	<!-- 圓餅圖-尿蛋白 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿蛋白</div>
-		  	<div class="col-10 my-2 mx-auto" id="protein_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="protein_pieChart"></div>
 		  	
 		  	<!-- 圓餅圖-尿膽紅素 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿膽紅素</div>
-		  	<div class="col-10 my-2 mx-auto" id="bilirubin_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="bilirubin_pieChart"></div>
 		  	
 		  	<!-- 柱狀圖-尿膽素元 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿膽素元</div>
-		  	<div class="col-10 my-2 mx-auto" id="urobilirubin_barChart"></div>
+		  	<div class="my-2 mx-auto" id="urobilirubin_barChart"></div>
 		  	
 		  	<!-- 圓餅圖-尿丙酮體 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿丙酮體</div>
-		  	<div class="col-10 my-2 mx-auto" id="ketones_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="ketones_pieChart"></div>
 		  	
 		  	<!-- 圓餅圖-潛血反應 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_潛血反應</div>
-		  	<div class="col-10 my-2 mx-auto" id="occultBlood_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="occultBlood_pieChart"></div>
 
 			<!-- 折線圖-比重 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_比重</div>
-		  	<div class="col-10 my-2 mx-auto" id="specificGravity_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="specificGravity_lineChart"></div>
 		  	
 		  	<!-- 圓餅圖-亞硝酸鹽 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_亞硝酸鹽</div>
-		  	<div class="col-10 my-2 mx-auto" id="nitrite_pieChart"></div>
+		  	<div class="my-2 mx-auto" id="nitrite_pieChart"></div>
 		  	
 	  	</div>
 	</div>
@@ -148,6 +148,8 @@
 
         var options = {
           is3D: true,
+          legend: 'top',
+          language: 'zh'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('appearance_pieChart'));
@@ -173,7 +175,9 @@
 	        },
 	        vAxis: {
 	          title: '酸鹼反應'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('PH_lineChart'));
@@ -194,6 +198,8 @@
 
         var options = {
           is3D: true,
+          legend: 'top',
+          language: 'zh'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('leukocytes_pieChart'));
@@ -213,6 +219,8 @@
 
         var options = {
           is3D: true,
+          legend: 'top',
+          language: 'zh'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('glucose_pieChart'));
@@ -232,6 +240,8 @@
 
         var options = {
           is3D: true,
+          legend: 'top',
+          language: 'zh'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('protein_pieChart'));
@@ -251,6 +261,8 @@
 
         var options = {
           is3D: true,
+          legend: 'top',
+          language: 'zh'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('bilirubin_pieChart'));
@@ -293,6 +305,8 @@
 
           var options = {
             is3D: true,
+            legend: 'top',
+            language: 'zh'
           };
 
           var chart = new google.visualization.PieChart(document.getElementById('ketones_pieChart'));
@@ -312,6 +326,8 @@
 
           var options = {
             is3D: true,
+            legend: 'top',
+            language: 'zh'
           };
 
           var chart = new google.visualization.PieChart(document.getElementById('occultBlood_pieChart'));
@@ -337,7 +353,9 @@
 	        },
 	        vAxis: {
 	          title: '比重'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('specificGravity_lineChart'));
@@ -358,6 +376,8 @@
 
           var options = {
             is3D: true,
+            legend: 'top',
+            language: 'zh'
           };
 
           var chart = new google.visualization.PieChart(document.getElementById('nitrite_pieChart'));

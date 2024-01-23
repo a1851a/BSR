@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //質量指數
-@WebServlet(value = "/BMI")
-public class BMIServlet extends HttpServlet{
+@WebServlet(value = "/BasicInformation")
+public class BasicInformationServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/BMI.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/record/basicInformation.jsp");
 		rd.forward(req, resp);
 
 	}

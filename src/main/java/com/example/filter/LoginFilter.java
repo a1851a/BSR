@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.crypto.dsig.spec.XPathType.Filter;
 
 //登入過濾器
-//@WebFilter(value = {"/*"})
+@WebFilter(value = {"/*"})
 public class LoginFilter extends HttpFilter {
 
 	@Override
@@ -22,31 +22,22 @@ public class LoginFilter extends HttpFilter {
 		String url = req.getRequestURL().toString();
 
 		// 放行條件
-		if ( url.endsWith("Login") || url.endsWith("Register") ||
+		if ( url.endsWith("Login") || url.endsWith("Register") || url.endsWith("ForgetPassword") ||
 				url.indexOf("/images") >= 0 || url.endsWith(".css") || 
 				url.endsWith(".js")) {
 			chain.doFilter(req, res);
 			return;
 		}		
-		// 設定 Cross-Origin-Opener-Policy 標頭
-        res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-        
-        // 繼續處理請求
+		// 檢查是否登入
+		HttpSession session = req.getSession();
+        String userId = (String) session.getAttribute("userId");
+		boolean isLogin = session.getAttribute("isLogin") == null 
+				? false: (boolean)session.getAttribute("isLogin");
+		if(!isLogin) {
+			res.sendRedirect("./Login");
+			return;
+		}
+ 
         chain.doFilter(req, res);
 	}
-//		// 檢查是否登入
-//        boolean isLogIn = checkIfUserIsLogIn(req);
-//
-//        System.out.print(req.getSession().getAttribute("user"));
-//        if (isLogIn) {
-//            chain.doFilter(req, res);
-//            return;
-//        } else {
-//            res.sendRedirect("./Login");
-//        }
-//    }
-//	
-//	private boolean checkIfUserIsLogIn(HttpServletRequest request) {
-//        return request.getSession().getAttribute("user") != null;
-//	}
 }

@@ -2,30 +2,30 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 腎臟功能錄資料 -->
-<div class="container-fluid py-2 px-0">
+<div class="container py-2 px-0">
 	<div class="row m-0">
 	
 		<!-- 表格 -->
 		<div class="chart_title fw-bolder text-center my-2">表格_腎臟功能</div>
-		<div class="col-10 my-2 mx-auto" id="table"></div>
+		<div class="my-2 mx-auto" id="table"></div>
 		
 		<div class="chart">
 		
 			<!-- 折線圖-尿素氮 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿素氮</div>
-		  	<div class="col-10 my-2 mx-auto" id="BUN_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="BUN_lineChart"></div>
 		  	
 		  	<!-- 折線圖-肌酸酐 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_肌酸酐</div>
-		  	<div class="col-10 my-2 mx-auto" id="Cr_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="Cr_lineChart"></div>
 		  	
 		  	<!-- 折線圖-尿酸 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_尿酸</div>
-		  	<div class="col-10 my-2 mx-auto" id="UA_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="UA_lineChart"></div>
 	
 			<!-- 折線圖-微量白蛋白 -->
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_微量白蛋白</div>
-		  	<div class="col-10 my-2 mx-auto" id="mAlb_lineChart"></div>
+		  	<div class="my-2 mx-auto" id="mAlb_lineChart"></div>
 		
 		</div>
 	</div>
@@ -51,9 +51,9 @@
 <script type="text/javascript">
 	
 	//依螢幕大小調整圖表大小
-	window.addEventListener('resize', function() {
-	    drawCharts();
-	});
+	//window.addEventListener('resize', function() {
+	    //drawCharts();
+	//});
 	
 	google.charts.load('current', {
 		'packages' : [ 'table','line','corechart']
@@ -112,7 +112,9 @@
 	        },
 	        vAxis: {
 	          title: '尿素氮'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('BUN_lineChart'));
@@ -139,7 +141,9 @@
 	        },
 	        vAxis: {
 	          title: '肌酸酐'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('Cr_lineChart'));
@@ -166,7 +170,9 @@
 	        },
 	        vAxis: {
 	          title: '尿酸'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('UA_lineChart'));
@@ -193,7 +199,9 @@
 	        },
 	        vAxis: {
 	          title: '微量白蛋白'
-	        }
+	        },
+	        legend: 'top',
+	        language: 'zh'
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('mAlb_lineChart'));

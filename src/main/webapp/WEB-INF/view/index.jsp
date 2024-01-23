@@ -16,7 +16,7 @@
 	<!-- 左邊record_menu -->
 	<record_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a href="./BMI" class="active">質量指數</a>
+			<a href="./BasicInformation" class="active">基本資訊</a>
 		</ul>
 		<ul>
 			<a href="./BP">血壓</a>
@@ -70,7 +70,7 @@
 	<!-- 左邊menu -->
 	<data_menu class="col-1 m-0 p-0 bg-dark text-light d-flex flex-wrap">
 		<ul>
-			<a href="./BMIData" class="active">質量指數</a>
+			<a href="./BasicInformationData" class="active">基本資訊</a>
 		</ul>
 		<ul>
 			<a href="./BPData">血壓</a>
@@ -126,7 +126,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -135,7 +134,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -144,7 +142,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </v>
 	</div>
@@ -153,7 +150,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -162,7 +158,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -171,7 +166,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -180,7 +174,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -189,7 +182,6 @@
 	  <img src="..." class="card-img-top" alt="無法顯示">
 	  <card class="card-body">
 	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 	    <a href="#" class="btn btn-primary">Go somewhere</a>
 	  </card>
 	</div>
@@ -430,7 +422,7 @@ arrow {
 	});
 
 	//預設為基本資訊頁面
-	$('record_context').load('./BMI');
+	$('record_context').load('./BasicInformation');
 
 	//點擊側邊收合選單切換頁面
 	$('record_menu ul a').on('click', function (e) {
@@ -488,7 +480,7 @@ arrow {
 	});
 
 	//預設為基本資訊頁面
-	$('data_context').load('./BMIData');
+	$('data_context').load('./BasicInformationData');
 
 	//點擊側邊收合選單切換頁面
 	$('data_menu ul a').on('click', function (e) {
@@ -563,24 +555,10 @@ arrow {
 
 	onAuthStateChanged(auth, (user) => {
 		if(user) {
-    		const uid = user.uid;
-        var displayName = user.displayName;
-        var email = user.email;
+    		const userId = user.uid;
+        	var displayName = user.displayName;
 			console.log(user);
-
-			var xhr = new XMLHttpRequest();
-        	xhr.open('POST', './Account', true);
-        	xhr.setRequestHeader('Content-Type', 'application/json');
-
-        	// 傳送資訊
-        	var data = {
-            	uid: uid,
-            	displayName: displayName,
-            	email: email
-        	};
-        	xhr.send(JSON.stringify(data));
-		} else {
-  		}
+		}
 	});
 
 </script>

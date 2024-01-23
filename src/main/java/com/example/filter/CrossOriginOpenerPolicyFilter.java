@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //安全性過濾器
-@WebFilter(value = {"/Lpgin"})
+@WebFilter(value = {"/*"})
 public class CrossOriginOpenerPolicyFilter extends HttpFilter {
 
 	@Override

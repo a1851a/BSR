@@ -62,7 +62,7 @@ public class ElectrolyteServlet extends HttpServlet{
 		 * 若有值存在，則進行型態轉換，再進行值判斷是否位於合理範圍
 		 */
 		if (na != null && !na.trim().isEmpty()) {
-			Double NA = Double.parseDouble(cl);
+			Integer NA = Integer.parseInt(cl);
 			if (NA < 0 || NA > 160) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
@@ -70,7 +70,7 @@ public class ElectrolyteServlet extends HttpServlet{
 		}
 		
 		if(k != null && !k.trim().isEmpty()) {
-			Double K = Double.parseDouble(k);
+			Integer K = Integer.parseInt(k);
 			if (K < 0 || K > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;
@@ -78,7 +78,7 @@ public class ElectrolyteServlet extends HttpServlet{
 		}
 		
 		if (cl != null && !cl.trim().isEmpty()) {
-			Double CL = Double.parseDouble(cl);
+			Integer CL = Integer.parseInt(cl);
 			if (CL < 0 || CL > 150) {
 				resp.getWriter().print(PrintErrorMessage()) ;
 				isReasable = false;

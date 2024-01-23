@@ -1,7 +1,7 @@
 package com.example.entity;
 
 public enum Gender {
-	Man("男"),Woman("女"),Androgyne("雙性別"),NotAavailable("不提供");
+	Man("男"),Woman("女"),Androgyne("雙性別"),NotAvailable("不提供");
 	
 	private String gender;
 

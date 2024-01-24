@@ -27,7 +27,7 @@ public class AccountServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		//取得使用者Id
 		String userId = (String) req.getSession().getAttribute("userId");
 		req.setAttribute("userId", userId);
 		Optional<User> userOptional = BSRDao.findUserByUserId(userId);
@@ -73,10 +73,10 @@ public class AccountServlet extends HttpServlet {
 			user.setAge(age);
 		  
 	        // 更新使用者資訊到資料庫
-	        boolean updateSuccess = BSRDao.updateUserByUserId(userId, user.getEmail(), user.getName(),
+	        Boolean updateIsSuccess = BSRDao.updateUserByUserId(userId, user.getEmail(), user.getName(),
 	                user.getGender(), user.getBirth(), user.getAge());
 
-	        if (updateSuccess) {
+	        if (updateIsSuccess) {
 	            resp.sendRedirect("./Account");
 	        } else {
 	            resp.getWriter().print("<div style=\"color:red;\">更新使用者資訊失敗</div>");

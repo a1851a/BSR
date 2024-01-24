@@ -3,20 +3,20 @@
     
 <!-- 基本資訊 -->
 <div class="container-fluid">
-	<form class="row m-0 needs-validation" method="post" action="./BMI"
+	<form class="row m-0 needs-validation" method="post" action="./BasicInformation"
 			novalidate>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">身高</label>
 				<input type="number" class="form-control" id="height" name="height"
-					placeholder="公分(cm)" min="0" max="300" step="1" required>
+					placeholder="公分(cm)" min="0" max="300" step="0.01" required>
 				<div class="invalid-feedback">請輸入正確身高</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">體重</label>
 				<input type="number" class="form-control" id="weight"
-					name="weight" placeholder="公斤(kg)" min="0" max="700" step="1" required>
+					name="weight" placeholder="公斤(kg)" min="0" max="700" step="0.01" required>
 				<div class="invalid-feedback">請輸入正確體重</div>
 			</div>
 			

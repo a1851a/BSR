@@ -1,6 +1,20 @@
+<%@page import="com.example.entity.BasicInformation"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%!
+	interface Pattern{
+		String table_pattern = "['%s',%.2f, %.2f, %.2f, %.2f],";
+		String line_pattern = "['%s',%.2f],";
+	}
+%>
+
+<% 
+	List <BasicInformation> basicInformations = (List <BasicInformation>) request.getAttribute("basicInformations");
+%>
 <!-- 基本資訊紀錄資料 -->
 <div class="container py-2 px-0">
 	<div class="row m-0">
@@ -27,10 +41,6 @@
 		  	<div class="chart_title fw-bolder text-center my-2">折線圖_BMR</div>
 		  	<div class="my-2 mx-auto" id="BMR_lineChart"></div>
 		  	
-		  	<!-- 折線圖-代謝水平 -->
-		  	<div class="chart_title fw-bolder text-center my-2">折線圖_代謝水平</div>
-		  	<div class="my-2 mx-auto" id="level_lineChart"></div>
-	  	
 	  	</div>
 	  	
 	</div>
@@ -66,23 +76,24 @@
 		draw_WeightLineChart();
 		draw_BMILineChart();
 		draw_BMRLineChart();
-		draw_levelLineChart();
 	}
 
 	//身體質量表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('date', '時間');
+		data.addColumn('string', '時間');
 		data.addColumn('number', '身高(公分)');
         data.addColumn('number', '體重(公斤)');
         data.addColumn('number', 'BMI');
         data.addColumn('number', 'BMR');
-        data.addColumn('number', '代謝水平');
-
         
         data.addRows([
-          [new Date('2011-12-11'), 178, 55, 55, 55, 1],
-          [new Date('2011-10-11'), 176, 67,  55, 55, 3]
+       	<%
+       		for(BasicInformation binfo : basicInformations){
+       			out.println(String.format(Pattern.table_pattern,binfo.getRecordDay(),
+       						binfo.getHeight(),binfo.getWeight(),binfo.getBMI(),binfo.getBMR()));
+       		}
+       	%>		
         ]);
 
 		var table = new google.visualization.Table(document
@@ -99,14 +110,16 @@
 	function draw_HeightLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '身高');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', '公分(cm)');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 80], [new Date('2010-11-11'), 96],
-	        [new Date('2011-12-11'), 100], [new Date('2021-11-11'), 120],
-	        [new Date('2021-11-12'), 123], [new Date('2021-12-11'), 170],
-	        [new Date('2022-11-12'), 173], [new Date('2023-12-11'), 177]
+	      <%
+      		for(BasicInformation binfo : basicInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					binfo.getRecordDay(),binfo.getHeight()));
+      		}
+	      %>
 	      ]);
 
 	      var options = {
@@ -129,13 +142,16 @@
 	function draw_WeightLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '體重');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', '公斤(kg)');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	    	  <%
+	      		for(BasicInformation binfo : basicInformations){
+	      			out.println(String.format(Pattern.line_pattern,
+	      					binfo.getRecordDay(),binfo.getWeight()));
+	      		}
+		      %>
 	      ]);
 
 	      var options = {
@@ -158,13 +174,16 @@
 	function draw_BMILineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', 'BMI');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 21], [new Date('2010-11-11'), 16],
-	        [new Date('2011-12-11'), 11], [new Date('2021-11-11'), 15],
-	        [new Date('2021-11-12'), 32], [new Date('2021-12-11'), 33]
+	    	  <%
+	      		for(BasicInformation binfo : basicInformations){
+	      			out.println(String.format(Pattern.line_pattern,
+	      					binfo.getRecordDay(),binfo.getBMI()));
+	      		}
+		      %>
 	      ]);
 
 	      var options = {
@@ -187,13 +206,16 @@
 	function draw_BMRLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', 'BMR');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	    	  <%
+	      		for(BasicInformation binfo : basicInformations){
+	      			out.println(String.format(Pattern.line_pattern,
+	      					binfo.getRecordDay(),binfo.getBMR()));
+	      		}
+		      %>
 	      ]);
 
 	      var options = {
@@ -208,35 +230,6 @@
 	      };
 
 	      var chart = new google.visualization.LineChart(document.getElementById('BMR_lineChart'));
-
-	      chart.draw(data, options);
-	    }
-	
-	//代謝水平圖表
-	function draw_levelLineChart() {
-
-	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '代謝水平');
-
-	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
-	      ]);
-
-	      var options = {
-	        hAxis: {
-	          title: '時間'
-	        },
-	        vAxis: {
-	          title: '代謝水平'
-	        },
-	        legend: 'top',
-	        language: 'zh'
-	      };
-
-	      var chart = new google.visualization.LineChart(document.getElementById('level_lineChart'));
 
 	      chart.draw(data, options);
 	    }

@@ -16,7 +16,6 @@ import com.example.entity.BasicInformation;
 import com.example.entity.Gender;
 import com.example.entity.User;
 
-
 public class BSRDaoMySQL implements BSRDAO{
 
 	private Connection conn;
@@ -33,10 +32,9 @@ public class BSRDaoMySQL implements BSRDAO{
 		}
 	}
 
-	//查詢所有使用者
 	@Override
 	public Boolean checkUserExistsByEmail(String email) {
-		String sql = "select email from bsr.user where email = ?;";
+		String sql = "select email from user where email = ?;";
 		Boolean userIsExists = false;
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			// 配置 sql ? 資料
@@ -87,7 +85,7 @@ public class BSRDaoMySQL implements BSRDAO{
 
 	@Override
 	public void addUserByUserId(String userId) {
-		String sql = "insert into user(userId) values(?);";
+		String sql = "insert into user (userId) values(?);";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			// 配置 sql ? 資料
 			pstmt.setString(1,userId);
@@ -144,4 +142,74 @@ public class BSRDaoMySQL implements BSRDAO{
 		}
 		return updateUserIsSuccess;
 	}
+
+	@Override
+	public Boolean removeUserByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void addBasicInformation(String userId,Double height,Double weight,Double BMI,String record_day) {
+		String sql = "insert into basic_information(userId,height,weight,BMI,record_day) values(?,?,?,?,?);";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			// 配置 sql ? 資料
+			pstmt.setString(1,userId);
+			pstmt.setDouble(2,height);
+			pstmt.setDouble(3,weight);
+			pstmt.setDouble(4,BMI);
+			pstmt.setString(5,record_day);
+			// 提交送出
+			int rowcount = pstmt.executeUpdate();
+			System.out.println("rowcount(異動筆數) = " + rowcount);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void addBasicInformation(String userId,Double height,Double weight,Double BMI,Double BMR,String record_day) {
+		String sql = "insert into basic_information(userId,height,weight,BMI,BMR,record_day) values(?,?,?,?,?,?);";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			// 配置 sql ? 資料
+			pstmt.setString(1,userId);
+			pstmt.setDouble(2,height);
+			pstmt.setDouble(3,weight);
+			pstmt.setDouble(4,BMI);
+			pstmt.setDouble(5,BMR);
+			pstmt.setString(6,record_day);
+			// 提交送出
+			int rowcount = pstmt.executeUpdate();
+			System.out.println("rowcount(異動筆數) = " + rowcount);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List <BasicInformation> findBasicInformationByUserId(String userId) {
+		String sql = "select height,weight,BMI,BMR,record_day from basic_information where userId = ? order by basicInformationId";
+		List <BasicInformation> basicInformations = new ArrayList<>();
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, userId);
+	        try (ResultSet rs = pstmt.executeQuery()) {
+				pstmt.setString(1, userId);
+	            while (rs.next()) {
+                    BasicInformation basicInformation = new BasicInformation();
+                    basicInformation.setHeight(rs.getDouble("height"));
+                    basicInformation.setWeight(rs.getDouble("weight"));
+                    basicInformation.setBMI(rs.getDouble("BMI"));
+                    basicInformation.setBMR(rs.getDouble("BMR"));
+                    basicInformation.setRecordDay(rs.getString("record_day"));
+                    //加到basicInformations
+                    basicInformations.add(basicInformation);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return basicInformations;
+	}
+
+	
 }

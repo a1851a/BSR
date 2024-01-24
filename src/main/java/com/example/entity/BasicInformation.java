@@ -9,19 +9,18 @@ public class BasicInformation {
 	private Double BMI;
 	private Double BMR;
 	private Double level;
-	private Date recodeDay;
+	private String recordDay;
 	
 	public BasicInformation() {
 
 	}
 	
-	public BasicInformation(Double height, Double weight, Double BMI, Double BMR, Double level, Date recodeDay) {
+	public BasicInformation(Double height, Double weight, Double BMI, Double BMR,  String recordDay) {
 		this.height = height;
 		this.weight = weight;
 		this.BMI = BMI;
 		this.BMR = BMR;
-		this.level = level;
-		this.recodeDay = recodeDay;
+		this.recordDay = recordDay;
 	}
 	
 	public Double getHeight() {
@@ -64,18 +63,18 @@ public class BasicInformation {
 		this.level = level;
 	}
 	
-	public Date getRecodeDay() {
-		return recodeDay;
+	public String getRecordDay() {
+		return recordDay;
 	}
 	
-	public void setRecodeDay(Date recodeDay) {
-		this.recodeDay = recodeDay;
+	public void setRecordDay(String recordDay) {
+		this.recordDay = recordDay;
 	}
 	
 	@Override
 	public String toString() {
 		return "BasicInformation [height=" + height + ", Weight=" + weight + ", BMI=" + BMI + ", BMR=" + BMR
-				+ ", level=" + level + ", recodeDay=" + recodeDay + "]";
+				+ ", level=" + level + ", recordDay=" + recordDay + "]";
 	}
 	
 }

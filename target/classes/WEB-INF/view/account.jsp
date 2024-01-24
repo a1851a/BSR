@@ -39,11 +39,11 @@
 		
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="validationServerUsername" class="form-label">使用者名稱</label>
+				<span><%if(user != null && user.getName()!=null){out.print(": "+user.getName());}%></span>
 				<div class="input-group">
 					<span class="input-group-text" id="inputGroupPrepend3">🧑🏼‍💻</span>
 					<input type="text" class="form-control bg-light" id="name"
-						name="name" required
-						value="<%if(user != null && user.getName()!=null){out.print(user.getName());}%>" >
+						name="name" required value="" >
 					<div class="invalid-feedback">不可為空值</div>
 				</div>
 			</div>

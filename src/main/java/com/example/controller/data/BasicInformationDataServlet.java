@@ -19,6 +19,7 @@ import com.example.model.BSRDaoMySQL;
 public class BasicInformationDataServlet extends HttpServlet{
 
 	private BSRDAO BSRDao = new BSRDaoMySQL();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//取得使用者Id

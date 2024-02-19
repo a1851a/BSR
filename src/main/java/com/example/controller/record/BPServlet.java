@@ -1,6 +1,8 @@
 package com.example.controller.record;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.BSRDAO;
+import com.example.model.BSRDaoMySQL;
+
 //血壓
 @WebServlet(value = "/BP")
 public class BPServlet extends HttpServlet{
+
+	private BSRDAO BSRDao = new BSRDaoMySQL();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +30,9 @@ public class BPServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//取得使用者Id
+		String userId = (String) req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		//收縮壓
 		String SBP = req.getParameter("SBP");
 		//舒張壓
@@ -39,17 +49,28 @@ public class BPServlet extends HttpServlet{
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 		}
-		//判斷是否位於合理範圍
-		else if ( Integer.parseInt(SBP) <0 || Integer.parseInt(SBP)>300 || 
-				Integer.parseInt(DBP) <0 || Integer.parseInt(DBP)>600 ||
-				Integer.parseInt(pulse)<0 || Integer.parseInt(pulse)>200) {
+		Integer sbp = Integer.parseInt(SBP);
+		Integer dbp = Integer.parseInt(DBP);
+		Integer Pulse = Integer.parseInt(pulse);
+		LocalDate recordDay = LocalDate.now();
+		// 定義日期格式
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // 使用格式進行格式化
+        String formattedDateString = recordDay.format(formatter);
+		
+        //判斷是否位於合理範圍
+		if ( sbp <0 || sbp>300 || dbp <0 || dbp>600 ||
+				Pulse <0 || Pulse>200) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理資訊</div>");
 		}
-		else {
-			resp.sendRedirect("./Index");
+		BSRDao.addBP(userId, sbp, dbp, Pulse, formattedDateString);
+		
+		BSRDao.addOutcomeByUserId(userId, "血壓", formattedDateString);
+		if(sbp >= 130 && dbp >=80){
 		}
+		resp.sendRedirect("./Index");
 	}
 }

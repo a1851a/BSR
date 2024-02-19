@@ -1,6 +1,8 @@
 package com.example.controller.record;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,11 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.BSRDAO;
+import com.example.model.BSRDaoMySQL;
+
 
 //血糖
 @WebServlet(value = "/BG")
 public class BGServlet extends HttpServlet{
 	
+	private BSRDAO BSRDao = new BSRDaoMySQL();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -24,6 +31,9 @@ public class BGServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//取得使用者Id
+		String userId = (String) req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		//空腹血糖
 		String AC = req.getParameter("AC");
 		//飯後血糖
@@ -42,15 +52,15 @@ public class BGServlet extends HttpServlet{
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 			isReasable = false;
-		}else {
-			//判斷是否位於合理範圍
-			if ( Integer.parseInt(AC) <0 || Integer.parseInt(AC)>200) {
-				resp.getWriter().println(
-						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-				resp.getWriter().print(
-						"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
-				isReasable = false;
-			}
+		}
+		Integer ac = Integer.parseInt(AC);
+		//判斷是否位於合理範圍
+		if ( ac <0 || ac >200) {
+			resp.getWriter().println(
+					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
+			isReasable = false;
 		}
 		
 		/*
@@ -82,6 +92,12 @@ public class BGServlet extends HttpServlet{
 		}
 	
 		if (isReasable == true) {
+			LocalDate recordDay = LocalDate.now();
+			 // 定義日期格式
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        // 使用格式進行格式化
+	        String formattedDateString = recordDay.format(formatter);
+	        
 			resp.sendRedirect("./Index");
 		}
 	}

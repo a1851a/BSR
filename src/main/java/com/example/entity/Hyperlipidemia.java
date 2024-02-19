@@ -8,16 +8,16 @@ public class Hyperlipidemia {
 	private Integer HDL;//高密度膽固醇
 	private Integer LDL;//低密度膽固醇
 	private Integer vldl;//極低密度膽固醇
-	private Integer angiosclerosis; //血管硬化機率
-	private Integer stroke;//中風率
-	private Date recordDay;
+	private Double angiosclerosis; //血管硬化機率
+	private Double stroke;//中風率
+	private String recordDay;
 	
 	public Hyperlipidemia() {
 
 	}
 	
-	public Hyperlipidemia(Integer TG, Integer TC, Integer HDL, Integer LDL, Integer vldl, Integer angiosclerosis,
-			Integer stroke, Date recordDay) {
+	public Hyperlipidemia(Integer TG, Integer TC, Integer HDL, Integer LDL, Integer vldl, Double angiosclerosis,
+			Double stroke, String recordDay) {
 		this.TG = TG;
 		this.TC = TC;
 		this.HDL = HDL;
@@ -68,27 +68,27 @@ public class Hyperlipidemia {
 		this.vldl = vldl;
 	}
 	
-	public Integer getAngiosclerosis() {
+	public Double getAngiosclerosis() {
 		return angiosclerosis;
 	}
 	
-	public void setAngiosclerosis(Integer angiosclerosis) {
+	public void setAngiosclerosis(Double angiosclerosis) {
 		this.angiosclerosis = angiosclerosis;
 	}
 	
-	public Integer getStroke() {
+	public Double getStroke() {
 		return stroke;
 	}
 	
-	public void setStroke(Integer stroke) {
+	public void setStroke(Double stroke) {
 		this.stroke = stroke;
 	}
 	
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 	
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 	

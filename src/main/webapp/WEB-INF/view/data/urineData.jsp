@@ -1,6 +1,32 @@
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.example.entity.Urine"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%!
+	interface Pattern{
+		String table_pattern = "['%s', '%s', %.2f, '%s', '%s', '%s', '%s', '%s', '%s', '%s', %.2f, '%s'],";
+		String ROW_PATTERN = "['%s', %s]";
+		String line_pattern = "['%s',%.2f],";
+	}
+%>
+
+<% 
+	List <Urine> urineInformations = (List <Urine>) request.getAttribute("urineInformations");
+	
+	Map <String,Long> AppearanceMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getAppearance,Collectors.counting()));
+	Map <String,Long> LeukocytesMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getLeukocytes,Collectors.counting()));
+	Map <String,Long> GlucoseMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getGlucose,Collectors.counting()));
+	Map <String,Long> ProteinMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getProtein,Collectors.counting()));
+	Map <String,Long> BilirubinMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getBilirubin,Collectors.counting()));
+	Map <String,Long> UrobilirubinMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getUrobilirubin,Collectors.counting()));
+	Map <String,Long> KetonesMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getKetones,Collectors.counting()));
+	Map <String,Long> OccultBloodMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getOccultBlood,Collectors.counting()));
+	Map <String,Long> NitriteMap = urineInformations.stream().collect(Collectors.groupingBy(Urine::getNitrite,Collectors.counting()));
+
+%>
 <!-- 尿液紀錄資料 -->
 <div class="container py-2 px-0">
 	<div class="row m-0">
@@ -107,14 +133,14 @@
 	//尿液表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('date', '時間');
+		data.addColumn('string', '時間');
 		data.addColumn('string', '外觀');
         data.addColumn('number', '酸鹼反應');
         data.addColumn('string', '尿白血球');
         data.addColumn('string', '尿糖');
         data.addColumn('string', '尿蛋白');
         data.addColumn('string', '尿膽紅素');
-        data.addColumn('boolean', '尿膽素元');
+        data.addColumn('string', '尿膽素元');
         data.addColumn('string', '尿丙酮體');
         data.addColumn('string', '潛血反應');
         data.addColumn('number', '比重');
@@ -122,8 +148,13 @@
 
         
         data.addRows([
-          [new Date('2011-12-11'), '黃色', 7, '+++', '-', '-', '-', true, '++', '-', 1, '+'],
-          [new Date('2012-12-11'), '黃色', 7, '++', '+', '++', '-', false, '++', '-', 1, '+'],
+        <%
+      		for(Urine uinfo : urineInformations){
+      			out.println(String.format(Pattern.table_pattern,uinfo.getRecordDay(),uinfo.getAppearance(),
+      					uinfo.getPH(),uinfo.getLeukocytes(),uinfo.getGlucose(),uinfo.getProtein(),uinfo.getBilirubin(),
+      					uinfo.getUrobilirubin(),uinfo.getKetones(),uinfo.getOccultBlood(),uinfo.getSpecificGravity(),uinfo.getNitrite()));
+      		}
+       	%>	
         ]);
 
 		var table = new google.visualization.Table(document
@@ -139,13 +170,16 @@
 	//外觀圓餅圖
 	function draw_appearancePieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['外觀','次數'],
-          ['無色',11],
-          ['綠色',2],
-          ['黃色',2],
-          ['紅色',2]
-        ]);
+        ['外觀','次數'],
+        <%
+          String AppearanceResult = AppearanceMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, AppearanceMap.get(key)))
+			  .collect(Collectors.joining(","));
 
+		  out.print(AppearanceResult);
+      	%>
+        ]);
+        
         var options = {
           is3D: true,
           legend: 'top',
@@ -160,13 +194,16 @@
 	function draw_PHLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '酸鹼反應');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+      		for(Urine uinfo : urineInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					uinfo.getRecordDay(),uinfo.getPH()));
+      		}
+	      %>
 	      ]);
 
 	      var options = {
@@ -188,12 +225,14 @@
 	//尿白血球圓餅圖
 	function draw_leukocytesPieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['尿白血球','次數'],
-          ['-',11],
-          ['+',2],
-          ['++',2],
-          ['+++',2],
-          ['++++',3]
+        ['尿白血球','次數'],
+        <%
+          String LeukocytesResult = LeukocytesMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, LeukocytesMap.get(key)))
+			  .collect(Collectors.joining(","));
+
+		  out.print(LeukocytesResult);
+      	%>
         ]);
 
         var options = {
@@ -209,12 +248,14 @@
 	//尿糖圓餅圖
 	function draw_glucosePieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['尿糖','次數'],
-          ['-',11],
-          ['+',2],
-          ['++',2],
-          ['+++',2],
-          ['++++',3]
+        ['尿糖','次數'],
+        <%
+          String GlucoseResult = GlucoseMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, GlucoseMap.get(key)))
+			  .collect(Collectors.joining(","));
+
+		  out.print(GlucoseResult);
+      	%>
         ]);
 
         var options = {
@@ -230,12 +271,14 @@
 	//尿蛋白圓餅圖
 	function draw_proteinPieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['尿蛋白','次數'],
-          ['-',11],
-          ['+',2],
-          ['++',2],
-          ['+++',2],
-          ['++++',3]
+        ['尿蛋白','次數'],
+        <%
+          String ProteinResult = ProteinMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, ProteinMap.get(key)))
+			  .collect(Collectors.joining(","));
+
+		  out.print(ProteinResult);
+      	%>
         ]);
 
         var options = {
@@ -251,12 +294,14 @@
 	//尿膽紅素圓餅圖
 	function draw_bilirubinPieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['尿膽紅素','次數'],
-          ['-',11],
-          ['+',2],
-          ['++',2],
-          ['+++',2],
-          ['++++',3]
+        ['尿膽紅素','次數'],
+        <%
+          String BilirubinResult = BilirubinMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, BilirubinMap.get(key)))
+			  .collect(Collectors.joining(","));
+
+		  out.print(BilirubinResult);
+      	%>
         ]);
 
         var options = {
@@ -272,9 +317,14 @@
 	//尿膽素元柱狀圖
 	function draw_urobilirubinBarChart() {
         var data = new google.visualization.arrayToDataTable([
-          ['尿膽素元', '次數'],
-          ["無", 44],
-          ["有", 23]
+        ['尿膽素元', '次數'],
+        <%
+          String UrobilirubinResult = UrobilirubinMap.keySet().stream()
+			  .map(key -> String.format(Pattern.ROW_PATTERN, key, UrobilirubinMap.get(key)))
+			  .collect(Collectors.joining(","));
+
+		  out.print(UrobilirubinResult);
+      	%>
         ]);
 
         var options = {
@@ -295,12 +345,14 @@
     //尿丙酮體圓餅圖
   	function draw_ketonesPieChart() {
           var data = google.visualization.arrayToDataTable([
-            ['尿丙酮體','次數'],
-            ['-',11],
-            ['+',2],
-            ['++',2],
-            ['+++',2],
-            ['++++',3]
+          ['尿丙酮體','次數'],
+          <%
+            String KetonesResult = KetonesMap.keySet().stream()
+  			  .map(key -> String.format(Pattern.ROW_PATTERN, key, KetonesMap.get(key)))
+  			  .collect(Collectors.joining(","));
+
+  		  	out.print(KetonesResult);
+          %>
           ]);
 
           var options = {
@@ -316,12 +368,14 @@
   	//潛血反應圓餅圖
   	function draw_occultBloodPieChart() {
           var data = google.visualization.arrayToDataTable([
-            ['潛血反應','次數'],
-            ['-',11],
-            ['+',2],
-            ['++',2],
-            ['+++',2],
-            ['++++',3]
+          ['潛血反應','次數'],
+          <%
+          	String OccultBloodResult = OccultBloodMap.keySet().stream()
+  			  .map(key -> String.format(Pattern.ROW_PATTERN, key, OccultBloodMap.get(key)))
+  			  .collect(Collectors.joining(","));
+
+  		  	out.print(OccultBloodResult);
+          %>
           ]);
 
           var options = {
@@ -338,13 +392,16 @@
 	function draw_specificGravityLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '比重');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	   	  <%
+      		for(Urine uinfo : urineInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					uinfo.getRecordDay(),uinfo.getSpecificGravity()));
+      		}
+		  %>
 	      ]);
 
 	      var options = {
@@ -366,12 +423,14 @@
 	//潛血反應圓餅圖
   	function draw_nitritePieChart() {
           var data = google.visualization.arrayToDataTable([
-            ['亞硝酸鹽','次數'],
-            ['-',11],
-            ['+',2],
-            ['++',2],
-            ['+++',2],
-            ['++++',3]
+          ['亞硝酸鹽','次數'],
+          <%
+            String NitriteResult = NitriteMap.keySet().stream()
+  			  .map(key -> String.format(Pattern.ROW_PATTERN, key, NitriteMap.get(key)))
+  			  .collect(Collectors.joining(","));
+
+  		  	out.print(NitriteResult);
+          %>
           ]);
 
           var options = {

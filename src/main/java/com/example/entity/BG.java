@@ -7,13 +7,13 @@ public class BG {
 	private Integer PC;  //飯後血糖
 	private Integer HbA1c;//糖化血色素
 	private Integer Amylase;//胰澱粉酶
-	private Date recordDay;
+	private String recordDay;
 	
 	public BG() {
 	
 	}
 	
-	public BG(Integer AC, Integer PC, Integer HbA1c, Integer Amylase, Date recordDay) {
+	public BG(Integer AC, Integer PC, Integer HbA1c, Integer Amylase, String recordDay) {
 		this.AC = AC;
 		this.PC = PC;
 		this.HbA1c = HbA1c;
@@ -53,11 +53,11 @@ public class BG {
 		this.Amylase = Amylase;
 	}
 	
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 	
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 	

@@ -308,10 +308,10 @@ hr:not([size]) {
             url: "./Login", 
             data: { userId: userId},
             success: function(response) {
-                console.log("UID sent to servlet successfully");
+                //console.log("UID sent to servlet successfully");
             },
             error: function(error) {
-                console.error("Error sending UID to servlet", error);
+                //console.error("Error sending UID to servlet", error);
             }
         });
     }

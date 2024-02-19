@@ -37,21 +37,21 @@
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">平均紅血球容積</label>
 				<input type="number" class="form-control" id="MCV"
-					name="MCV" placeholder="FL" min="0" max="600" step="1" required>
+					name="MCV" placeholder="FL" min="0" max="600" step="0.1" required>
 				<div class="invalid-feedback">請輸入正確平均紅血球容積</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">平均紅血球血紅素量</label>
 				<input type="number" class="form-control" id="MCH"
-					name="MCH" placeholder="pg" min="0" max="600" step="1" required>
+					name="MCH" placeholder="pg" min="0" max="600" step="0.1" required>
 				<div class="invalid-feedback">請輸入正確平均紅血球血紅素量</div>
 			</div>
 			
 			<div class="col-10 mx-auto px-0 m-2">
 				<label for="exampleFormControlInput1" class="form-label">平均紅血球血紅素濃度</label>
 				<input type="number" class="form-control" id="MCHC"
-					name="MCHC" placeholder="g/dL" min="0" max="350" step="1" required>
+					name="MCHC" placeholder="g/dL" min="0" max="350" step="0.1" required>
 				<div class="invalid-feedback">請輸入正確平均紅血球血紅素量濃度</div>
 			</div>
 			

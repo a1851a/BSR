@@ -6,18 +6,18 @@ public class Sediment {
 	private Integer RBC;//尿紅血球
 	private Integer WBC;//尿白血球
 	private Integer epithelium;//上皮細胞
-	private YesOrNo crystal;//結晶體
-	private YesOrNo cast;//尿圓柱體
-	private YesOrNo bacteria;//細菌
-	private YesOrNo other;//其他
-	private Date recordDay;
+	private String crystal;//結晶體
+	private String cast;//尿圓柱體
+	private String bacteria;//細菌
+	private String other;//其他
+	private String recordDay;
 	
 	public Sediment() {
 
 	}
 
-	public Sediment(Integer RBC, Integer WBC, Integer epithelium, YesOrNo crystal, YesOrNo cast, YesOrNo bacteria,
-			YesOrNo other, Date recordDay) {
+	public Sediment(Integer RBC, Integer WBC, Integer epithelium, String crystal, String cast, String bacteria,
+			String other, String recordDay) {
 		this.RBC = RBC;
 		this.WBC = WBC;
 		this.epithelium = epithelium;
@@ -52,43 +52,43 @@ public class Sediment {
 		this.epithelium = epithelium;
 	}
 
-	public YesOrNo getCrystal() {
+	public String getCrystal() {
 		return crystal;
 	}
 
-	public void setCrystal(YesOrNo crystal) {
+	public void setCrystal(String crystal) {
 		this.crystal = crystal;
 	}
 
-	public YesOrNo getCast() {
+	public String getCast() {
 		return cast;
 	}
 
-	public void setCast(YesOrNo cast) {
+	public void setCast(String cast) {
 		this.cast = cast;
 	}
 
-	public YesOrNo getBacteria() {
+	public String getBacteria() {
 		return bacteria;
 	}
 
-	public void setBacteria(YesOrNo bacteria) {
+	public void setBacteria(String bacteria) {
 		this.bacteria = bacteria;
 	}
 
-	public YesOrNo getOther() {
+	public String getOther() {
 		return other;
 	}
 
-	public void setOther(YesOrNo other) {
+	public void setOther(String other) {
 		this.other = other;
 	}
 
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 

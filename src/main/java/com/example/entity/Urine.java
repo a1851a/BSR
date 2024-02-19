@@ -3,26 +3,26 @@ package com.example.entity;
 import java.util.Date;
 
 public class Urine {
-	private Appearance appearance;//外觀
-	private Severity leukocytes;//尿白血球
-	private Severity glucose;//尿糖
-	private Severity protein;//尿蛋白
-	private Severity bilirubin;//尿膽紅素
+	private String appearance;//外觀
+	private String leukocytes;//尿白血球
+	private String glucose;//尿糖
+	private String protein;//尿蛋白
+	private String bilirubin;//尿膽紅素
 	private String urobilirubin;//尿膽素元
-	private Severity ketones;//尿丙酮體
-	private Severity occultBlood;//潛血反應
-	private Severity nitrite;//亞硝酸鹽
+	private String ketones;//尿丙酮體
+	private String occultBlood;//潛血反應
+	private String nitrite;//亞硝酸鹽
 	private Double PH;//酸鹼反應
 	private Double specificGravity;//比重
-	private Date recordDay;
+	private String recordDay;
 
 	public Urine() {
 	
 	}
 	
-	public Urine(Appearance appearance, Severity leukocytes, Severity glucose, Severity protein, Severity bilirubin,
-			String urobilirubin, Severity ketones, Severity occultBlood, Severity nitrite, Double PH,
-			Double specificGravity, Date recordDay) {
+	public Urine(String appearance, String leukocytes, String glucose, String protein, String bilirubin,
+			String urobilirubin, String ketones, String occultBlood, String nitrite, Double PH,
+			Double specificGravity, String recordDay) {
 		this.appearance = appearance;
 		this.leukocytes = leukocytes;
 		this.glucose = glucose;
@@ -37,43 +37,43 @@ public class Urine {
 		this.recordDay = recordDay;
 	}
 	
-	public Appearance getAppearance() {
+	public String getAppearance() {
 		return appearance;
 	}
 	
-	public void setAppearance(Appearance appearance) {
+	public void setAppearance(String appearance) {
 		this.appearance = appearance;
 	}
 	
-	public Severity getLeukocytes() {
+	public String getLeukocytes() {
 		return leukocytes;
 	}
 	
-	public void setLeukocytes(Severity leukocytes) {
+	public void setLeukocytes(String leukocytes) {
 		this.leukocytes = leukocytes;
 	}
 	
-	public Severity getGlucose() {
+	public String getGlucose() {
 		return glucose;
 	}
 	
-	public void setGlucose(Severity glucose) {
+	public void setGlucose(String glucose) {
 		this.glucose = glucose;
 	}
 	
-	public Severity getProtein() {
+	public String getProtein() {
 		return protein;
 	}
 	
-	public void setProtein(Severity protein) {
+	public void setProtein(String protein) {
 		this.protein = protein;
 	}
 	
-	public Severity getBilirubin() {
+	public String getBilirubin() {
 		return bilirubin;
 	}
 	
-	public void setBilirubin(Severity bilirubin) {
+	public void setBilirubin(String bilirubin) {
 		this.bilirubin = bilirubin;
 	}
 	
@@ -85,27 +85,27 @@ public class Urine {
 		this.urobilirubin = urobilirubin;
 	}
 	
-	public Severity getKetones() {
+	public String getKetones() {
 		return ketones;
 	}
 	
-	public void setKetones(Severity ketones) {
+	public void setKetones(String ketones) {
 		this.ketones = ketones;
 	}
 	
-	public Severity getOccultBlood() {
+	public String getOccultBlood() {
 		return occultBlood;
 	}
 	
-	public void setOccultBlood(Severity occultBlood) {
+	public void setOccultBlood(String occultBlood) {
 		this.occultBlood = occultBlood;
 	}
 	
-	public Severity getNitrite() {
+	public String getNitrite() {
 		return nitrite;
 	}
 	
-	public void setNitrite(Severity nitrite) {
+	public void setNitrite(String nitrite) {
 		this.nitrite = nitrite;
 	}
 	
@@ -125,11 +125,11 @@ public class Urine {
 		this.specificGravity = specificGravity;
 	}
 	
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 	
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 	

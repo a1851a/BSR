@@ -1,6 +1,27 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="com.example.entity.Sediment"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%!
+	interface Pattern{
+		String table_pattern = "['%s',%d, %d, %d, '%s', '%s', '%s', '%s'],";
+		String ROW_PATTERN = "['%s', %s]";
+		String line_pattern = "['%s',%d],";
+	}
+%>
 
+<% 
+	List <Sediment> sedimentInformations = (List <Sediment>) request.getAttribute("sedimentInformations");
+
+	Map <String,Long> CrystalMap = sedimentInformations.stream().collect(Collectors.groupingBy(Sediment::getCrystal,Collectors.counting()));
+	Map <String,Long> CastMap = sedimentInformations.stream().collect(Collectors.groupingBy(Sediment::getCast,Collectors.counting()));
+	Map <String,Long> BacteriaMap = sedimentInformations.stream().collect(Collectors.groupingBy(Sediment::getBacteria,Collectors.counting()));
+	Map <String,Long> OtherMap = sedimentInformations.stream().collect(Collectors.groupingBy(Sediment::getOther,Collectors.counting()));
+
+%>
 <!-- 尿液沉渣紀錄資料 -->
 <div class="container py-2 px-0">
 	<div class="row m-0">
@@ -86,18 +107,23 @@
 	//尿液表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('date', '時間');
+		data.addColumn('string', '時間');
 		data.addColumn('number', '尿紅血球');
         data.addColumn('number', '尿白血球');
         data.addColumn('number', '上皮細胞');
-        data.addColumn('boolean', '結晶體');
-        data.addColumn('boolean', '尿圓柱體');
-        data.addColumn('boolean', '細菌');
-        data.addColumn('boolean', '其他');
+        data.addColumn('string', '結晶體');
+        data.addColumn('string', '尿圓柱體');
+        data.addColumn('string', '細菌');
+        data.addColumn('string', '其他');
 
         data.addRows([
-          [new Date('2011-12-11'), 2, 2, 3, true, true, true, false],
-          [new Date('2012-12-11'), 1, 2, 1, false, true, true, false],
+       	<%
+      		for(Sediment sinfo : sedimentInformations){
+      			out.println(String.format(Pattern.table_pattern,sinfo.getRecordDay(),sinfo.getRBC(),
+      					sinfo.getWBC(),sinfo.getEpithelium(),sinfo.getCrystal(),sinfo.getCast(),
+      					sinfo.getBacteria(),sinfo.getOther()));
+      		}
+       	%>	
         ]);
 
 		var table = new google.visualization.Table(document
@@ -114,13 +140,16 @@
 	function draw_RBCLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '尿紅血球');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+      		for(Sediment sinfo : sedimentInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					sinfo.getRecordDay(),sinfo.getRBC()));
+      		}
+	      %>
 	      ]);
 
 	      var options = {
@@ -143,13 +172,16 @@
 	function draw_WBCLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '尿白血球');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+      		for(Sediment sinfo : sedimentInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					sinfo.getRecordDay(),sinfo.getWBC()));
+      		}
+	      %>
 	      ]);
 
 	      var options = {
@@ -172,13 +204,16 @@
 	function draw_epitheliumLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '上皮細胞');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+      		for(Sediment sinfo : sedimentInformations){
+      			out.println(String.format(Pattern.line_pattern,
+      					sinfo.getRecordDay(),sinfo.getEpithelium()));
+      		}
+	      %> 
 	      ]);
 
 	      var options = {
@@ -202,8 +237,13 @@
 	function draw_crystalBarChart() {
         var data = new google.visualization.arrayToDataTable([
           ['結晶體', '次數'],
-          ["無", 44],
-          ["有", 23]
+          <%
+	          String CrystalResult = CrystalMap.keySet().stream()
+				  .map(key -> String.format(Pattern.ROW_PATTERN, key, CrystalMap.get(key)))
+				  .collect(Collectors.joining(","));
+	
+			  out.print(CrystalResult);
+          %>
         ]);
 
         var options = {
@@ -225,8 +265,13 @@
   	function draw_castBarChart() {
           var data = new google.visualization.arrayToDataTable([
             ['尿圓柱體', '次數'],
-            ["無", 44],
-            ["有", 23]
+            <%
+	          String CastResult = CastMap.keySet().stream()
+				  .map(key -> String.format(Pattern.ROW_PATTERN, key, CastMap.get(key)))
+				  .collect(Collectors.joining(","));
+	
+			  out.print(CastResult);
+            %>
           ]);
 
           var options = {
@@ -248,8 +293,13 @@
     	function draw_bacteriaBarChart() {
             var data = new google.visualization.arrayToDataTable([
               ['細菌', '次數'],
-              ["無", 44],
-              ["有", 23]
+              <%
+		          String BacteriaResult = BacteriaMap.keySet().stream()
+					  .map(key -> String.format(Pattern.ROW_PATTERN, key, BacteriaMap.get(key)))
+					  .collect(Collectors.joining(","));
+		
+				  out.print(BacteriaResult);
+              %>
             ]);
 
             var options = {
@@ -271,8 +321,13 @@
       	function draw_otherBarChart() {
               var data = new google.visualization.arrayToDataTable([
                 ['其他', '次數'],
-                ["無", 44],
-                ["有", 23]
+                <%
+		          String OtherResult = OtherMap.keySet().stream()
+					  .map(key -> String.format(Pattern.ROW_PATTERN, key, OtherMap.get(key)))
+					  .collect(Collectors.joining(","));
+		
+				  out.print(OtherResult);
+               %>
               ]);
 
               var options = {

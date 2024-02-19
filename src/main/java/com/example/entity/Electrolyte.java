@@ -5,16 +5,16 @@ import java.util.Date;
 public class Electrolyte {
 	private Double Ca;//血中鈣
 	private Double P;//血中磷
+	private Double k;//鉀離子
 	private Integer na;//鈉離子
-	private Integer k;//鉀離子
 	private Integer cl;//氯離子
-	private Date recordDay;
+	private String recordDay;
 	
 	public Electrolyte() {
 	
 	}
 	
-	public Electrolyte(Double Ca, Double P, Integer na, Integer k, Integer cl, Date recordDay) {
+	public Electrolyte(Double Ca, Double P, Integer na, Double k, Integer cl, String recordDay) {
 		this.Ca = Ca;
 		this.P = P;
 		this.na = na;
@@ -47,11 +47,11 @@ public class Electrolyte {
 		this.na = na;
 	}
 	
-	public Integer getK() {
+	public Double getK() {
 		return k;
 	}
 	
-	public void setK(Integer k) {
+	public void setK(Double k) {
 		this.k = k;
 	}
 	
@@ -63,11 +63,11 @@ public class Electrolyte {
 		this.cl = cl;
 	}
 	
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 	
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 	

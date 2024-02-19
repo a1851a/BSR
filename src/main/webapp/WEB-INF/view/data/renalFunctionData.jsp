@@ -1,6 +1,19 @@
+<%@page import="com.example.entity.RenalFunction"%>
+<%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%!
+	interface Pattern{
+		String table_pattern = "['%s',%.2f, %.2f, %.2f, %.2f],";
+		String line_pattern = "['%s',%.2f],";
+	}
+%>
+
+<%
+	List <RenalFunction> renalFunctionInformations =(List <RenalFunction>) request.getAttribute("renalFunctionInformations");
+%>
 <!-- 腎臟功能錄資料 -->
 <div class="container py-2 px-0">
 	<div class="row m-0">
@@ -71,15 +84,19 @@
 	//腎臟功能表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('date', '時間');
+		data.addColumn('string', '時間');
 		data.addColumn('number', '尿素氮');
         data.addColumn('number', '肌酸酐');
         data.addColumn('number', '尿酸');
         data.addColumn('number', '微量白蛋白');
 
         data.addRows([
-          [new Date('2011-12-11'), 178, 55, 100, 12],
-          [new Date('2011-10-11'), 176, 67, 123, 21]
+       	<%
+	       	for(RenalFunction rinfo : renalFunctionInformations){
+	       		out.println(String.format(Pattern.table_pattern,rinfo.getRecordDay(),
+	       				rinfo.getBUN(),rinfo.getCr(),rinfo.getUA(),rinfo.getmAlb()));
+	       	}
+      	%>
         ]);
 
 		var table = new google.visualization.Table(document
@@ -96,14 +113,15 @@
 	function draw_BUNLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '尿素氮');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', 'mg/dL');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 80], [new Date('2010-11-11'), 96],
-	        [new Date('2011-12-11'), 100], [new Date('2021-11-11'), 120],
-	        [new Date('2021-11-12'), 123], [new Date('2021-12-11'), 170],
-	        [new Date('2022-11-12'), 173], [new Date('2023-12-11'), 177]
+	      <%
+	       	for(RenalFunction rinfo : renalFunctionInformations){
+	       		out.println(String.format(Pattern.line_pattern,rinfo.getRecordDay(),rinfo.getBUN()));
+	       	}
+	      %>	
 	      ]);
 
 	      var options = {
@@ -126,13 +144,15 @@
 	function draw_CrLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '肌酸酐');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', 'mg/dL');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+	       	for(RenalFunction rinfo : renalFunctionInformations){
+	       		out.println(String.format(Pattern.line_pattern,rinfo.getRecordDay(),rinfo.getCr()));
+	       	}
+	      %>	
 	      ]);
 
 	      var options = {
@@ -155,13 +175,15 @@
 	function draw_UALineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '尿酸');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', 'mg/dL');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+	       	for(RenalFunction rinfo : renalFunctionInformations){
+	       		out.println(String.format(Pattern.line_pattern,rinfo.getRecordDay(),rinfo.getUA()));
+	       	}
+	      %>	
 	      ]);
 
 	      var options = {
@@ -184,13 +206,15 @@
 	function draw_mAlbLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
-	      data.addColumn('number', '微量白蛋白');
+	      data.addColumn('string', '時間');
+	      data.addColumn('number', 'mg/L');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+    	  <%
+	       	for(RenalFunction rinfo : renalFunctionInformations){
+	       		out.println(String.format(Pattern.line_pattern,rinfo.getRecordDay(),rinfo.getmAlb()));
+	       	}
+	      %>	
 	      ]);
 
 	      var options = {

@@ -7,13 +7,13 @@ public class RenalFunction {
 	private Double Cr;//肌酸酐
 	private Double UA;//尿酸
 	private Double mAlb;//微量白蛋白
-	private Date recordDay;
+	private String recordDay;
 	
 	public RenalFunction() {
 	
 	}
 	
-	public RenalFunction(Double BUN, Double Cr, Double UA, Double mAlb, Date recordDay) {
+	public RenalFunction(Double BUN, Double Cr, Double UA, Double mAlb, String recordDay) {
 		this.BUN = BUN;
 		this.Cr = Cr;
 		this.UA = UA;
@@ -53,11 +53,11 @@ public class RenalFunction {
 		this.mAlb = mAlb;
 	}
 
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 

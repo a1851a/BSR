@@ -1,5 +1,18 @@
+<%@page import="com.example.entity.BP"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%!
+	interface Pattern{
+		String table_pattern = "['%s',%d, %d, %d],";
+		String line_pattern = "['%s',%d],";
+	}
+%>
+
+<%
+	List <BP> BPInformations =(List <BP>) request.getAttribute("BPInfomations");
+%>
 
 <!-- 血壓紀錄資料 -->
 <div class="container py-2 px-0">
@@ -66,14 +79,18 @@
 	//身體質量表格
 	function drawTable() {
 		var data = new google.visualization.DataTable();
-		data.addColumn('date', '時間');
+		data.addColumn('string', '時間');
 		data.addColumn('number', '收縮壓');
         data.addColumn('number', '舒張壓');
         data.addColumn('number', '脈搏');
         
         data.addRows([
-          [new Date('2011-12-11'), 178, 55, 85],
-          [new Date('2011-10-11'), 176, 67, 75]
+        	<%
+        		for(BP bpinfo: BPInformations){
+        			out.println(String.format(Pattern.table_pattern,bpinfo.getRecordDay(),
+        					bpinfo.getSBP(),bpinfo.getDBP(),bpinfo.getPulse()));
+        		}
+        	%>
         ]);
 
 		var table = new google.visualization.Table(document
@@ -90,14 +107,16 @@
 	function draw_SBPLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '收縮壓');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 80], [new Date('2010-11-11'), 96],
-	        [new Date('2011-12-11'), 100], [new Date('2021-11-11'), 120],
-	        [new Date('2021-11-12'), 123], [new Date('2021-12-11'), 170],
-	        [new Date('2022-11-12'), 173], [new Date('2023-12-11'), 177]
+	    	<%
+	       		for(BP bpinfo : BPInformations){
+	       			out.println(String.format(Pattern.line_pattern,bpinfo.getRecordDay(),
+	       					bpinfo.getSBP()));
+	       		}
+	       	%>	
 	      ]);
 
 	      var options = {
@@ -120,13 +139,16 @@
 	function draw_DBPLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '舒張壓');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+	      	<%
+	       		for(BP bpinfo : BPInformations){
+	       			out.println(String.format(Pattern.line_pattern,bpinfo.getRecordDay(),
+	       					bpinfo.getDBP()));
+	       		}
+	       	%>	
 	      ]);
 
 	      var options = {
@@ -149,13 +171,16 @@
 	function draw_pulseLineChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('date', '時間');
+	      data.addColumn('string', '時間');
 	      data.addColumn('number', '脈搏');
 
 	      data.addRows([
-		    [new Date('2009-12-11'), 40], [new Date('2010-11-11'), 50],
-	        [new Date('2011-12-11'), 54], [new Date('2021-11-11'), 60],
-	        [new Date('2021-11-12'), 56], [new Date('2021-12-11'), 70]
+			<%
+	       		for(BP bpinfo : BPInformations){
+	       			out.println(String.format(Pattern.line_pattern,bpinfo.getRecordDay(),
+	       					bpinfo.getPulse()));
+	       		}
+	       	%>	
 	      ]);
 
 	      var options = {

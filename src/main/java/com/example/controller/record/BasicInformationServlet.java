@@ -61,28 +61,34 @@ public class BasicInformationServlet extends HttpServlet{
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
 		}
-		else {
-			Double BMI = Math.round((Weight / ((Height / 100) * (Height / 100))) * 100.0) / 100.0;
-			Double BMR = null;
-			LocalDate recordDay = LocalDate.now();
-			 // 定義日期格式
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	        // 使用格式進行格式化
-	        String formattedDateString = recordDay.format(formatter);
-	        
-			Optional<User> userOptional = BSRDao.findUserByUserId(userId);
-			User user = userOptional.get();
-			if (user.getAge()!=null) {
-		        //計算BMR身體代謝率，使用Mifflin-St Jeor公式
-				BMR =(double) Math.round((10*Weight+6.25*Height-5*user.getAge()+5)) ;
-				//新增資訊至基礎資訊
-				BSRDao.addBasicInformation(userId, Height, Weight, BMI, BMR, formattedDateString);
-				resp.sendRedirect("./Index");
-				return;
-		    }
+		Double BMI = Math.round((Weight / ((Height / 100) * (Height / 100))) * 100.0) / 100.0;
+		Double BMR = null;
+		LocalDate recordDay = LocalDate.now();
+		 // 定義日期格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // 使用格式進行格式化
+        String formattedDateString = recordDay.format(formatter);
+        
+		Optional<User> userOptional = BSRDao.findUserByUserId(userId);
+		User user = userOptional.get();
+		if (user.getAge()!=null) {
+	        //計算BMR身體代謝率，使用Mifflin-St Jeor公式
+			BMR =(double) Math.round((10*Weight+6.25*Height-5*user.getAge()+5)) ;
 			//新增資訊至基礎資訊
-			BSRDao.addBasicInformation(userId, Height, Weight, BMI, formattedDateString);
+			BSRDao.addBasicInformation(userId, Height, Weight, BMI, BMR, formattedDateString);
+			//若BMI超過合理範圍
+			if (BMI<18.5 || BMI>30) {
+				BSRDao.addOutcomeByUserId(userId, "基礎資訊", formattedDateString);
+			}
 			resp.sendRedirect("./Index");
+			return;
+	    }
+		//新增資訊至基礎資訊
+		BSRDao.addBasicInformation(userId, Height, Weight, BMI, formattedDateString);
+		
+		if (BMI<18.5 || BMI>30) {
+			BSRDao.addOutcomeByUserId(userId, "基礎資訊", formattedDateString);
 		}
+		resp.sendRedirect("./Index");	
 	}
 }

@@ -1,6 +1,8 @@
 package com.example.controller.record;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.BSRDAO;
+import com.example.model.BSRDaoMySQL;
+
 //血液
 @WebServlet(value = "/Blood")
 public class BloodServlet extends HttpServlet{
+
+	private BSRDAO BSRDao = new BSRDaoMySQL();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +30,9 @@ public class BloodServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//取得使用者Id
+		String userId = (String) req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		//白血球
 		String WBC = req.getParameter("WBC");
 		//紅血球
@@ -54,22 +64,32 @@ public class BloodServlet extends HttpServlet{
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
 		}
+		
+		Integer wbc = Integer.parseInt(WBC);
+		Double rbc = Math.round(Double.parseDouble(RBC)* 100.0) / 100.0;
+		Double hgb = Math.round(Double.parseDouble(Hgb)* 100.0) / 100.0;
+		Double hct = Math.round(Double.parseDouble(Hct)* 100.0) / 100.0;
+		Double mcv = Math.round(Double.parseDouble(MCV)* 100.0) / 100.0;
+		Double mch = Math.round(Double.parseDouble(MCH)* 100.0) / 100.0;
+		Double mchc = Math.round(Double.parseDouble(MCHC)* 100.0) / 100.0;
+		Integer plt = Integer.parseInt(PLT);
+		LocalDate recordDay = LocalDate.now();
+		// 定義日期格式
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		// 使用格式進行格式化
+		String formattedDateString = recordDay.format(formatter);
+       
 		//判斷是否位於合理範圍
-		else if ( Integer.parseInt(WBC) <0 || Integer.parseInt(WBC)>100000000 || 
-					Double.parseDouble(RBC) <0 || Double.parseDouble(RBC)>10 ||
-					Double.parseDouble(Hgb) <0 || Double.parseDouble(Hgb)>60 ||
-					Double.parseDouble(Hct) <0 || Double.parseDouble(Hct)>80 ||
-					Integer.parseInt(MCV) <0 || Integer.parseInt(MCV)>600 ||
-					Integer.parseInt(MCH) <0 || Integer.parseInt(MCH)>600 ||
-					Integer.parseInt(MCHC) <0 || Integer.parseInt(MCHC)>350 ||
-					Integer.parseInt(PLT) <0 || Integer.parseInt(PLT)>1000) {
+		if ( wbc <0 || wbc >100000000 || wbc <0 || wbc >10 ||
+				hgb <0 || hgb >60 || hct <0 || hct >80 ||
+				mcv <0 || mcv >600 || mch <0 || mch >600 ||
+				mchc <0 || mchc >350 || plt <0 || plt >1000) {
 			resp.getWriter().println(
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
 		}
-		else {
-			resp.sendRedirect("./Index");
-		}
+		BSRDao.addBlood(userId, wbc, rbc, hgb, hct, mcv, mch, mchc, plt, formattedDateString);
+		resp.sendRedirect("./Index");
 	}
 }

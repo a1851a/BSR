@@ -6,13 +6,13 @@ public class BP {
 	private Integer SBP;    //收縮壓
 	private Integer DBP;    //舒張壓
 	private Integer pulse;  //脈搏
-	private Date recordDay;
+	private String recordDay;
 	
 	public BP() {
 	
 	}
 	
-	public BP(Integer SBP, Integer DBP, Integer pulse, Date recordDay) {
+	public BP(Integer SBP, Integer DBP, Integer pulse, String recordDay) {
 		this.SBP = SBP;
 		this.DBP = DBP;
 		this.pulse = pulse;
@@ -43,11 +43,11 @@ public class BP {
 		this.pulse = pulse;
 	}
 	
-	public Date getRecordDay() {
+	public String getRecordDay() {
 		return recordDay;
 	}
 	
-	public void setRecordDay(Date recordDay) {
+	public void setRecordDay(String recordDay) {
 		this.recordDay = recordDay;
 	}
 	

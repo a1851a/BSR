@@ -1,6 +1,8 @@
 package com.example.controller.record;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.BSRDAO;
+import com.example.model.BSRDaoMySQL;
+
 
 //腎臟功能
 @WebServlet(value = "/RenalFunction")
 public class RenalFunctionServlet extends HttpServlet{
+
+	private BSRDAO BSRDao = new BSRDaoMySQL();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +31,9 @@ public class RenalFunctionServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//取得使用者Id
+		String userId = (String) req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		//尿素氮
 		String BUN = req.getParameter("BUN");
 		//肌酸酐
@@ -42,20 +52,28 @@ public class RenalFunctionServlet extends HttpServlet{
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
-		}else {
-			//判斷是否位於合理範圍
-			if ( Double.parseDouble(BUN) <0 || Double.parseDouble(BUN)>100 ||
-					Double.parseDouble(Cr)<0 || Double.parseDouble(Cr)>10000 ||
-					Double.parseDouble(UA)<0 || Double.parseDouble(UA)>250 ||
-					Double.parseDouble(mAlb)<0 || Double.parseDouble(mAlb)>250) {
-				resp.getWriter().println(
-						"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
-				resp.getWriter().print(
-						"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
-		}else {
-			resp.sendRedirect("./Index");
 		}
-			
+		
+		Double bun = Math.round(Double.parseDouble(BUN)* 100.0) / 100.0;
+		Double cr = Math.round(Double.parseDouble(Cr)* 100.0) / 100.0;
+		Double ua = Math.round(Double.parseDouble(UA)* 100.0 )/ 100.0;
+		Double MAlb = Math.round(Double.parseDouble(mAlb)* 100.0) / 100.0;
+		LocalDate recordDay = LocalDate.now();
+		// 定義日期格式
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		// 使用格式進行格式化
+		String formattedDateString = recordDay.format(formatter);
+       
+		//判斷是否位於合理範圍
+		if (  bun <0 || bun >100 || cr <0 || cr >10000 ||
+				ua <0 || ua >250 || MAlb <0 || MAlb >250) {
+			resp.getWriter().println(
+					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
+			resp.getWriter().print(
+					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入合理的資訊</div>");
+	
 		}
+		BSRDao.addRenalFunction(userId, bun, cr, ua, MAlb, formattedDateString);
+		resp.sendRedirect("./Index");
 	}
 }

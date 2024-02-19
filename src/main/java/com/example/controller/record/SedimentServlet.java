@@ -1,6 +1,8 @@
 package com.example.controller.record;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.BSRDAO;
+import com.example.model.BSRDaoMySQL;
+
 //尿液沉渣
 @WebServlet(value = "/Sediment")
 public class SedimentServlet extends HttpServlet{
+	
+	private BSRDAO BSRDao = new BSRDaoMySQL();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +30,9 @@ public class SedimentServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//取得使用者Id
+		String userId = (String) req.getSession().getAttribute("userId");
+		req.setAttribute("userId", userId);
 		//尿紅血球
 		String RBC = req.getParameter("RBC");
 		//尿白血球
@@ -47,8 +57,17 @@ public class SedimentServlet extends HttpServlet{
 					"<span><a href=\"#\" onclick=\"window.history.back();\" style=\"text-decoration:none;font-size:calc(5rem * 1080 / 1920);height:20vh;\">⬅️</a></span>");
 			resp.getWriter().print(
 					"<div style=\"color:red;display:flex;align-items:center;justify-content:center;font-size:calc(5rem * 1080 / 1920);flex-wrap:nowrap;min-width:400px;height:80vh;\">請輸入完整的資訊</div>");
-		}else {
-			resp.sendRedirect("./Index");
 		}
+		
+		Integer rbc = Integer.parseInt(RBC);
+		Integer wbc = Integer.parseInt(WBC);
+		Integer Epithelium = Integer.parseInt(epithelium);
+		LocalDate recordDay = LocalDate.now();
+		// 定義日期格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // 使用格式進行格式化
+        String formattedDateString = recordDay.format(formatter);
+        BSRDao.addSediment(userId, rbc, wbc, Epithelium, crystal, cast, bacteria, other, formattedDateString);
+		resp.sendRedirect("./Index");
 	}
 }

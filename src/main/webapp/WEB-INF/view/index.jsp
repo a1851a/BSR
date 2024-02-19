@@ -1,6 +1,10 @@
+<%@page import="com.example.entity.HealthInformation"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="module" src="FirebaseConfig.js"></script>
+<% 
+	List <HealthInformation> healthInformations = (List <HealthInformation>) request.getAttribute("healthInformations");
+%>
 <%@include file="./include/header.jsp"%>
 
 <div class="theme_first container-fluid">
@@ -121,70 +125,16 @@
 </div>
 
 <div class="information container-fluid d-flex  flex-wrap">
-
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
 	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
+	<% for(HealthInformation hinfo : healthInformations){ %>
+		<div class="card" >
+		  <card class="card-body">
+		    <h5 class="card-title"><%=hinfo.getTitle() %></h5>
+		    <a href="<%=hinfo.getWeb_url() %>" class="btn btn-primary" >前往觀看</a>
+		  </card>
+		</div>
+	<% } %>
 	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </v>
-	</div>
-	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
-	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
-	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
-	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
-	
-	<div class="card" >
-	  <img src="..." class="card-img-top" alt="無法顯示">
-	  <card class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
-	  </card>
-	</div>
 </div>
 <%@include file="./include/footer.jsp"%>
 
@@ -557,7 +507,6 @@ arrow {
 		if(user) {
     		const userId = user.uid;
         	var displayName = user.displayName;
-			console.log(user);
 		}
 	});
 
